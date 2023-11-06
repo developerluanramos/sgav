@@ -1,11 +1,19 @@
-<h3>Novo Fornecedor</h3>
+@extends('app.layouts.app')
 
-@if($errors->any())
-    @foreach($errors as $error)
-        {{$error}}
-    @endforeach
-@endif
+@section('breadcrumb')
+    {{ Breadcrumbs::render('fornecedor.create') }}
+@endsection
 
-<form action="{{route('fornecedor.store')}}" method="post">
-    @include('app.fornecedor.partials.form')
+@section('title', 'Novo Fornecedor')
+
+<x-layouts.headers.create-header :title="'Novo Fornecedor'"/>
+
+@section('content')
+
+@include('components.alerts.form-errors')
+
+<form action="{{route('fornecedor.store')}}" method="POST">
+    @include('app.fornecedor.partials.form', compact('formData'))
 </form>
+
+@endsection

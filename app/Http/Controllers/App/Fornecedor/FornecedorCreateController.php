@@ -14,8 +14,8 @@ class FornecedorCreateController extends Controller
 
     public function create(FornecedorCreateRequest $fornecedorCreateRequest)
     {
-        $dadosParaContruirFormulario = $this->createAction->exec();
+        $formData = $this->createAction->exec();
 
-        return view('app.fornecedor.create', compact('dadosParaContruirFormulario'));
+        return view('app.fornecedor.create', compact('formData'));
     }
 }

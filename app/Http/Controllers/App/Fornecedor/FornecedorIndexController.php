@@ -14,8 +14,14 @@ class FornecedorIndexController extends Controller
 
     public function index(FornecedorIndexRequest $fornecedorIndexRequest)
     {
-        $fornecedores = $this->indexAction->exec($fornecedorIndexRequest->all());
+        $fornecedores = $this->indexAction->exec(
+            page: $fornecedorIndexRequest->get('page', 1),
+            totalPerPage:  $fornecedorIndexRequest->get('totalPerPage', 15),
+            filter: $fornecedorIndexRequest->get('filter', null),
+        );
 
-        return view('app.fornecedor.index', compact('fornecedores'));
+        $filters = ['filter' => $fornecedorIndexRequest->get('filter', null)];
+
+        return view('app.fornecedor.index', compact('fornecedores', 'filters'));
     }
 }
