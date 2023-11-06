@@ -17,4 +17,4 @@ pipelines:
         deployment: production
         script:
           - apt-get update && apt-get install -y git
-          - git push https://heroku:c7bab9fd-21cf-418d-a1dc-a97c4deaeb5a@git.heroku.com/kolarestech-sgav.git HEADr
+          - git push https://heroku:c7bab9fd-21cf-418d-a1dc-a97c4deaeb5a@git.heroku.com/kolarestech-sgav.git
