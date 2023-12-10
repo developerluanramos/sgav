@@ -27,7 +27,7 @@ class EquipeEloquentRepository implements EquipeRepositoryInterface
         return $this->model->count();
     }
 
-    public function find($uuid): Equipe
+    public function find(string $uuid): Equipe
     {
         return $this->model
             ->with('servidores.cargo.servidores')

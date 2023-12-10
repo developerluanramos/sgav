@@ -14,7 +14,7 @@
                 <td><x-layouts.badges.situacao-cargo
                     :situacao="$cargo->situacao"
                     /></td>
-                <td class="text-left">
+                <td class="text-right">
                     <x-layouts.buttons.action-button
                     text="Ver"
                     action="ver"

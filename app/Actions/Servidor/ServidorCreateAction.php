@@ -2,8 +2,6 @@
 
 namespace App\Actions\Servidor;
 
-use App\Enums\CargoEnum;
-use App\Models\Cargo;
 use App\Repositories\Cargo\CargoRepositoryInterface;
 use App\Repositories\Equipe\EquipeRepositoryInterface;
 

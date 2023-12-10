@@ -16,7 +16,7 @@
                     :situacao="$modeloAvaliacao->situacao"
                     /></td>
                 <td>{{ $modeloAvaliacao->finalidade }}</td>
-                <td class="text-left">
+                <td class="text-right">
                     <x-layouts.buttons.action-button
                     text="Ver"
                     action="ver"

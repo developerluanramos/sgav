@@ -2,8 +2,9 @@
 
 namespace Database\Factories;
 
+use App\Enums\SituacaoUsuarioEnum;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Hash;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
@@ -17,13 +18,12 @@ class UserFactory extends Factory
      */
     public function definition(): array
     {
-        $situacaoValue = rand(0, 1) === 1 ? 1 : "0";
-
         return [
             'uuid' => fake()->uuid(),
             'name' => fake()->name(),
-            'email' => fake()->email(),
-            'situacao' => $situacaoValue,
+            'email' => 'dev@dev.com',
+            'password' => Hash::make('secret'),
+            'situacao' => 1
         ];
     }
 }

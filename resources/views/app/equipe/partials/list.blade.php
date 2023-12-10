@@ -15,7 +15,7 @@
                     :situacao="$equipe->situacao"
                     />
                 </td>
-                <td class="text-center">
+                <td class="text-right">
                     <x-layouts.buttons.action-button
                     text="Ver"
                     action="ver"

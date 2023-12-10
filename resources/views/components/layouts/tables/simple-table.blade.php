@@ -39,26 +39,20 @@
     }
 </style> --}}
 
-<div class="flex flex-col">
-    <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
-        <div class="inline-block min-w-full sm:px-6 lg:px-8">
-            <div class="overflow-hidden">
-                <table style="width: 100%;" class="table-auto min-w-full text-left text-sm font-light styled-table">
-                    <thead>
-                        <tr>
-                            @foreach ($headers as $header)
-                                <th>{{ $header }}</th>
-                            @endforeach
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @yield('table-content')
-                    </tbody>
-                </table>
-                @isset($paginator, $appends)
-                    <x-pagination.simple-pagination :paginator="$paginator" :appends="$appends" />
-                @endisset
-            </div>
-        </div>
-    </div>
-</div>
+
+    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+                @foreach ($headers as $header)
+                    <th scope="col" class="px-6 py-3">{{ $header }}</th>
+                @endforeach
+            </tr>
+        </thead>
+        <tbody>
+            @yield('table-content')
+        </tbody>
+    </table>
+    @isset($paginator, $appends)
+        <x-pagination.simple-pagination :paginator="$paginator" :appends="$appends" />
+    @endisset
+

@@ -10,10 +10,15 @@ use App\Repositories\Presenters\PaginationPresenter;
 
 class ModeloAvaliacaoEloquentRepository implements ModeloAvaliacaoRepositoryInterface
 {
-    
+
     public function __construct(protected ModeloAvaliacao $model)
     { }
-    
+
+    public function all(): array
+    {
+        return $this->model->all()->toArray();
+    }
+
     public function new(ModeloAvaliacaoStoreDTO $dto): ModeloAvaliacao
     {
         return $this->model->create((array)$dto);
@@ -21,7 +26,10 @@ class ModeloAvaliacaoEloquentRepository implements ModeloAvaliacaoRepositoryInte
 
     public function find($uuid): ModeloAvaliacao
     {
-        return $this->model->where('uuid', $uuid)->first();
+        return $this->model
+            ->with('fatoresAvaliacao.conceitoAvaliacao')
+            ->with('fatoresAvaliacao.indicadoresDesempenho')
+            ->where('uuid', $uuid)->first();
     }
 
     public function paginate(int $page = 1, int $totalPerPage = 10, string $filter = null): PaginationInterface

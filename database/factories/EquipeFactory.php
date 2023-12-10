@@ -14,7 +14,7 @@ class EquipeFactory extends Factory
     {
         return [
             'uuid' => fake()->uuid(),
-            'nome' => fake()->company(),
+            'nome' => 'Equipe '.fake()->company(),
             'situacao' => SituacaoEquipeEnum::ATIVO,
         ];
     }

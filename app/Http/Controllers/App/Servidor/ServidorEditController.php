@@ -7,7 +7,6 @@ use App\Actions\Servidor\ServidorEditAction;
 use App\DTO\Servidor\ServidorEditDTO;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\App\Servidor\ServidorEditRequest;
-use App\Models\Servidor;
 
 class ServidorEditController extends Controller
 {

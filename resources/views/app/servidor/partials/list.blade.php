@@ -23,7 +23,7 @@
                 <td>{{ $servidor->cargo['nome'] }}</td>
                 <td>{{ $servidor->equipe['nome'] }}</td>
                 <td>{{ $servidor->matricula }}</td>
-                <td class="text-center">
+                <td class="text-right">
                     <x-layouts.buttons.action-button
                     text="Ver"
                     action="ver"

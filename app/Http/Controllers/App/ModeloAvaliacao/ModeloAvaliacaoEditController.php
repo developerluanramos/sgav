@@ -15,16 +15,14 @@ class ModeloAvaliacaoEditController extends Controller
         protected ModeloAvaliacaoCreateAction $createAction
     ) { }
 
-    public function edit
-    (string $uuid, 
-    ModeloAvaliacaoEditRequest $editRequest)
+    public function edit(string $uuid, ModeloAvaliacaoEditRequest $editRequest)
     {
         $editRequest->merge([
             "uuid" => $uuid
         ]);
 
         $formData = $this->createAction->exec();
-        
+
         $modeloAvaliacao = $this->editAction->exec(ModeloAvaliacaoEditDTO::makeFromRequest($editRequest));
 
         return view('app.modelo-avaliacao.edit', [

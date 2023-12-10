@@ -2,10 +2,17 @@
 
 namespace App\Http\Requests\App\Equipe;
 
+use App\Enums\SituacaoEquipeEnum;
+use App\Repositories\Equipe\EquipeRepositoryInterface;
+use Exception;
 use Illuminate\Foundation\Http\FormRequest;
 
 class EquipeUpdateRequest extends FormRequest
 {
+    public function __construct(
+        protected EquipeRepositoryInterface $repository
+    )
+    { }
     /**
      * Determine if the user is authorized to make this request.
      */
@@ -22,7 +29,7 @@ class EquipeUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "uuid" => ["uuid", "exists:Cargoes,uuid"],
+            "uuid" => ["uuid", "exists:equipes,uuid"],
             "nome" => [
                 "required", "min:5", "max:254"
             ],
@@ -30,5 +37,15 @@ class EquipeUpdateRequest extends FormRequest
                 "required"
             ],
         ];
+    }
+
+    public function passedValidation()
+    {
+        if ($this->situacao == SituacaoEquipeEnum::INATIVO) {
+            $equipe = $this->repository->find($this->uuid);
+            if ($equipe->servidores->count() > 0) {
+                throw new Exception("Este objeto possui relacionamento ativo, por isso não pode ser inativado");
+            }
+        }
     }
 }

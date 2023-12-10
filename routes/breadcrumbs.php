@@ -108,3 +108,43 @@ Breadcrumbs::for('modelo-avaliacao.show', function (BreadcrumbTrail $trail) {
     $trail->parent('modelo-avaliacao');
     $trail->push('Modelo Avaliação', route('modelo-avaliacao.show'));
 });
+
+Breadcrumbs::for('conceito-avaliacao', function (BreadcrumbTrail $trail) {
+    $trail->parent('Dashboard' , route('dashboard.index'));
+    $trail->push('Conceito de Avaliação', route('conceito-avaliacao.index'));
+});
+Breadcrumbs::for('conceito-avaliacao.create', function (BreadcrumbTrail $trail) {
+    $trail->parent('conceito-avaliacao');
+    $trail->push('Novo Conceito Avaliação', route('conceito-avaliacao.create'));
+});
+Breadcrumbs::for('conceito-avaliacao.edit', function (BreadcrumbTrail $trail, $conceitoAvaliacao) {
+    $trail->parent('conceito-avaliacao');
+    $trail->push('Edição Conceito Avaliação', route('conceito-avaliacao.edit', $conceitoAvaliacao));
+});
+
+Breadcrumbs::for('setor', function (BreadcrumbTrail $trail) {
+    $trail->parent('Dashboard' , route('dashboard.index'));
+    $trail->push('Setores', route('setor.index'));
+});
+Breadcrumbs::for('setor.create', function (BreadcrumbTrail $trail) {
+    $trail->parent('setor');
+    $trail->push('Novo Setor', route('setor.create'));
+});
+
+Breadcrumbs::for('setor.edit', function (BreadcrumbTrail $trail, $setor) {
+    $trail->parent('setor');
+    $trail->push('Edição de Setor', route('setor.edit', $setor));
+});
+
+Breadcrumbs::for('posto-trabalho', function (BreadcrumbTrail $trail) {
+    $trail->parent('Dashboard' , route('dashboard.index'));
+    $trail->push('Postos Trabalho', route('posto-trabalho.index'));
+});
+Breadcrumbs::for('posto-trabalho.create', function (BreadcrumbTrail $trail) {
+    $trail->parent('posto-trabalho');
+    $trail->push('Novo Posto Trabalho', route('posto-trabalho.create'));
+});
+Breadcrumbs::for('posto-trabalho.edit', function (BreadcrumbTrail $trail, $cargo) {
+    $trail->parent('posto-trabalho');
+    $trail->push('Edição de Posto Trabalho', route('posto-trabalho.edit', $cargo));
+});

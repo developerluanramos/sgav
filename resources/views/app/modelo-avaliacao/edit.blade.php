@@ -17,4 +17,10 @@
     @include('app.modelo-avaliacao.partials.form', ["modeloAvaliacao" => $modeloAvaliacao])
 </form>
 
+<hr class=" mb-4 mt-4">
+
+@include('app.modelo-avaliacao.fator-avaliacao.index', ["modeloAvaliacao" => $modeloAvaliacao])
+
+@include('app.modelo-avaliacao.fator-avaliacao.partials.list', ["modeloAvaliacao" => $modeloAvaliacao])
+
 @endsection

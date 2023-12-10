@@ -1,19 +1,19 @@
 @csrf
 
-<div class="flex flex-wrap -mx-3 mb-2">
+<div class="flex flex-wrap -mx-3 mb-4">
     <x-layouts.inputs.input-normal-text
         label="Modelo"
         name="nome"
         lenght="8/12"
         :value="$modeloAvaliacao->nome ?? old('nome')"
-    />    
+    />
 </div>
-    <x-layouts.inputs.input-switch
+<x-layouts.inputs.input-switch
     label="Situação"
     name="situacao"
     :value="$modeloAvaliacao->situacao ?? old('situacao')"
 />
-<div class="-mx-3 mt-2">
+<div class="-mx-3 mt-4">
     <x-layouts.inputs.input-normal-select-enum
         label="Finalidade"
         name="finalidade"
