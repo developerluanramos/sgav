@@ -1,7 +1,9 @@
 @csrf
 
 @livewire('components.select-boxes.estrutura-organizacional', [
-'components' => ['postos_trabalho', 'setores'],
+    'components' => ['postos_trabalho', 'setores'],
+    'postoTrabalhoUuid' => $departamento->postos_trabalho_uuid ?? old('postoTrabalhoUuid'),
+    'setorUuid' => $departamento->setores_uuid ?? old('setorUuid')
 ])
 
 <div class="flex flex-wrap -mx-3 mb-2">

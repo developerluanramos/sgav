@@ -148,3 +148,34 @@ Breadcrumbs::for('posto-trabalho.edit', function (BreadcrumbTrail $trail, $cargo
     $trail->parent('posto-trabalho');
     $trail->push('Edição de Posto Trabalho', route('posto-trabalho.edit', $cargo));
 });
+
+Breadcrumbs::for('departamento', function (BreadcrumbTrail $trail) {
+    $trail->parent('Dashboard', route('dashboard.index'));
+    $trail->push('Departamentos', route('departamento.index'));
+});
+Breadcrumbs::for('departamento.edit', function (BreadcrumbTrail $trail, $departamento) {
+    $trail->parent('departamento');
+    $trail->push('Edição de Departamento', route('departamento.edit', $departamento));
+});
+
+Breadcrumbs::for('ciclos-avaliativos', function (BreadcrumbTrail $trail) {
+    $trail->parent('Dashboard' , route('dashboard.index'));
+    $trail->push('Ciclos Avaliativos', route('ciclo-avaliativo.index'));
+});
+
+Breadcrumbs::for('vinculo', function (BreadcrumbTrail $trail) {
+    $trail->parent('Dashboard' , route('dashboard.index'));
+    $trail->push('Vinculos', route('vinculo.index'));
+});
+
+Breadcrumbs::for('vinculo.create', function ($trail) {
+    $trail->parent('vinculo');
+    $trail->push('Nova Vinculo', route('vinculo.create'));
+});
+
+Breadcrumbs::for('vinculo.edit', function ($trail, $vinculo) {
+    $trail->parent('vinculo');
+    $trail->push('Edição de Vinculo', route('vinculo.edit', $vinculo));
+});
+
+

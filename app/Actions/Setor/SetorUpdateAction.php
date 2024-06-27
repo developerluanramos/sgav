@@ -9,7 +9,7 @@ class SetorUpdateAction
 {
     public function __construct(
         protected SetorRepositoryInterface $repository
-    ) { }
+    ) {}
 
     public function exec(SetorUpdateDTO $dto): Setor
     {

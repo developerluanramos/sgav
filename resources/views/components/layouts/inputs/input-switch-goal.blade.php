@@ -31,5 +31,10 @@
         {{$checked}}
         value="{{ App\Enums\FinalidadeModeloEnum::EVOLUCAO_FUNCIONAL }}"
     > {{App\Enums\FinalidadeModeloEnum::getKey(App\Enums\FinalidadeModeloEnum::EVOLUCAO_FUNCIONAL)}}
+    @error($name)
+        <small class="text-red-500">{{ $message }}</small>
+    @enderror
 </div>
+
+
 

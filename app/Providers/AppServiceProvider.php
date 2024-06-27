@@ -3,33 +3,51 @@
 namespace App\Providers;
 
 use App\Models\Cargo;
+use App\Models\CicloAvaliativo;
+use App\Models\CicloAvaliativoModelo;
 use App\Models\ConceitoAvaliacao;
 use App\Models\Departamento;
 use App\Models\Equipe;
 use App\Models\FatorAvaliacao;
 use App\Models\Fornecedor;
+use App\Models\Incidencia;
 use App\Models\IndicadorDesempenho;
 use App\Models\ItemConceitoAvaliacao;
 use App\Models\ModeloAvaliacao;
+use App\Models\Periodicidade;
 use App\Models\PostoTrabalho;
 use App\Models\Servidor;
 use App\Models\Setor;
+use App\Models\Vinculo;
 use App\Observers\CargoObserver;
 use App\Models\User;
+use App\Observers\CicloAvaliativoModeloObserver;
+use App\Observers\CicloAvaliativoObserver;
 use App\Observers\ConceitoAvaliacaoObserver;
 use App\Observers\DepartamentoObserver;
 use App\Observers\EquipeObserver;
 use App\Observers\FatorAvaliacaoObserver;
 use App\Observers\FornecedorObserver;
+use App\Observers\IncidenciaObserver;
 use App\Observers\IndicadorDesempenhoObserver;
 use App\Observers\ItemConceitoAvaliacaoObserver;
 use App\Observers\ModeloAvaliacaoObserver;
+use App\Observers\PeriodicidadeObserver;
 use App\Observers\PostoTrabalhoObserver;
 use App\Observers\ServidorObserver;
 use App\Observers\SetorObserver;
 use App\Observers\UsuarioObserver;
+use App\Observers\VinculoObserver;
 use App\Repositories\Cargo\CargoEloquentRepository;
 use App\Repositories\Cargo\CargoRepositoryInterface;
+use App\Repositories\CicloAvaliativo\CicloAvaliativoEloquentRepository;
+use App\Repositories\CicloAvaliativo\CicloAvaliativoRepositoryInterface;
+use App\Repositories\CicloAvaliativoIncidencia\IncidenciaEloquentRepository;
+use App\Repositories\CicloAvaliativoIncidencia\IncidenciaRepositoryInterface;
+use App\Repositories\CicloAvaliativoModeloAvaliacao\CicloAvaliativoModeloEloquentRepository;
+use App\Repositories\CicloAvaliativoModeloAvaliacao\CicloAvaliativoModeloRepositoryInterface;
+use App\Repositories\CicloAvaliativoPeriodicidade\PeriodicidadeEloquentRepository;
+use App\Repositories\CicloAvaliativoPeriodicidade\PeriodicidadeRepositoryInterface;
 use App\Repositories\ConceitoAvaliacao\ConceitoAvaliacaoEloquentRepository;
 use App\Repositories\ConceitoAvaliacao\ConceitoAvaliacaoRepositoryInterface;
 use App\Repositories\Departamento\DepartamentoEloquentRepository;
@@ -54,6 +72,8 @@ use App\Repositories\Setor\SetorEloquentRepository;
 use App\Repositories\Setor\SetorRepositoryInterface;
 use App\Repositories\Usuario\UsuarioEloquentRepository;
 use App\Repositories\Usuario\UsuarioRepositoryInterface;
+use App\Repositories\Vinculo\VinculoEloquentRepository;
+use App\Repositories\Vinculo\VinculoRepositoryInterface;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
 
@@ -69,9 +89,7 @@ class AppServiceProvider extends ServiceProvider
             $this->app->register(TelescopeServiceProvider::class);
         }
 
-        $this->app->bind(
-            ServidorRepositoryInterface::class, ServidorEloquentRepository::class
-        );
+        $this->app->bind(ServidorRepositoryInterface::class, ServidorEloquentRepository::class);
         $this->app->bind(
             FornecedorRepositoryInterface::class, FornecedorEloquentRepository::class
         );
@@ -108,6 +126,21 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(
             DepartamentoRepositoryInterface::class, DepartamentoEloquentRepository::class
         );
+        $this->app->bind(
+            CicloAvaliativoRepositoryInterface::class, CicloAvaliativoEloquentRepository::class
+        );
+        $this->app->bind(
+            PeriodicidadeRepositoryInterface::class, PeriodicidadeEloquentRepository::class
+        );
+        $this->app->bind(
+            VinculoRepositoryInterface::class, VinculoEloquentRepository::class
+        );
+        $this->app->bind(
+            IncidenciaRepositoryInterface::class, IncidenciaEloquentRepository::class
+        );
+        $this->app->bind(
+            CicloAvaliativoModeloRepositoryInterface::class, CicloAvaliativoModeloEloquentRepository::class
+        );
     }
 
 
@@ -129,6 +162,11 @@ class AppServiceProvider extends ServiceProvider
         Setor::observe(SetorObserver::class);
         PostoTrabalho::observe(PostoTrabalhoObserver::class);
         Departamento::observe(DepartamentoObserver::class);
+        CicloAvaliativo::observe(CicloAvaliativoObserver::class);
+        Periodicidade::observe(PeriodicidadeObserver::class);
+        Incidencia::observe(IncidenciaObserver::class);
+        CicloAvaliativoModelo::observe(CicloAvaliativoModeloObserver::class);
+        Vinculo::observe(VinculoObserver::class);
 
         Validator::extend('validarIdadeAdmissao', function ($attribute, $value, $parameters, $validator) {
             $dataNascimento = $validator->getData()['data_nascimento'];

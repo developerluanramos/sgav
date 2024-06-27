@@ -18,4 +18,6 @@ interface ModeloAvaliacaoRepositoryInterface
     public function update(ModeloAvaliacaoUpdateDTO $dto): ModeloAvaliacao;
 
     public function all(): array;
+
+    public function ativos(): array;
 }

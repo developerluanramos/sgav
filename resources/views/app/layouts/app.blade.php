@@ -13,6 +13,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.1.1/flowbite.min.js"></script>
     <script src="https://cdn.tailwindcss.com/3.3.0"></script>
     <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/datepicker.min.js"></script>
     <script>
         tailwind.config = {
             darkMode: ['class', '[data-mode="dark"]'],
@@ -225,6 +226,9 @@ MENU PRINCIPAL
                     <li>
                         <a href="{{route('servidor.index')}}" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Servidores</a>
                     </li>
+                    <li>
+                        <a href="{{route('vinculo.index')}}" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Vinculos</a>
+                    </li>
                 </ul>
             </li>
             <li style="font-size: 13px">
@@ -271,7 +275,7 @@ MENU PRINCIPAL
                         <a href="{{route('modelo-avaliacao.index')}}" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Modelos de Avaliação</a>
                     </li>
                     <li>
-                        <a href="" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Ciclos Avaliatórios</a>
+                        <a href="{{route('ciclo-avaliativo.index')}}" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Ciclos Avaliativos</a>
                     </li>
                 </ul>
             </li>

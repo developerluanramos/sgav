@@ -65,4 +65,11 @@ class DepartamentoEloquentRepository implements DepartamentoRepositoryInterface
         return $this->find($dto->uuid);
     }
 
+    public function delete(string $uuid): void
+    {
+        $departamento = $this->find($uuid);
+
+        $departamento->delete();
+    }
+
 }

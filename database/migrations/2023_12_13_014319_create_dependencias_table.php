@@ -11,8 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('servidores', function (Blueprint $table) {
-            $table->foreignUuid('equipe_uuid')->constrained('equipes', 'uuid');
+        Schema::create('dependencias', function (Blueprint $table) {
+            $table->id();
+            $table->timestamps();
         });
     }
 
@@ -21,9 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('servidores', function (Blueprint $table) {
-            $table->dropForeign(['equipe_uuid']);
-            $table->dropColumn('equipe_uuid');
-        });
+        Schema::dropIfExists('dependencias');
     }
 };

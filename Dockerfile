@@ -5,6 +5,7 @@ ARG user
 ARG uid
 
 # Install system dependencies
+RUN apt-get update && apt-get install build-essential
 RUN apt-get update && apt-get install -y \
     git \
     curl \
@@ -13,6 +14,9 @@ RUN apt-get update && apt-get install -y \
     libxml2-dev \
     zip \
     unzip
+
+# RUN apk add --no-cache openssl bash nodejs npm postgresql-dev
+# RUN docker-php-ext-install bcmath pdo pdo_pgsql soap xls intl
 
 # Clear cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*

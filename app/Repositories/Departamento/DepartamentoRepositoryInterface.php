@@ -20,4 +20,6 @@ interface DepartamentoRepositoryInterface
     public function all(): array;
 
     public function allByPostoTrabalho(string $postoTrabalhoUuid): array;
+
+    public function delete(string $uuid): void;
 }

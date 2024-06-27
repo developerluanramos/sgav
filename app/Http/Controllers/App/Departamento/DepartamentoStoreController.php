@@ -18,6 +18,6 @@ class DepartamentoStoreController extends Controller
     {
         $this->storeAction->exec(DepartamentoStoreDTO::makeFromRequest($storeRequest));
 
-        return redirect()->route('departamento.create');
+        return redirect()->route('departamento.index');
     }
 }

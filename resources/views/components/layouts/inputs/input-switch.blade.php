@@ -31,5 +31,11 @@
         {{$checked}}
         value="{{ App\Enums\SituacaoUsuarioEnum::INATIVO }}"
     > {{App\Enums\SituacaoUsuarioEnum::getKey(App\Enums\SituacaoUsuarioEnum::INATIVO)}}
+
+    @error($name)
+        <br>
+        <small class="text-red-500">{{ $message }}</small>
+    @enderror
 </div>
+
 

@@ -15,7 +15,7 @@ class ServidorEloquentRepository implements ServidorRepositoryInterface
         protected Servidor $model
     ){ }
 
-    public function all(array $filters): array
+    public function all(): array
     {
         return $this->model->all()->toArray();
     }
@@ -36,21 +36,12 @@ class ServidorEloquentRepository implements ServidorRepositoryInterface
 
     public function paginate(int $page = 1, int $totalPerPage = 10, string $filter = null): PaginationInterface
     {
-        $query = $this->model->query()
-            ->with('equipe')
-            ->with('cargo');
-
+        $query = $this->model->query();
 
         if (!is_null($filter)) {
             $query->where(function ($subquery) use ($filter) {
                 $subquery->where("nome", "like", "%{$filter}%")
-                        ->orWhere("email", "like", "%{$filter}%")
-                        ->orWhereHas('cargo', function ($cargoQuery) use ($filter) {
-                            $cargoQuery->where("nome", "like", "%{$filter}%");
-                        })
-                        ->orWhere("data_nascimento", "like", "%{$filter}%")
-                        ->orWhere("data_admissao", "like", "%{$filter}%")
-                        ->orWhere("matricula", "like", "%{$filter}%");
+                        ->orWhere("data_nascimento", "like", "%{$filter}%");
             });
         }
 

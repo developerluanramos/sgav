@@ -23,7 +23,9 @@ class DatabaseSeeder extends Seeder
             ItemConceitoAvaliacaoSeeder::class,
             PostoTrabalhoSeeder::class,
             SetorSeeder::class,
-            DepartamentoSeeder::class
+            DepartamentoSeeder::class,
+            CicloAvaliativoSeeder::class,
+            PeriodicidadeSeeder::class
         ]);
     }
 }

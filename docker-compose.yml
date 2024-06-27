@@ -1,6 +1,5 @@
 version: "3.7"
 services:
-    # imagem micro 01
     app_sgp:
         build:
             args:
@@ -35,7 +34,6 @@ services:
         networks:
             - sgp_network
 
-    # nginx
     nginx:
         image: nginx:alpine
         restart: unless-stopped
@@ -48,10 +46,9 @@ services:
         networks:
             - sgp_network
 
-    # mysql micro 01
     db_sgp:
         image: mysql
-        platform: linux/arm64/v8
+#        platform: linux/arm64/v8
         restart: unless-stopped
         expose:
             - 3306
@@ -68,7 +65,7 @@ services:
 
     db_sgp_test:
         image: mysql
-        platform: linux/arm64/v8
+#        platform: linux/arm64/v8
         restart: unless-stopped
         expose:
             - 3306
@@ -81,7 +78,7 @@ services:
             - 3310:3306
         networks:
             - sgp_network
-    #redis_shorts
+
     redis_sgp:
         image: redis:latest
         networks:

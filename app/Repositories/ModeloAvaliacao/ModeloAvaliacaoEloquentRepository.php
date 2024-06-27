@@ -4,6 +4,7 @@ namespace App\Repositories\ModeloAvaliacao;
 
 use App\DTO\ModeloAvaliacao\ModeloAvaliacaoStoreDTO;
 use App\DTO\ModeloAvaliacao\ModeloAvaliacaoUpdateDTO;
+use App\Enums\SituacaoModeloAvaliacaoEnum;
 use App\Models\ModeloAvaliacao;
 use App\Repositories\Interfaces\PaginationInterface;
 use App\Repositories\Presenters\PaginationPresenter;
@@ -17,6 +18,15 @@ class ModeloAvaliacaoEloquentRepository implements ModeloAvaliacaoRepositoryInte
     public function all(): array
     {
         return $this->model->all()->toArray();
+    }
+
+    public function ativos(): array
+    {
+        return $this->model
+            ->with([
+                'fatoresAvaliacao.conceitoAvaliacao.itensConceitosAvaliacao',
+                'fatoresAvaliacao.indicadoresDesempenho.conceitoAvaliacao.itensConceitosAvaliacao'
+            ])->where('situacao', SituacaoModeloAvaliacaoEnum::ATIVO)->get()->toArray();
     }
 
     public function new(ModeloAvaliacaoStoreDTO $dto): ModeloAvaliacao
