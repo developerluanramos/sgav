@@ -38,6 +38,8 @@ use App\Observers\ServidorObserver;
 use App\Observers\SetorObserver;
 use App\Observers\UsuarioObserver;
 use App\Observers\VinculoObserver;
+use App\Repositories\Avaliador\AvaliadorEloquentRepository;
+use App\Repositories\Avaliador\AvaliadorRepositoryInterface;
 use App\Repositories\Cargo\CargoEloquentRepository;
 use App\Repositories\Cargo\CargoRepositoryInterface;
 use App\Repositories\CicloAvaliativo\CicloAvaliativoEloquentRepository;
@@ -140,6 +142,9 @@ class AppServiceProvider extends ServiceProvider
         );
         $this->app->bind(
             CicloAvaliativoModeloRepositoryInterface::class, CicloAvaliativoModeloEloquentRepository::class
+        );
+        $this->app->bind(
+            AvaliadorRepositoryInterface::class, AvaliadorEloquentRepository::class
         );
     }
 

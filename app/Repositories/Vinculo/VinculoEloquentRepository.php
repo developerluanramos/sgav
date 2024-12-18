@@ -57,6 +57,27 @@ class VinculoEloquentRepository implements VinculoRepositoryInterface
         return new PaginationPresenter($result);
     }
 
+    public function paginateAvaliadores(int $page = 1, int $totalPerPage = 10, string $filter = null): PaginationInterface
+    {
+        $query = $this->model->query()
+            ->with('equipe')
+            ->with('cargo')
+            ->with('servidor')
+            ->with('postoTrabalho')
+            ->with('setor')
+            ->with('departamento');
+
+        $query->where("avaliador", true);
+
+        $query->orderBy('updated_at', 'desc');
+
+        $query->orderBy('created_at', 'desc');
+
+        $result = $query->paginate($totalPerPage, ['*'], 'page', $page);
+
+        return new PaginationPresenter($result);
+    }
+
     public function update(VinculoUpdateDTO $dto): Vinculo
     {
         $this->model->where("uuid", $dto->uuid)->update((array) $dto);

@@ -23,6 +23,7 @@ return new class extends Migration
             $table->foreignUuid('postos_trabalho_uuid')->constrained('postos_trabalho', 'uuid');
             $table->foreignUuid('setores_uuid')->constrained('setores', 'uuid');
             $table->foreignUuid('departamentos_uuid')->constrained('departamentos', 'uuid');
+            $table->boolean('avaliador')->default(false);
             $table->timestamps();
         });
     }

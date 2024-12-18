@@ -17,6 +17,7 @@ class VinculoStoreDTO extends BaseDTO
         public string $email,
         public string $data_admissao,
         public string $matricula,
+        public string $avaliador,
     ){}
 
     public static function makeFromRequest(VinculoStoreRequest $request)
@@ -31,6 +32,7 @@ class VinculoStoreDTO extends BaseDTO
             $request->email,
             $request->data_admissao,
             $request->matricula,
+            $request->avaliador == "true" ? 1 : 0 
         );
     }
 }

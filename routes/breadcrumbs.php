@@ -178,4 +178,9 @@ Breadcrumbs::for('vinculo.edit', function ($trail, $vinculo) {
     $trail->push('Edição de Vinculo', route('vinculo.edit', $vinculo));
 });
 
+Breadcrumbs::for('avaliador', function (BreadcrumbTrail $trail) {
+    $trail->parent('Dashboard' , route('dashboard.index'));
+    $trail->push('Avaliador', route('avaliador.index'));
+});
+
 

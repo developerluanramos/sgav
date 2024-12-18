@@ -17,6 +17,7 @@ class Vinculo extends Model
         'email',
         'data_admissao',
         'matricula',
+        'avaliador',
         'cargo_uuid',
         'equipe_uuid',
         'servidor_uuid',
