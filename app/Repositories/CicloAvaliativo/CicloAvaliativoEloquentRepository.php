@@ -3,8 +3,10 @@
 namespace App\Repositories\CicloAvaliativo;
 
 use App\Models\CicloAvaliativo;
+use App\Models\Vinculo;
 use App\Repositories\Interfaces\PaginationInterface;
 use App\Repositories\Presenters\PaginationPresenter;
+use Illuminate\Database\Eloquent\Collection;
 
 class CicloAvaliativoEloquentRepository implements CicloAvaliativoRepositoryInterface
 {
@@ -43,7 +45,9 @@ class CicloAvaliativoEloquentRepository implements CicloAvaliativoRepositoryInte
 
     public function find(string $uuid): CicloAvaliativo
     {
-        return $this->model
+        return $this->model->with([
+                'periodicidade'
+            ])
             ->where('uuid', $uuid)->first();
     }
 
@@ -62,7 +66,14 @@ class CicloAvaliativoEloquentRepository implements CicloAvaliativoRepositoryInte
     public function show(string $uuid): CicloAvaliativo
     {
         return $this->model
-            ->with('periodicidade', 'incidencia', 'modelos')
+            ->with('periodicidade', 'incidencia', 'modelos.fatoresAvaliacao.indicadoresDesempenho.conceitoAvaliacao.itensConceitosAvaliacao')
             ->where('uuid', $uuid)->first();
+    }
+
+    public function avaliados(string $uuid): Collection
+    {
+        // $cicloAvaliativo = $this->find($uuid);
+        // dd($cicloAvaliativo->periodicidade);
+        return Vinculo::with('servidor')->where('avaliador', false)->get();
     }
 }

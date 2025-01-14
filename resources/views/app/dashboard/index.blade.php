@@ -43,4 +43,7 @@
         </x-layouts.cards.sample-card-icon>
     </div>
 </div>
+
+@include('app.dashboard.partials.ciclos_avaliativos', ['ciclos_avaliativos' => $dashboardData['ciclos_avaliativos']])
+
 @endsection

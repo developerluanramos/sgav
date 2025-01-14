@@ -38,6 +38,8 @@ use App\Observers\ServidorObserver;
 use App\Observers\SetorObserver;
 use App\Observers\UsuarioObserver;
 use App\Observers\VinculoObserver;
+use App\Repositories\Avaliacao\AvaliacaoEloquentRepository;
+use App\Repositories\Avaliacao\AvaliacaoRepositoryInterface;
 use App\Repositories\Avaliador\AvaliadorEloquentRepository;
 use App\Repositories\Avaliador\AvaliadorRepositoryInterface;
 use App\Repositories\Cargo\CargoEloquentRepository;
@@ -91,7 +93,9 @@ class AppServiceProvider extends ServiceProvider
             $this->app->register(TelescopeServiceProvider::class);
         }
 
-        $this->app->bind(ServidorRepositoryInterface::class, ServidorEloquentRepository::class);
+        $this->app->bind(
+            ServidorRepositoryInterface::class, ServidorEloquentRepository::class
+        );
         $this->app->bind(
             FornecedorRepositoryInterface::class, FornecedorEloquentRepository::class
         );
@@ -145,6 +149,9 @@ class AppServiceProvider extends ServiceProvider
         );
         $this->app->bind(
             AvaliadorRepositoryInterface::class, AvaliadorEloquentRepository::class
+        );
+        $this->app->bind(
+            AvaliacaoRepositoryInterface::class, AvaliacaoEloquentRepository::class
         );
     }
 

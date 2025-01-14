@@ -9,6 +9,7 @@ use App\Http\Controllers\App\CicloAvaliativoPeriodicidade\PeriodicidadeStoreCont
 
 Route::prefix('ciclo-avaliativo')->group(function () {
     Route::get('', [\App\Http\Controllers\App\CicloAvaliativo\CicloAvaliativoIndexController::class, 'index'])->name('ciclo-avaliativo.index');
+    Route::get('{uuid}/show', [\App\Http\Controllers\App\CicloAvaliativo\CicloAvaliativoShowController::class, 'show'])->name('ciclo-avaliativo.show');
 
     Route::get('periodicidade/create', [PeriodicidadeCreateController::class, 'create'])->name('ciclo-avaliativo.periodicidade.create');
     Route::post('periodicidade/store', [PeriodicidadeStoreController::class, 'store'])->name('ciclo-avaliativo.periodicidade.store');

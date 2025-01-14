@@ -4,7 +4,7 @@ namespace App\Repositories\CicloAvaliativo;
 
 use App\Models\CicloAvaliativo;
 use App\Repositories\Interfaces\PaginationInterface;
-
+use Illuminate\Database\Eloquent\Collection;
 
 interface CicloAvaliativoRepositoryInterface
 {
@@ -21,4 +21,6 @@ interface CicloAvaliativoRepositoryInterface
     public function update(string $uuid, array $data): CicloAvaliativo;
 
     public function show(string $uuid): CicloAvaliativo;
+
+    public function avaliados(string $uuid): Collection;
 }

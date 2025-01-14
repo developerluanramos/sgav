@@ -36,6 +36,7 @@
         console.log('executou');
         document.getElementById('htmlMainPage').classList.add('dark')
     }
+    lighMode()
 </script>
 <body class="antialiased">
 <header>
