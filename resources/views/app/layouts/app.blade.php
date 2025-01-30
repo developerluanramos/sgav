@@ -32,6 +32,10 @@
     <title>@yield('title') - {{config('app.name')}}</title>
 </head>
 <script>
+        window.addEventListener('progress-updated', event => {
+            document.getElementById('progressBar').value = event.detail.value;
+            document.getElementById('progressText').innerText = `${event.detail.value}%`;
+        });
     function lighMode() {
         console.log('executou');
         document.getElementById('htmlMainPage').classList.add('dark')
@@ -58,7 +62,7 @@
 
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
                         <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
-                    </svg> &nbsp; SGAV
+                    </svg> &nbsp; MADP
                 </a>
                 <!-- Left navigation links -->
 
@@ -288,7 +292,14 @@ MENU PRINCIPAL
                     </li>
                 </ul>
             </li>
-
+            <li>
+                <a href="{{route('integracao.index')}}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-pie-chart-fill" viewBox="0 0 16 16">
+                        <path d="M15.985 8.5H8.207l-5.5 5.5a8 8 0 0 0 13.277-5.5zM2 13.292A8 8 0 0 1 7.5.015v7.778l-5.5 5.5zM8.5.015V7.5h7.485A8.001 8.001 0 0 0 8.5.015z"/>
+                    </svg>
+                    <span class="ms-3">Integrações</span>
+                </a>
+            </li>
             {{-- <li>
                <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                   <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 18">

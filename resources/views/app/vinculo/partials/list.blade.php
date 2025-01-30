@@ -1,8 +1,11 @@
 <x-layouts.tables.simple-table
     :headers="[
-        'Email',
+        'Nome',
+        // 'Email',
+        'Local Trabalho',
+        'Órgão',
+        'Função',
         'Data de Admissão',
-        'Servidor',
         'Matrícula',
         'Ações'
     ]"
@@ -13,12 +16,15 @@
 @section('table-content')
     @foreach($vinculos->items() as $index => $vinculo)
         <tr>
-            <td>{{ $vinculo->email }}</td>
+            <td>{{ $vinculo->nome }}</td>
+            {{-- <td>{{ $vinculo->email }}</td> --}}
+            <td>{{ $vinculo->codigo_local_trabalho }} - {{ $vinculo->nome_local_trabalho }} </td>
+            <td>{{ $vinculo->codigo_orgao }} - {{ $vinculo->nome_orgao }} </td>
+            <td>{{ $vinculo->codigo_funcao }} - {{ $vinculo->nome_funcao }} </td>
             <td>{{ $vinculo->formatted_data_admissao }}</td>
-            <td>{{ $vinculo->servidor['nome'] }}</td>
             <td>{{ $vinculo->matricula }}</td>
             <td class="text-right">
-                <x-layouts.buttons.action-button
+                {{-- <x-layouts.buttons.action-button
                     text="Excluir"
                     action="excluir"
                     color="danger"
@@ -26,7 +32,7 @@
                     :route="route('vinculo.delete', [
                             'uuid' => $vinculo->uuid
                         ])"
-                />
+                /> --}}
                 <x-layouts.buttons.action-button
                     text="Editar"
                     action="editar"

@@ -14,49 +14,22 @@ class Vinculo extends Model
 
     protected $fillable = [
         'uuid',
+        'nome',
         'email',
         'data_admissao',
         'matricula',
         'avaliador',
-        'cargo_uuid',
-        'equipe_uuid',
-        'servidor_uuid',
-        'postos_trabalho_uuid',
-        'setores_uuid',
-        'departamentos_uuid',
+        'condicao',
+        'nome_orgao',
+        'nome_funcao',
+        'codigo_orgao',
+        'codigo_funcao',
+        'data_rescisao',
+        'nome_local_trabalho',
+        'codigo_local_trabalho'
     ];
 
     protected $appends = ['formatted_data_admissao'];
-
-    public function cargo()
-    {
-        return $this->belongsTo(Cargo::class, 'cargo_uuid', 'uuid');
-    }
-
-    public function equipe()
-    {
-        return $this->belongsTo(Equipe::class, 'equipe_uuid', 'uuid');
-    }
-
-    public function servidor()
-    {
-        return $this->belongsTo(Servidor::class, 'servidor_uuid', 'uuid');
-    }
-
-    public function postoTrabalho()
-    {
-        return $this->belongsTo(PostoTrabalho::class, 'postos_trabalho_uuid', 'uuid');
-    }
-
-    public function setor()
-    {
-        return $this->belongsTo(Setor::class, 'setores_uuid', 'uuid');
-    }
-
-    public function departamento()
-    {
-        return $this->belongsTo(Departamento::class, 'departamentos_uuid', 'uuid');
-    }
 
     public function getFormattedDataAdmissaoAttribute()
     {

@@ -2,37 +2,63 @@
 
 namespace App\DTO\Vinculo;
 
-use App\DTO\BaseDTO;
 use App\Http\Requests\App\Vinculo\VinculoStoreRequest;
+use Faker\Factory;
+use stdClass;
 
-class VinculoStoreDTO extends BaseDTO
+class VinculoStoreDTO extends Factory
 {
     public function __construct(
-        public string $servidor_uuid,
-        public string $cargo_uuid,
-        public string $equipe_uuid,
-        public string $postos_trabalho_uuid,
-        public string $setores_uuid,
-        public string $departamentos_uuid,
-        public string $email,
+        public string $nome,
+        public string $condicao,
+        public string $nome_orgao,
+        public string $nome_funcao,
+        public string $codigo_orgao,
+        public string $codigo_funcao,
+        public string $data_rescisao,
+        public string $nome_local_trabalho,
+        public string $codigo_local_trabalho,
         public string $data_admissao,
+        public string $email,
         public string $matricula,
-        public string $avaliador,
+        public string|null $avaliador,
     ){}
 
     public static function makeFromRequest(VinculoStoreRequest $request)
     {
         return new self(
-            $request->servidor_uuid,
-            $request->cargo_uuid,
-            $request->equipe_uuid,
-            $request->postos_trabalho_uuid,
-            $request->setores_uuid,
-            $request->departamentos_uuid,
-            $request->email,
+            $request->nome,
+            $request->condicao,
+            $request->nome_orgao,
+            $request->nome_funcao,
+            $request->codigo_orgao,
+            $request->codigo_funcao,
+            $request->data_rescisao,
+            $request->nome_local_trabalho,
+            $request->codigo_local_trabalho,
             $request->data_admissao,
+            $request->email,
             $request->matricula,
             $request->avaliador == "true" ? 1 : 0 
         );
+    }
+
+    public static function makeFromImportacao(stdClass $stdClass)
+    {
+        return [
+            "nome" => $stdClass->nome,
+            "condicao" => $stdClass->condicao,
+            "nome_orgao" => $stdClass->nome_orgao,
+            "nome_funcao" => $stdClass->nome_funcao,
+            "codigo_orgao" => $stdClass->codigo_orgao,
+            "codigo_funcao" => $stdClass->codigo_funcao,
+            "data_rescisao" => $stdClass->data_rescisao,
+            "nome_local_trabalho" => $stdClass->nome_local_trabalho,
+            "codigo_local_trabalho" => $stdClass->codigo_local_trabalho,
+            "data_admissao" => $stdClass->data_admissao,
+            "email" => 'luan.developer@gmail.com',
+            "matricula" => $stdClass->matricula,
+            "avaliador" => $stdClass->avaliador ?? 0 
+        ];
     }
 }

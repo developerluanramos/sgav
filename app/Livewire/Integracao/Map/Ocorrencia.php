@@ -1,0 +1,70 @@
+<?php
+
+namespace App\Livewire\Integracao\Map;
+
+use Illuminate\Support\Facades\Http;
+use Livewire\Component;
+
+class Ocorrencia extends Component
+{
+    public $vinculos = [];
+    public $statusIntegracao;
+
+    public $percentProgressBar = 0;
+
+    public $vinculosCriados = 0;
+    public $vinculosAtualizados = 0;
+
+    protected $listeners = ['alteraPercentProgressBar' => 'update-percent'];
+
+    public function mount()
+    {
+        // $this->qtdVinculosAtual = ModelsVinculo::all()->count();
+        // $this->getVinculos();
+        $this->statusIntegracao = Http::get('http://192.168.1.68:6818/rest/health')->status();
+    }
+
+    public function getVinculos()
+    {
+        $vinculos = Http::get('http://192.168.1.68:6818/rest/madp/servidor_vinculo/')->body();
+        $this->vinculos = json_decode($vinculos)->data;
+    }
+
+    public function render()
+    {
+        return view('livewire.integracao.map.ocorrencia');
+    }
+
+    public function getProgressInformation()
+    {
+        $this->percentProgressBar++;
+    }
+
+    public function sincronizar()
+    {
+        // set_time_limit(1000);
+
+        // $this->getVinculos();
+        
+        // DB::beginTransaction();
+
+        // foreach($this->vinculos as $index => $servidor) {
+        //     foreach($servidor->vinculos as $vinculo) {
+                
+        //         $modelVinculo = ModelsVinculo::firstOrNew(
+        //             (VinculoStoreDTO::makeFromImportacao($vinculo))
+        //         );
+                
+        //         $this->vinculosAtualizados++;
+        //         if(is_null($modelVinculo->id)) {
+        //             $this->vinculosAtualizados--;
+        //             $this->vinculosCriados++;
+        //         }
+                
+        //         $modelVinculo->save();
+        //     }
+        // }
+
+        // DB::commit();
+    }
+}

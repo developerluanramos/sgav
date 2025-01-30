@@ -28,23 +28,14 @@ class VinculoEloquentRepository implements VinculoRepositoryInterface
 
     public function paginate(int $page = 1, int $totalPerPage = 10, string $filter = null): PaginationInterface
     {
-        $query = $this->model->query()
-            ->with('equipe')
-            ->with('cargo')
-            ->with('servidor')
-            ->with('postoTrabalho')
-            ->with('setor')
-            ->with('departamento');
+        $query = $this->model->query();
 
 
         if (!is_null($filter)) {
             $query->where(function ($subquery) use ($filter) {
                 $subquery->where("nome", "like", "%{$filter}%")
                     ->orWhere("email", "like", "%{$filter}%")
-                    ->orWhereHas('cargo', function ($cargoQuery) use ($filter) {
-                        $cargoQuery->where("nome", "like", "%{$filter}%");
-                    })
-                    ->orWhere("data_nascimento", "like", "%{$filter}%")
+                    // ->orWhere("data_nascimento", "like", "%{$filter}%")
                     ->orWhere("data_admissao", "like", "%{$filter}%")
                     ->orWhere("matricula", "like", "%{$filter}%");
             });

@@ -13,6 +13,11 @@ Breadcrumbs::for('usuario', function (BreadcrumbTrail $trail) {
     $trail->push('Usuarios', route('usuario.index'));
 });
 
+Breadcrumbs::for('integracao', function (BreadcrumbTrail $trail) {
+    $trail->parent('Dashboard' , route('dashboard.index'));
+    $trail->push('Integração', route('integracao.index'));
+});
+
 Breadcrumbs::for('usuario.create', function ($trail) {
     $trail->parent('usuario');
     $trail->push('Novo Usuario', route('usuario.create'));
