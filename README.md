@@ -1,25 +1,20 @@
-## Pré-requisitos
+# 🏛️ Public Sector Performance Evaluation App
 
-``` sudo apt install docker && sudo apt install docker-compose ```
+This application is designed to assess the performance of public sector professionals, ensuring transparency, efficiency, and continuous improvement. It provides a comprehensive evaluation system that allows institutions to track, measure, and enhance employee performance based on objective metrics.
 
-## Instalação
+## 🚀 Features
 
-``` cp .env.example .env ```
+- **Customizable Evaluation Criteria**: Tailor performance metrics to fit the unique needs of different public sector roles.
+- **Real-Time Reporting**: Generate detailed reports and insights for better decision-making.
+- **User-Friendly Interface**: Simplified and intuitive design for both administrators and employees.
+- **Secure Data Management**: Ensuring confidentiality and integrity of all performance data.
+- **Feedback Integration**: Facilitate two-way feedback between evaluators and professionals.
 
-### Env config
-```
-DB_CONNECTION=mysql
-DB_HOST=db_sgp
-DB_PORT=3306
-DB_DATABASE=sgp
-DB_USERNAME=root
-DB_PASSWORD=Aq!sw2de3
-```
 
-## Setup
+## 🎯 Purpose
 
-``` docker-compose up -d ```
+This app aims to promote accountability and continuous development within the public sector by providing an efficient, transparent, and standardized method for performance evaluation.
 
-## Dentro do app_sgp docker container
+---
 
-``` php artisan key:generate & composer install & php artisan migrate --seed ```
+Feel free to contribute, suggest improvements, or reach out for collaborations!

@@ -4,15 +4,19 @@ use App\Http\Controllers\App\Dashboard\DashboardIndexController;
 use Illuminate\Support\Facades\Route;
 
 $periodoFinalizado = [
-    "qtd_pontos" => 100,
-    "ciclo_avaliativo" => [
-        "data_inicio" => "",
-        "data_fim" => ""
-    ],
-    "periodo_avaliativo" => [
-        "data_inicio" => "",
-        "data_fim" => ""
-    ]
+    "quantidade_pontos" => 100,
+    "status_periodo" => "",
+    "status_vinculo_periodo" => "",
+    "status_ciclo" => "",
+    "status_vinculo_ciclo" => "",
+    // "ciclo_avaliativo" => [
+    //     "data_inicio" => "",
+    //     "data_fim" => ""
+    // ],
+    // "periodo_avaliativo" => [
+    //     "data_inicio" => "",
+    //     "data_fim" => ""
+    // ]
 ];
 
 $cicloAvaliativo = [
@@ -48,7 +52,7 @@ $ocorrenciasDentroDoPeriodo = [
     ]
 ];
 
-$regrasDeCalculo = [
+$regrasDePontuacao = [
     "periodo" => [
         [
             "status_vinculo_periodo" => "REPROVADO",
@@ -101,7 +105,7 @@ $regrasDeOcorrencia = [
             "ocorrencia" => "FALTA_JUSTIFICADA",
             "de" => 0,
             "ate" => 2,
-            "pontuacao" => 5,
+            "pontuacao" => -5,
             "status_vinculo_ciclo" => "",
             "status_vinculo_periodo" => "",
             "status_ciclo" => "",
@@ -113,7 +117,7 @@ $regrasDeOcorrencia = [
             "ocorrencia" => "FALTA_JUSTIFICADA",
             "de" => 3,
             "ate" => 5,
-            "pontuacao" => 1,
+            "pontuacao" => -10,
             "status_vinculo_ciclo" => null,
             "status_vinculo_periodo" => null,
             "status_ciclo" => null,
@@ -125,7 +129,7 @@ $regrasDeOcorrencia = [
             "ocorrencia" => "FALTA_INJUSTIFICADA",
             "de" => 5,
             "ate" => 9,
-            "pontuacao" => 1,
+            "pontuacao" => -15,
             "status_vinculo_ciclo" => null,
             "status_vinculo_periodo" => null,
             "status_ciclo" => null,
@@ -135,9 +139,9 @@ $regrasDeOcorrencia = [
         [
             "tipo_ocorrencia" => "FALTA",
             "ocorrencia" => "FALTA_INJUSTIFICADA",
-            "de" => 5,
-            "ate" => 9,
-            "pontuacao" => 1,
+            "de" => 10,
+            "ate" => 20,
+            "pontuacao" => -30,
             "status_vinculo_ciclo" => null,
             "status_vinculo_periodo" => null,
             "status_ciclo" => null,
@@ -147,9 +151,9 @@ $regrasDeOcorrencia = [
         [
             "tipo_ocorrencia" => "FALTA",
             "ocorrencia" => "FALTA_INJUSTIFICADA",
-            "de" => 50,
+            "de" => 21,
             "ate" => 100000,
-            "pontuacao" => 1,
+            "pontuacao" => -50,
             "status_vinculo_ciclo" => "null",
             "status_vinculo_periodo" => "null",
             "status_ciclo" => "null",
@@ -160,28 +164,42 @@ $regrasDeOcorrencia = [
 
 Route::get('avaliacao-finalizar', function() use (
         $ocorrenciasDentroDoPeriodo,
-        $regrasDeCalculo,
-        $regrasDeOcorrencia) 
+        $regrasDePontuacao,
+        $regrasDeOcorrencia,
+        $periodoFinalizado) 
 {
     // -- finalização do período
-    foreach($ocorrenciasDentroDoPeriodo as $ocorrenciaDentroDoPeriodo) {
-        // dd($ocorrenciaDentroDoPeriodo);
-        // -- pesquisa no array as regras deste tioi de ocorrencia
-        dd(array_map(function($regra) use ($ocorrenciaDentroDoPeriodo) {
-            dd($regra);
-            return $regra['ocorrencia'] == $ocorrenciaDentroDoPeriodo['ocorrencia'];
-        }, $regrasDeOcorrencia));
+    // -- regras de ocorrência
+    foreach($ocorrenciasDentroDoPeriodo as $ocorrenciaDentroDoPeriodo) 
+    {
+        $ocorrenciasFiltradas = array_filter($regrasDeOcorrencia['periodo'], function($regraOcorrencia) use ($ocorrenciaDentroDoPeriodo) {
+            return $regraOcorrencia['ocorrencia'] == $ocorrenciaDentroDoPeriodo['ocorrencia'];
+        });
+        
+        $extrato = '';
+        foreach($ocorrenciasFiltradas as $ocorrencia) 
+        {
+            echo $ocorrenciaDentroDoPeriodo['quantidade'] . '</br>';
+            if($ocorrencia['de'] <= $ocorrenciaDentroDoPeriodo['quantidade'] && $ocorrencia['ate'] >= $ocorrenciaDentroDoPeriodo['quantidade']) 
+            {
+                $periodoFinalizado['quantidade_pontos'] =  $periodoFinalizado['quantidade_pontos'] + $ocorrencia['pontuacao'];
+            }
+        }
     }
 
-    // -- regras de ocorrência
+    // -- regras de pontuação
+    foreach($regrasDePontuacao['periodo'] as $regraPontuacao) 
+    {
+        if($regraPontuacao['de'] <= $periodoFinalizado['quantidade_pontos'] && $regraPontuacao['ate'] >= $periodoFinalizado['quantidade_pontos']) 
+        {
+            $periodoFinalizado["status_ciclo"] = $regraPontuacao['status_ciclo'];
+            $periodoFinalizado["status_vinculo_periodo"] = $regraPontuacao['status_vinculo_periodo'];
+            $periodoFinalizado["status_vinculo_ciclo"] = $regraPontuacao['status_vinculo_ciclo'];
+            $periodoFinalizado["status_periodo"] = $regraPontuacao['status_periodo'];
+        }
+    }
 
-    // -- regras de cálculo 
-    
-    dd(
-        "ocorrências encontradas", $ocorrenciasDentroDoPeriodo, 
-        "regras de calculo de pontuação", $regrasDeCalculo, 
-        "regras de calculo de ocorrencia", $regrasDeOcorrencia
-    );
+    dd($periodoFinalizado);
 });
 
 Route::middleware(['auth.basic'])->group(function() {
