@@ -47,8 +47,12 @@ $ocorrenciasDentroDoPeriodo = [
         "quantidade" => 10
     ],
     [
-        "ocorrencia" => "FALTA_JUSTIFICADA",
-        "quantidade" => 5
+        "ocorrencia" => "FALTA_INJUSTIFICADA",
+        "quantidade" => 10
+    ],
+    [
+        "ocorrencia" => "FALTA_INJUSTIFICADA",
+        "quantidade" => 10
     ]
 ];
 
@@ -65,8 +69,8 @@ $regrasDePontuacao = [
         [
             "status_vinculo_periodo" => "REPROVADO",
             "status_periodo" => "FINALIZADO",
-            "status_vinculo_ciclo" => null,
-            "status_ciclo" => null,
+            "status_vinculo_ciclo" => "INAPTO",
+            "status_ciclo" => "FINALIZADO",
             "de" => 10, 
             "ate" => 20,
         ],
@@ -92,7 +96,7 @@ $regrasDePontuacao = [
             "status_vinculo_ciclo" => null,
             "status_ciclo" => null,
             "de" => 60, 
-            "ate" => 70,
+            "ate" => 100,
         ]
     ],
 ];
