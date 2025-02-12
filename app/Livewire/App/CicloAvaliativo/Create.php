@@ -28,7 +28,7 @@ class Create extends Component
     {
         $this->formData = $formData;
         $this->iniciado_em = Carbon::now()->toDateString();
-        $this->quantidade_ciclos = 2;
+        $this->quantidade_ciclos = 1;
         $this->quantidade_unidade_ciclos = 2;
         $this->unidade_ciclos = UnidadePeriodicidadeEnum::getKey(UnidadePeriodicidadeEnum::ANOS);
         $this->quantidade_periodos = 4;
@@ -115,7 +115,7 @@ class Create extends Component
         $avaliacoes = [];
         $ultimaData = $dataInicio; // Começa com a data inicial do período
         $unidadeAvaliacoes = UnidadePeriodicidadeEnum::unitForCarbon(UnidadePeriodicidadeEnum::getValue($this->unidade_avaliacoes));
-        
+
         for ($k = 1; $k <= $quantidadeAvaliacoes; $k++) {
             $avaliacoes[] = [
                 "titulo" => "Avaliação {$k}",

@@ -172,7 +172,7 @@
                                 <!-- Avaliações como Badges -->
                                 <div class="mt-2 flex flex-wrap gap-2">
                                     @foreach ($periodo['avaliacoes'] as $avaliacaoIndex => $avaliacao)
-                                        <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-3 py-1 rounded-lg">
+                                        <span wire:loading.class="opacity-50" class="bg-blue-100 text-blue-800 text-xs font-semibold px-3 py-1 rounded-lg">
                                             {{ \Carbon\Carbon::parse($avaliacao['iniciado_em'])->format('d/m/Y') }}
                                              - {{ \Carbon\Carbon::parse($avaliacao['finalizado_em'])->format('d/m/Y') }} 
                                         </span>
