@@ -14,7 +14,9 @@ class CicloAvaliativo extends Model
     protected $fillable = [
         "uuid",
         "step",
-        "status"
+        "status",
+        "iniciado_em",
+        "finalizado_em"
     ];
 
     public function periodicidade()

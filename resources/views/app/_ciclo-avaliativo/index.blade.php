@@ -8,7 +8,7 @@
 
 @section('content')
 
-    <x-layouts.headers.list-header :count="count($ciclosAvaliativos->items())" :title="'Ciclos Avaliativos'" :route="route('ciclo-avaliativo.create')"/>
+    <x-layouts.headers.list-header :count="count($ciclosAvaliativos->items())" :title="'Ciclos Avaliativos'" :route="route('ciclo-avaliativo.periodicidade.create')"/>
 
     @include('components.alerts.form-success')
 

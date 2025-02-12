@@ -1,0 +1,1 @@
+@livewire('app.ciclo-avaliativo.create', ["formData" => $formData])

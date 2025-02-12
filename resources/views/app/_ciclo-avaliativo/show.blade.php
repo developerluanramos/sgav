@@ -54,7 +54,7 @@
         @foreach($avaliados as $index => $avaliado)
             <tr>
                 <td>{{$avaliado->uuid}}</td>
-                <td>{{$avaliado->servidor->nome}}</td>
+                <td>{{$avaliado->nome}}</td>
                 <td>
                     <x-layouts.badges.situacao-vinculo-avaliacao :situacao="random_int(0, 1)" />
                 </td>

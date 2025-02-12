@@ -74,6 +74,6 @@ class CicloAvaliativoEloquentRepository implements CicloAvaliativoRepositoryInte
     {
         // $cicloAvaliativo = $this->find($uuid);
         // dd($cicloAvaliativo->periodicidade);
-        return Vinculo::with('servidor')->where('avaliador', false)->get();
+        return Vinculo::where('avaliador', false)->limit(10)->get();
     }
 }

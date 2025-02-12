@@ -22,7 +22,7 @@ class VinculoEloquentRepository implements VinculoRepositoryInterface
     public function find(string $uuid): Vinculo
     {
         return $this->model
-            ->with('servidor')
+            // ->with('servidor')
             ->where("uuid", $uuid)->first();
     }
 
@@ -53,7 +53,7 @@ class VinculoEloquentRepository implements VinculoRepositoryInterface
         $query = $this->model->query()
             ->with('equipe')
             ->with('cargo')
-            ->with('servidor')
+            // ->with('servidor')
             ->with('postoTrabalho')
             ->with('setor')
             ->with('departamento');
