@@ -1,11 +1,5 @@
 <div>
     <div class="flex flex-wrap -mx-3 mb-2 p-3">
-        {{-- <x-layouts.inputs.input-date
-            label="Data de início do ciclo"
-            name="iniciado_em"
-            lenght="3/12"
-            :value="$peridodicidade->iniciado_em ?? old('iniciado_em')"
-        /> --}}
         <input
             type="date"
             wire:model.live.debounce.500ms="iniciado_em"
@@ -20,12 +14,6 @@
         />
     </div>
     <div class="flex flex-wrap -mx-3 mb-2 mt-6">
-        {{-- <x-layouts.inputs.input-normal-number
-            label="Quantidade de ciclos"
-            name="quantidade_ciclos"
-            lenght="2/12"
-            :value="$peridodicidade->quantidade_ciclos ?? old('quantidade_ciclos')"
-        /> --}}
         <div class="w-full md:w-2/12 px-3 mb-6 md:mb-0">
             <label class="block uppercase tracking-wide text-xs font-bold mb-2" for="quantidade_ciclos">
                 Quantidade Ciclos
@@ -42,12 +30,6 @@
                 focus:bg-white focus:border-gray-500"
             />
         </div>
-        {{-- <x-layouts.inputs.input-normal-number
-            label="Quantidade unidades"
-            name="quantidade_unidade_ciclos"
-            lenght="2/12"
-            :value="$peridodicidade->quantidade_unidade_ciclos ?? old('quantidade_unidade_ciclos')"
-        /> --}}
         <div class="w-full md:w-2/12 px-3 mb-6 md:mb-0">
             <label class="block uppercase tracking-wide text-xs font-bold mb-2" for="quantidade_unidade_ciclos">
                 Quantidade de Unidades
@@ -64,19 +46,14 @@
                 focus:bg-white focus:border-gray-500"
             />
         </div>
-        <x-layouts.inputs.input-normal-select-enum
+        <x-layouts.inputs.input-normal-select-enum-livewire
             label="Unidade do ciclo"
             name="unidade_ciclos"
             lenght="2/12"
+            :model="'unidade_ciclos'"
             :data="$formData['unidadesPeriodicidade']"
-            :value="$peridodicidade->iniciado_em ?? old('iniciado_em')"
+            :value="$peridodicidade->unidade_ciclos ?? old('unidade_ciclos')"
         />
-        {{-- <x-layouts.inputs.input-normal-number
-            label="Quantidade de períodos"
-            name="quantidade_periodos"
-            lenght="2/12"
-            :value="$peridodicidade->quantidade_periodos ?? old('quantidade_periodos')"
-        /> --}}
         <div class="w-full md:w-2/12 px-3 mb-6 md:mb-0">
             <label class="block uppercase tracking-wide text-xs font-bold mb-2" for="quantidade_periodos">
                 Quantidade Períodos
@@ -93,12 +70,6 @@
                 focus:bg-white focus:border-gray-500"
             />
         </div>
-        {{-- <x-layouts.inputs.input-normal-number
-            label="Quantidade unidades"
-            name="quantidade_unidade_periodos"
-            lenght="2/12"
-            :value="$peridodicidade->quantidade_unidade_periodos ?? old('quantidade_unidade_periodos')"
-        /> --}}
         <div class="w-full md:w-2/12 px-3 mb-6 md:mb-0">
             <label 
                 class="block uppercase tracking-wide
@@ -118,16 +89,62 @@
                 focus:bg-white focus:border-gray-500"
             />
         </div>
-        <x-layouts.inputs.input-normal-select-enum
+        <x-layouts.inputs.input-normal-select-enum-livewire
             label="Unidade do período"
             name="unidade_periodos"
             lenght="2/12"
+            :model="'unidade_periodos'"
+            :change="''"
             :data="$formData['unidadesPeriodicidade']"
             :value="$peridodicidade->unidade_periodos ?? old('unidade_periodos')"
         />
     </div>
+
+    <div class="flex flex-wrap -mx-3 mb-4 mt-6">
+        <div class="w-full md:w-2/12 px-3 mb-6 md:mb-0">
+            <label class="block uppercase tracking-wide text-xs font-bold mb-2" for="quantidade_avaliacoes">
+                Quantidade Avaliações
+            </label>
+            <input
+                type="number"
+                wire:model.live.debounce.500ms="quantidade_avaliacoes"
+                name="quantidade_avaliacoes"
+                id="quantidade_avaliacoes"
+                class="appearance-none 
+                block w-full bg-gray-200 
+                text-gray-700 border border-gray-200 rounded py-3 
+                px-4 leading-tight focus:outline-none 
+                focus:bg-white focus:border-gray-500"
+            />
+        </div>
+        <div class="w-full md:w-2/12 px-3 mb-6 md:mb-0">
+            <label class="block uppercase tracking-wide text-xs font-bold mb-2" for="quantidade_unidade_avaliacoes">
+                Quantidade de Unidades
+            </label>
+            <input
+                type="number"
+                wire:model.live.debounce.500ms="quantidade_unidade_avaliacoes"
+                name="quantidade_unidade_avaliacoes"
+                id="quantidade_unidade_avaliacoes"
+                class="appearance-none 
+                block w-full bg-gray-200 
+                text-gray-700 border border-gray-200 rounded py-3 
+                px-4 leading-tight focus:outline-none 
+                focus:bg-white focus:border-gray-500"
+            />
+        </div>
+        <x-layouts.inputs.input-normal-select-enum-livewire
+            label="Unidade da Avaliação"
+            name="unidade_avaliacao"
+            lenght="2/12"
+            :model="'unidade_avaliacoes'"
+            :change="''"
+            :data="$formData['unidadesPeriodicidade']"
+            :value="$peridodicidade->unidade_avaliacao ?? old('unidade_avaliacao')"
+        />
+    </div>
  
-    <div class="p-6 bg-white rounded-lg shadow-md">
+    <div class="p-6 bg-white rounded-lg shadow-md mt-lg">
         <h2 class="text-xl font-bold text-gray-900 mb-4">Ciclos Avaliativos</h2>
         
         <ul class="list-decimal pl-6 space-y-4 text-gray-800">
@@ -156,7 +173,8 @@
                                 <div class="mt-2 flex flex-wrap gap-2">
                                     @foreach ($periodo['avaliacoes'] as $avaliacaoIndex => $avaliacao)
                                         <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-3 py-1 rounded-lg">
-                                            {{ 'teste' }}
+                                            {{ \Carbon\Carbon::parse($avaliacao['iniciado_em'])->format('d/m/Y') }}
+                                             - {{ \Carbon\Carbon::parse($avaliacao['finalizado_em'])->format('d/m/Y') }} 
                                         </span>
                                     @endforeach
                                 </div>

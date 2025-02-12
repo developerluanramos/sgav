@@ -19,4 +19,18 @@ final class UnidadePeriodicidadeEnum extends Enum
     const MESES = 'meses';
     const SEMESTRES = 'semestres';
     const ANOS = 'anos';
+
+    static function unitForCarbon($key)
+    {
+        //dd($key);
+        $carbonUnits = [
+            self::DIAS => 'days',
+            self::SEMANAS => 'weeks',
+            self::MESES => 'months',
+            self::SEMESTRES => 'semesters',
+            self::ANOS => 'years'
+        ];
+
+        return $carbonUnits[$key];
+    }
 }
