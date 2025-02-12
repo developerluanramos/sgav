@@ -3,8 +3,7 @@
 namespace App\Actions\CicloAvaliativoIncidencia;
 
 use App\DTO\CicloAvaliativoIncidencia\IncidenciaStoreDTO;
-use App\Enums\CicloAvaliativoStepsEnum;
-use App\Models\Incidencia;
+use App\Models\CicloAvaliativoIncidencia;
 use App\Repositories\CicloAvaliativo\CicloAvaliativoRepositoryInterface;
 use App\Repositories\CicloAvaliativoIncidencia\IncidenciaRepositoryInterface;
 use Illuminate\Support\Facades\DB;
@@ -16,15 +15,11 @@ class IncidenciaStoreAction
         protected IncidenciaRepositoryInterface $IncidenciaRepository
     ) { }
 
-    public function exec(IncidenciaStoreDTO $dto) : Incidencia
+    public function exec(IncidenciaStoreDTO $dto) : CicloAvaliativoIncidencia
     {
         DB::beginTransaction();
 
-        $cicloAvaliativo = $this->cicloAvaliativoRepository->update($dto->ciclos_avaliativos_uuid, [
-            'step' => CicloAvaliativoStepsEnum::TEMPLATE
-        ]);
-
-        $incidencia = $this->IncidenciaRepository->new($cicloAvaliativo->uuid, $dto);
+        $incidencia = $this->IncidenciaRepository->new($dto->ciclos_avaliativos_uuid, $dto);
 
         DB::commit();
 

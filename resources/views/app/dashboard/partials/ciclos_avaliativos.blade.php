@@ -1,4 +1,4 @@
-@php
+{{-- @php
     $finalidades = ["Estágio probatório", "Evolução Funcional"]
 @endphp
 <div class="mt-8">
@@ -44,42 +44,10 @@
                         color="secondary"
                         :route="route('ciclo-avaliativo.show', ['uuid' => $ciclo->uuid])"
                     />
-                    {{-- @if($ciclo->step == \App\Enums\CicloAvaliativoStepsEnum::PERIODICIDADE)
-                        <x-layouts.buttons.action-button
-                            text="Editar"
-                            action="editar"
-                            color="primary"
-                            :route="route('ciclo-avaliativo.periodicidade.create')"
-                        />
-                    @endif
-                    @if($ciclo->step == \App\Enums\CicloAvaliativoStepsEnum::INCIDENCIA)
-                        <x-layouts.buttons.action-button
-                            text="Editar"
-                            action="editar"
-                            color="primary"
-                            :route="route('ciclo-avaliativo.incidencia.create', ['ciclosAvaliativosUuid' => $ciclo->uuid])"
-                        />
-                    @endif
-                    @if($ciclo->step == \App\Enums\CicloAvaliativoStepsEnum::TEMPLATE)
-                        <x-layouts.buttons.action-button
-                            text="Editar"
-                            action="editar"
-                            color="primary"
-                            :route="route('ciclo-avaliativo.template.create', ['ciclosAvaliativosUuid' => $ciclo->uuid])"
-                        />
-                    @endif
-                    @if($ciclo->step == \App\Enums\CicloAvaliativoStepsEnum::CONCLUSAO)
-                        <x-layouts.buttons.action-button
-                            text="Editar"
-                            action="editar"
-                            color="primary"
-                            :route="route('ciclo-avaliativo.conclusao.create', ['ciclosAvaliativosUuid' => $ciclo->uuid])"
-                        />
-                    @endif --}}
                 </td>
             </tr>
         @endforeach
     @endsection
 </x-layouts.tables.simple-table>
 
-</div>
+</div> --}}

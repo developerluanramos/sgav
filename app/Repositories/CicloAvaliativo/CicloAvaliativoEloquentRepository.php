@@ -2,6 +2,7 @@
 
 namespace App\Repositories\CicloAvaliativo;
 
+use App\DTO\CicloAvaliativo\CicloAvaliativoStoreDTO;
 use App\Models\CicloAvaliativo;
 use App\Models\Vinculo;
 use App\Repositories\Interfaces\PaginationInterface;
@@ -44,15 +45,13 @@ class CicloAvaliativoEloquentRepository implements CicloAvaliativoRepositoryInte
 
     public function find(string $uuid): CicloAvaliativo
     {
-        return $this->model->with([
-                'periodicidade'
-            ])
+        return $this->model
             ->where('uuid', $uuid)->first();
     }
 
-    public function new(array $data): CicloAvaliativo
+    public function new(CicloAvaliativoStoreDTO $dto): CicloAvaliativo
     {
-        return $this->model->create($data);
+        return $this->model->create((array)$dto);
     }
 
     public function update($uuid, $data): CicloAvaliativo

@@ -9,7 +9,7 @@ class CicloAvaliativoIncidencia extends Model
 {
     use HasFactory;
 
-    protected $table = "incidencias";
+    protected $table = "ciclos_avaliativos_incidencias";
 
     protected $fillable = [
         "cargo_uuid",

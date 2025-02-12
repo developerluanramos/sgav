@@ -1,4 +1,19 @@
 <div>
+    <!-- HIDDEN FIELDS -->
+    <input
+        type="hidden"
+        wire:model="finalizado_em"
+        name="finalizado_em"
+        id="finalizado_em"
+        class=""
+    />
+    <input
+        value="{{json_encode($ciclo_avaliativo)}}"
+        type="hidden"
+        name="ciclos"
+        id="ciclos"
+        class=""
+    />
     <div class="flex flex-wrap -mx-3 mb-2 mt-6">
         <div class="w-full md:w-4/12 mb-6 px-3 md:mb-0">
             <label class="block uppercase tracking-wide text-xs font-bold mb-2" for="iniciado_em">
@@ -21,6 +36,7 @@
                 Descrição do ciclo
             </label>
             <input
+                wire:model="descricao"
                 type="text"
                 name="descricao"
                 id="descricao"

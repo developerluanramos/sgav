@@ -11,7 +11,7 @@ class IncidenciaStoreDTO {
         public string $departamentos_uuid,
         public string $setores_uuid,
         public string $postos_trabalho_uuid,
-        public ?string $ciclos_avaliativos_uuid,
+        public string $ciclos_avaliativos_uuid,
     ) {}
 
     public static function makeFromRequest(IncidenciaStoreRequest $request): self
@@ -22,7 +22,7 @@ class IncidenciaStoreDTO {
             $request->departamentos_uuid,
             $request->setores_uuid,
             $request->postos_trabalho_uuid,
-            $request->get('ciclosAvaliativosUuid'),
+            $request->ciclos_avaliativos_uuid
         );
     }
 }

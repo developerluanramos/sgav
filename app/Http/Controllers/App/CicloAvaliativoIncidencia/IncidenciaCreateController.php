@@ -8,10 +8,11 @@ use App\Http\Requests\App\CicloAvaliativoIncidencia\IncidenciaCreateRequest;
 
 class IncidenciaCreateController extends Controller
 {
-    public function create(IncidenciaCreateRequest $request, IncidenciaCreateAction $incidenciaCreateAction)
+    public function create(string $cicloAvaliativoUuid, IncidenciaCreateRequest $request, IncidenciaCreateAction $incidenciaCreateAction)
     {
         $formData = $incidenciaCreateAction->exec();
-        $formData["ciclosAvaliativosUuid"] = $request->get('ciclosAvaliativosUuid');
+        $formData["ciclosAvaliativosUuid"] = $cicloAvaliativoUuid;
+        
         return view('app.ciclo-avaliativo.incidencia.create', [
             'formData' => $formData
         ]);

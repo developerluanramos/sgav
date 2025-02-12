@@ -21,7 +21,7 @@ class CicloAvaliativo extends Model
 
     public function incidencia()
     {
-        return $this->hasOne(Incidencia::class, 'ciclos_avaliativos_uuid', 'uuid');
+        return $this->hasOne(CicloAvaliativoIncidencia::class, 'ciclos_avaliativos_uuid', 'uuid');
     }
 
     public function templates()

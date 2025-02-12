@@ -2,6 +2,7 @@
 
 namespace App\Repositories\CicloAvaliativo;
 
+use App\DTO\CicloAvaliativo\CicloAvaliativoStoreDTO;
 use App\Models\CicloAvaliativo;
 use App\Repositories\Interfaces\PaginationInterface;
 use Illuminate\Database\Eloquent\Collection;
@@ -16,7 +17,7 @@ interface CicloAvaliativoRepositoryInterface
 
     public function find(string $uuid): CicloAvaliativo;
 
-    public function new(array $data): CicloAvaliativo;
+    public function new(CicloAvaliativoStoreDTO $data): CicloAvaliativo;
 
     public function update(string $uuid, array $data): CicloAvaliativo;
 

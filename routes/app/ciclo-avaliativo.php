@@ -10,7 +10,7 @@ Route::prefix('ciclo-avaliativo')->group(function () {
 
     Route::get('', [\App\Http\Controllers\App\CicloAvaliativo\CicloAvaliativoIndexController::class, 'index'])->name('ciclo-avaliativo.index');
     Route::get('create', [\App\Http\Controllers\App\CicloAvaliativo\CicloAvaliativoCreateController::class, 'create'])->name('ciclo-avaliativo.create');
-    Route::get('store', [\App\Http\Controllers\App\CicloAvaliativo\CicloAvaliativoStoreController::class, 'store'])->name('ciclo-avaliativo.store');
+    Route::post('store', [\App\Http\Controllers\App\CicloAvaliativo\CicloAvaliativoStoreController::class, 'store'])->name('ciclo-avaliativo.store');
 
     Route::prefix('{uuid}')->group(function() {
         Route::get('show', [\App\Http\Controllers\App\CicloAvaliativo\CicloAvaliativoShowController::class, 'show'])->name('ciclo-avaliativo.show');

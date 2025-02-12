@@ -6,7 +6,6 @@ use App\Repositories\Cargo\CargoRepositoryInterface;
 use App\Repositories\Departamento\DepartamentoRepositoryInterface;
 use App\Repositories\Equipe\EquipeRepositoryInterface;
 use App\Repositories\PostoTrabalho\PostoTrabalhoRepositoryInterface;
-use App\Repositories\Servidor\ServidorRepositoryInterface;
 use App\Repositories\Setor\SetorRepositoryInterface;
 
 class IncidenciaCreateAction

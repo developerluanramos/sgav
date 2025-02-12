@@ -11,6 +11,7 @@ class Create extends Component
 {
     public $formData;
     public $iniciado_em;
+    public $finalizado_em;
     public $quantidade_ciclos;
     public $quantidade_unidade_ciclos;
     public $unidade_ciclos;
@@ -28,7 +29,7 @@ class Create extends Component
     {
         $this->formData = $formData;
         $this->iniciado_em = Carbon::now()->toDateString();
-        $this->quantidade_ciclos = 1;
+        $this->quantidade_ciclos = 2;
         $this->quantidade_unidade_ciclos = 2;
         $this->unidade_ciclos = UnidadePeriodicidadeEnum::getKey(UnidadePeriodicidadeEnum::ANOS);
         $this->quantidade_periodos = 4;
@@ -81,7 +82,7 @@ class Create extends Component
         
             for ($i = 1; $i < $this->quantidade_ciclos; $i++) {   
                 $iniciadoCiclo = Carbon::create($this->ciclo_avaliativo[$i-1]["finalizado_em"]);
-                $finalizadoCiclo = Carbon::create($iniciadoCiclo)->add($unidadePeriodos, $this->quantidade_unidade_ciclos);
+                $finalizadoCiclo = Carbon::create($iniciadoCiclo)->add($unidadeCiclos, $this->quantidade_unidade_ciclos);
         
                 $this->ciclo_avaliativo[] = [
                     "iniciado_em" => $iniciadoCiclo->toDateString(),
@@ -106,6 +107,8 @@ class Create extends Component
                     ];
                 }
             }
+            // dd($this->ciclo_avaliativo);
+            $this->finalizado_em = $this->ciclo_avaliativo[$this->quantidade_ciclos - 1]['finalizado_em'];
         } catch(Exception $e) {
             dd($e->getMessage());
         }
