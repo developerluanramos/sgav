@@ -15,10 +15,9 @@ return new class extends Migration
         Schema::create('ciclos_avaliativos', function (Blueprint $table) {
             $table->id();
             $table->uuid('uuid')->unique();
+            $table->string('descricao');
             $table->datetime('iniciado_em');
             $table->datetime('finalizado_em');
-            $table->enum('step', \App\Enums\CicloAvaliativoStepsEnum::getValues())
-                ->default(\App\Enums\CicloAvaliativoStepsEnum::PERIODICIDADE);
             $table->enum('status', CicloAvaliativoStatusEnum::getValues())
                 ->default(CicloAvaliativoStatusEnum::RASCUNHO);
             $table->timestamps();

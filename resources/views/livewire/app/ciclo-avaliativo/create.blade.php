@@ -1,17 +1,36 @@
 <div>
-    <div class="flex flex-wrap -mx-3 mb-2 p-3">
-        <input
-            type="date"
-            wire:model.live.debounce.500ms="iniciado_em"
-            name="iniciado_em"
-            id="iniciado_em"
-            class="appearance-none 
-            md:w-3/12 
-            block w-full bg-gray-200 
-            text-gray-700 border border-gray-200 rounded py-3 
-            px-4 leading-tight focus:outline-none 
-            focus:bg-white focus:border-gray-500"
-        />
+    <div class="flex flex-wrap -mx-3 mb-2 mt-6">
+        <div class="w-full md:w-4/12 mb-6 px-3 md:mb-0">
+            <label class="block uppercase tracking-wide text-xs font-bold mb-2" for="iniciado_em">
+                Início do Ciclo
+            </label>
+            <input
+                type="date"
+                wire:model.live.debounce.500ms="iniciado_em"
+                name="iniciado_em"
+                id="iniciado_em"
+                class="appearance-none 
+                block w-full bg-gray-200 
+                text-gray-700 border border-gray-200 rounded py-3 
+                px-4 leading-tight focus:outline-none 
+                focus:bg-white focus:border-gray-500"
+            />
+        </div>
+        <div class="w-full md:w-8/12 mb-6 px-3 md:mb-0">
+            <label class="block uppercase tracking-wide text-xs font-bold mb-2" for="descricao">
+                Descrição do ciclo
+            </label>
+            <input
+                type="text"
+                name="descricao"
+                id="descricao"
+                class="appearance-none 
+                block w-full bg-gray-200 
+                text-gray-700 border border-gray-200 rounded py-3 
+                px-4 leading-tight focus:outline-none 
+                focus:bg-white focus:border-gray-500"
+            />
+        </div>
     </div>
     <div class="flex flex-wrap -mx-3 mb-2 mt-6">
         <div class="w-full md:w-2/12 px-3 mb-6 md:mb-0">
@@ -172,7 +191,7 @@
                                 <!-- Avaliações como Badges -->
                                 <div class="mt-2 flex flex-wrap gap-2">
                                     @foreach ($periodo['avaliacoes'] as $avaliacaoIndex => $avaliacao)
-                                        <span wire:loading.class="opacity-50" class="bg-blue-100 text-blue-800 text-xs font-semibold px-3 py-1 rounded-lg">
+                                        <span wire:loading.class="opacity-50" class="me-3 bg-blue-100 flex text-blue-800 text-xs font-semibold px-3 py-1 rounded-lg">
                                             {{ \Carbon\Carbon::parse($avaliacao['iniciado_em'])->format('d/m/Y') }}
                                              - {{ \Carbon\Carbon::parse($avaliacao['finalizado_em'])->format('d/m/Y') }} 
                                         </span>

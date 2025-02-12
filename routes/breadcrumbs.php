@@ -188,4 +188,11 @@ Breadcrumbs::for('avaliador', function (BreadcrumbTrail $trail) {
     $trail->push('Avaliador', route('avaliador.index'));
 });
 
-
+Breadcrumbs::for('ciclo-avaliativo', function (BreadcrumbTrail $trail) {
+    $trail->parent('Dashboard' , route('dashboard.index'));
+    $trail->push('Ciclo Avaliativo', route('ciclo-avaliativo.index'));
+});
+Breadcrumbs::for('ciclo-avaliativo.create', function (BreadcrumbTrail $trail) {
+    $trail->parent('ciclo-avaliativo');
+    $trail->push('Novo Ciclo Avaliativo', route('ciclo-avaliativo.create'));
+});

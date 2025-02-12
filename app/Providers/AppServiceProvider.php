@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\Cargo;
 use App\Models\CicloAvaliativo;
+use App\Models\CicloAvaliativoIncidencia;
 use App\Models\CicloAvaliativoModelo;
 use App\Models\ConceitoAvaliacao;
 use App\Models\Departamento;
@@ -175,8 +176,7 @@ class AppServiceProvider extends ServiceProvider
         PostoTrabalho::observe(PostoTrabalhoObserver::class);
         Departamento::observe(DepartamentoObserver::class);
         CicloAvaliativo::observe(CicloAvaliativoObserver::class);
-        Periodicidade::observe(PeriodicidadeObserver::class);
-        Incidencia::observe(IncidenciaObserver::class);
+        CicloAvaliativoIncidencia::observe(IncidenciaObserver::class);
         CicloAvaliativoModelo::observe(CicloAvaliativoModeloObserver::class);
         Vinculo::observe(VinculoObserver::class);
 

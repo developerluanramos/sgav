@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('incidencias', function (Blueprint $table) {
+        Schema::create('ciclos_avaliativos_incidencias', function (Blueprint $table) {
             $table->id();
             $table->uuid('uuid')->unique();
             $table->foreignUuid('ciclos_avaliativos_uuid')->constrained('ciclos_avaliativos', 'uuid');
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('incidencias');
+        Schema::dropIfExists('ciclos_avaliativos_incidencias');
     }
 };

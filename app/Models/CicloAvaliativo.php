@@ -13,16 +13,11 @@ class CicloAvaliativo extends Model
 
     protected $fillable = [
         "uuid",
-        "step",
+        "descricao",
         "status",
         "iniciado_em",
         "finalizado_em"
     ];
-
-    public function periodicidade()
-    {
-        return $this->hasOne(Periodicidade::class, 'ciclos_avaliativos_uuid', 'uuid');
-    }
 
     public function incidencia()
     {

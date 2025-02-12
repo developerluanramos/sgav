@@ -2,12 +2,12 @@
 
 namespace App\Observers;
 
-use App\Models\Incidencia;
+use App\Models\CicloAvaliativoIncidencia;
 use Illuminate\Support\Str;
 
 class IncidenciaObserver
 {
-    public function creating(Incidencia $incidencia): void
+    public function creating(CicloAvaliativoIncidencia $incidencia): void
     {
         $incidencia->uuid = Str::uuid();
     }

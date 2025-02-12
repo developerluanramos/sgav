@@ -3,7 +3,7 @@
 namespace App\Repositories\CicloAvaliativoIncidencia;
 
 use App\DTO\CicloAvaliativoIncidencia\IncidenciaStoreDTO;
-use App\Models\Incidencia;
+use App\Models\CicloAvaliativoIncidencia;
 
 interface IncidenciaRepositoryInterface
 {
@@ -11,8 +11,8 @@ interface IncidenciaRepositoryInterface
 
     public function totalQuantity() : int;
 
-    public function find(string $uuid): Incidencia;
+    public function find(string $uuid): CicloAvaliativoIncidencia;
 
-    public function new(string $cicloAvaliativoUuid, IncidenciaStoreDTO $dto): Incidencia;
+    public function new(string $cicloAvaliativoUuid, IncidenciaStoreDTO $dto): CicloAvaliativoIncidencia;
 
 }
