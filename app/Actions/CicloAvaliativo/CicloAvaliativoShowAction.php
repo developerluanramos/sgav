@@ -14,7 +14,7 @@ class CicloAvaliativoShowAction {
     public function exec(CicloAvaliativoShowDTO $dto): array 
     {
         return [ 
-            "cicloAvaliativo" => $this->repository->find($dto->uuid),
+            "cicloAvaliativo" => $this->repository->show($dto->uuid),
             "avaliados" => $this->repository->avaliados($dto->uuid)
         ];
     }

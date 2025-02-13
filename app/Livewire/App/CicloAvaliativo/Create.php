@@ -62,8 +62,8 @@ class Create extends Component
                 "finalizado_em" => $finalizadoEm->toDateString(),
                 "periodos" => [
                     [
-                        "iniciado_em" => Carbon::create($iniciadoEm),
-                        "finalizado_em" => Carbon::create($iniciadoEm)->add($unidadePeriodos, $this->quantidade_unidade_periodos),
+                        "iniciado_em" => Carbon::create($iniciadoEm)->toDateString(),
+                        "finalizado_em" => Carbon::create($iniciadoEm)->add($unidadePeriodos, $this->quantidade_unidade_periodos)->toDateString(),
                         "avaliacoes" => $this->gerarAvaliacoes(Carbon::create($iniciadoEm), $this->quantidade_avaliacoes)
                     ]
                 ]
@@ -74,8 +74,8 @@ class Create extends Component
                 $finalizadoPeriodo = Carbon::create($iniciadoPeriodo)->add($unidadePeriodos, $this->quantidade_unidade_periodos);
         
                 $this->ciclo_avaliativo[0]["periodos"][] = [
-                    "iniciado_em" => $iniciadoPeriodo,
-                    "finalizado_em" => $finalizadoPeriodo,
+                    "iniciado_em" => $iniciadoPeriodo->toDateString(),
+                    "finalizado_em" => $finalizadoPeriodo->toDateString(),
                     "avaliacoes" => $this->gerarAvaliacoes(Carbon::create($iniciadoPeriodo), $this->quantidade_avaliacoes)
                 ];
             }
@@ -89,8 +89,8 @@ class Create extends Component
                     "finalizado_em" => $finalizadoCiclo->toDateString(),
                     "periodos" => [
                         [
-                            "iniciado_em" => Carbon::create($this->ciclo_avaliativo[$i-1]["periodos"][$this->quantidade_periodos-1]["finalizado_em"]),
-                            "finalizado_em" => Carbon::create($this->ciclo_avaliativo[$i-1]["periodos"][$this->quantidade_periodos-1]["finalizado_em"])->addMonths($this->quantidade_unidade_periodos),
+                            "iniciado_em" => Carbon::create($this->ciclo_avaliativo[$i-1]["periodos"][$this->quantidade_periodos-1]["finalizado_em"])->toDateString(),
+                            "finalizado_em" => Carbon::create($this->ciclo_avaliativo[$i-1]["periodos"][$this->quantidade_periodos-1]["finalizado_em"])->addMonths($this->quantidade_unidade_periodos)->toDateString(),
                             "avaliacoes" => $this->gerarAvaliacoes(Carbon::create($iniciadoCiclo), $this->quantidade_avaliacoes)
                         ]
                     ]
@@ -101,8 +101,8 @@ class Create extends Component
                     $finalizadoPeriodo = Carbon::create($iniciadoPeriodo)->add($unidadePeriodos, $this->quantidade_unidade_periodos);
         
                     $this->ciclo_avaliativo[$i]["periodos"][] = [
-                        "iniciado_em" => $iniciadoPeriodo,
-                        "finalizado_em" => $finalizadoPeriodo,
+                        "iniciado_em" => $iniciadoPeriodo->toDateString(),
+                        "finalizado_em" => $finalizadoPeriodo->toDateString(),
                         "avaliacoes" => $this->gerarAvaliacoes(Carbon::create($iniciadoPeriodo), $this->quantidade_avaliacoes)
                     ];
                 }

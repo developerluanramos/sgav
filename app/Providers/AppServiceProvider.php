@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Models\Avaliacao;
 use App\Models\Cargo;
+use App\Models\Ciclo;
 use App\Models\CicloAvaliativo;
 use App\Models\CicloAvaliativoIncidencia;
 use App\Models\CicloAvaliativoModelo;
@@ -16,14 +18,17 @@ use App\Models\IndicadorDesempenho;
 use App\Models\ItemConceitoAvaliacao;
 use App\Models\ModeloAvaliacao;
 use App\Models\Periodicidade;
+use App\Models\Periodo;
 use App\Models\PostoTrabalho;
 use App\Models\Servidor;
 use App\Models\Setor;
 use App\Models\Vinculo;
 use App\Observers\CargoObserver;
 use App\Models\User;
+use App\Observers\AvaliacaoObserver;
 use App\Observers\CicloAvaliativoModeloObserver;
 use App\Observers\CicloAvaliativoObserver;
+use App\Observers\CicloObserver;
 use App\Observers\ConceitoAvaliacaoObserver;
 use App\Observers\DepartamentoObserver;
 use App\Observers\EquipeObserver;
@@ -34,6 +39,7 @@ use App\Observers\IndicadorDesempenhoObserver;
 use App\Observers\ItemConceitoAvaliacaoObserver;
 use App\Observers\ModeloAvaliacaoObserver;
 use App\Observers\PeriodicidadeObserver;
+use App\Observers\PeriodoObserver;
 use App\Observers\PostoTrabalhoObserver;
 use App\Observers\ServidorObserver;
 use App\Observers\SetorObserver;
@@ -179,6 +185,9 @@ class AppServiceProvider extends ServiceProvider
         CicloAvaliativoIncidencia::observe(IncidenciaObserver::class);
         CicloAvaliativoModelo::observe(CicloAvaliativoModeloObserver::class);
         Vinculo::observe(VinculoObserver::class);
+        Avaliacao::observe(AvaliacaoObserver::class);
+        Ciclo::observe(CicloObserver::class);
+        Periodo::observe(PeriodoObserver::class);
 
         Validator::extend('validarIdadeAdmissao', function ($attribute, $value, $parameters, $validator) {
             $dataNascimento = $validator->getData()['data_nascimento'];

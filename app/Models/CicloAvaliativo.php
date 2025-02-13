@@ -19,9 +19,24 @@ class CicloAvaliativo extends Model
         "finalizado_em"
     ];
 
-    public function incidencia()
+    public function ciclos()
     {
-        return $this->hasOne(CicloAvaliativoIncidencia::class, 'ciclos_avaliativos_uuid', 'uuid');
+        return $this->hasMany(Ciclo::class, 'ciclos_avaliativos_uuid', 'uuid');
+    }
+
+    public function periodos() 
+    {
+        return $this->hasMany(Periodo::class, 'ciclos_avaliativos_uuid', 'uuid');
+    }
+
+    public function avaliacoes() 
+    {
+        return $this->hasMany(Avaliacao::class, 'ciclos_avaliativos_uuid', 'uuid');
+    }
+
+    public function incidencias()
+    {
+        return $this->hasMany(CicloAvaliativoIncidencia::class, 'ciclos_avaliativos_uuid', 'uuid');
     }
 
     public function templates()

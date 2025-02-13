@@ -64,14 +64,18 @@ class CicloAvaliativoEloquentRepository implements CicloAvaliativoRepositoryInte
     public function show(string $uuid): CicloAvaliativo
     {
         return $this->model
-            ->with('periodicidade', 'incidencia', 'modelos.fatoresAvaliacao.indicadoresDesempenho.conceitoAvaliacao.itensConceitosAvaliacao')
+            ->with([
+                'incidencias', 
+                'ciclos', 
+                'periodos', 
+                'avaliacoes', 
+                'modelos.fatoresAvaliacao.indicadoresDesempenho.conceitoAvaliacao.itensConceitosAvaliacao'
+            ])
             ->where('uuid', $uuid)->first();
     }
 
     public function avaliados(string $uuid): Collection
     {
-        // $cicloAvaliativo = $this->find($uuid);
-        // dd($cicloAvaliativo->periodicidade);
         return Vinculo::where('avaliador', false)->limit(10)->get();
     }
 }
