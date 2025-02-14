@@ -6,6 +6,7 @@ use App\Actions\CicloAvaliativo\CicloAvaliativoShowAction;
 use App\DTO\CicloAvaliativo\CicloAvaliativoShowDTO;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\App\CicloAvaliativo\CicloAvaliativoShowRequest;
+use App\Repositories\Presenters\PaginationPresenter;
 
 class CicloAvaliativoShowController extends Controller
 {
@@ -21,9 +22,12 @@ class CicloAvaliativoShowController extends Controller
 
         $showActionData = $this->showAction->exec(CicloAvaliativoShowDTO::makeFromRequest($storeRequest));
         
+        $avaliadosPaginated = new PaginationPresenter($showActionData['avaliados']->paginate());
+
+        // dd($avaliadosPaginated);
         return view('app.ciclo-avaliativo.show', [
             "cicloAvaliativo" => $showActionData['cicloAvaliativo'],
-            "avaliados" => $showActionData['avaliados']
+            "avaliados" => $avaliadosPaginated
         ]);
     }
 }

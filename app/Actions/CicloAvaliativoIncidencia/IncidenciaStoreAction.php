@@ -18,7 +18,7 @@ class IncidenciaStoreAction
     public function exec(IncidenciaStoreDTO $dto) : CicloAvaliativoIncidencia
     {
         DB::beginTransaction();
-
+        
         $incidencia = $this->IncidenciaRepository->new($dto->ciclos_avaliativos_uuid, $dto);
 
         DB::commit();

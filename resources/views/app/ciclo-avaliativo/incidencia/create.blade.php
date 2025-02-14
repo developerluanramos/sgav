@@ -18,7 +18,7 @@
             <div class="md:w-4/12 p-2">
                 @livewire('components.select-boxes.orgao')
             </div>
-            
+
             <div class="md:w-4/12 p-2">
                 @livewire('components.select-boxes.local-trabalho')
             </div>

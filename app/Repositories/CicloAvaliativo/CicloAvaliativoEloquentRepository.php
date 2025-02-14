@@ -46,6 +46,7 @@ class CicloAvaliativoEloquentRepository implements CicloAvaliativoRepositoryInte
     public function find(string $uuid): CicloAvaliativo
     {
         return $this->model
+            ->with('incidencias')
             ->where('uuid', $uuid)->first();
     }
 
@@ -74,8 +75,43 @@ class CicloAvaliativoEloquentRepository implements CicloAvaliativoRepositoryInte
             ->where('uuid', $uuid)->first();
     }
 
-    public function avaliados(string $uuid): Collection
+    public function avaliados(string $uuid): \Illuminate\Database\Eloquent\Builder
     {
-        return Vinculo::where('avaliador', false)->limit(10)->get();
+        $cicloAvaliativo = $this->find($uuid);
+        $codigosOrgaos = [];
+        $codigosLocaisTrabalho = [];
+        $codigosFuncoes = [];
+
+        foreach($cicloAvaliativo->incidencias as $incidencia)
+        {
+            foreach(json_decode(json_decode($incidencia['orgaos'])) as $orgao)
+            {
+                array_push($codigosOrgaos, $orgao->codigo_orgao);
+            }
+
+            foreach(json_decode(json_decode($incidencia['locais_trabalho'])) as $orgao)
+            {
+                array_push($codigosLocaisTrabalho, $orgao->codigo_local_trabalho);
+            }
+
+            foreach(json_decode(json_decode($incidencia['funcoes'])) as $funcao)
+            {
+                array_push($codigosFuncoes, $funcao->codigo_funcao);
+            }
+        }
+       
+        
+        $vinculos = Vinculo::where('avaliador', false)
+            // ->when(!empty($codigosOrgaos), function($query) use ($codigosOrgaos) {
+                ->whereIn('codigo_orgao', $codigosOrgaos)
+            // })
+            // ->when(!empty($codigosFuncoes), function($query) use ($codigosFuncoes) {
+                ->whereIn('codigo_funcao', $codigosFuncoes)
+            // })
+            // ->when(!empty($codigosLocaisTrabalho), function($query) use ($codigosLocaisTrabalho) {
+                ->whereIn('codigo_local_trabalho', $codigosLocaisTrabalho);
+            // });
+
+        return $vinculos;
     }
 }

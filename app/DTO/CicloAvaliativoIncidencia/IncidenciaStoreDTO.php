@@ -6,22 +6,18 @@ use App\Http\Requests\App\CicloAvaliativoIncidencia\IncidenciaStoreRequest;
 
 class IncidenciaStoreDTO {
     public function __construct(
-        public string $cargo_uuid,
-        public string $equipe_uuid,
-        public string $departamentos_uuid,
-        public string $setores_uuid,
-        public string $postos_trabalho_uuid,
+        public array|string $funcoes,
+        public array|string $locais_trabalho,
+        public array|string $orgaos,
         public string $ciclos_avaliativos_uuid,
     ) {}
 
     public static function makeFromRequest(IncidenciaStoreRequest $request): self
     {
         return new self(
-            $request->cargo_uuid,
-            $request->equipe_uuid,
-            $request->departamentos_uuid,
-            $request->setores_uuid,
-            $request->postos_trabalho_uuid,
+            json_encode($request->funcoes),
+            json_encode($request->locais_trabalho),
+            json_encode($request->orgaos),
             $request->ciclos_avaliativos_uuid
         );
     }

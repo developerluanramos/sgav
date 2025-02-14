@@ -12,11 +12,9 @@ class CicloAvaliativoIncidencia extends Model
     protected $table = "ciclos_avaliativos_incidencias";
 
     protected $fillable = [
-        "cargo_uuid",
-        "equipe_uuid",
-        "departamentos_uuid",
-        "setores_uuid",
-        "postos_trabalho_uuid",
+        "locais_trabalho",
+        "orgaos",
+        "funcoes",
         "ciclos_avaliativos_uuid"
     ];
 }

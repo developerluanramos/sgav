@@ -33,7 +33,7 @@ class IncidenciaEloquentRepository implements IncidenciaRepositoryInterface
     {
         $data = (array) $dto;
         $data['ciclos_avaliativos_uuid'] = $cicloAvaliativoUuid;
-
+        // dd($data);
         return $this->model->create($data);
     }
 }

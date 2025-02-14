@@ -22,21 +22,15 @@ class IncidenciaStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "cargo_uuid" => [
-                "required", "exists:cargos,uuid"
+            "locais_trabalho" => [
+                "required"
             ],
-            "equipe_uuid" => [
-                "required", "exists:equipes,uuid"
+            "orgaos" => [
+                "required"
             ],
-            "departamentos_uuid" => [
-                "required", "exists:departamentos,uuid"
-            ],
-            "setores_uuid" => [
-                "required", "exists:setores,uuid"
-            ],
-            "postos_trabalho_uuid" => [
-                "required", "exists:postos_trabalho,uuid"
-            ],
+            "funcoes" => [
+                "required"
+            ]
         ];
     }
 }

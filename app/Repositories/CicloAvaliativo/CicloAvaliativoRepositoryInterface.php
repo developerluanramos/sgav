@@ -23,5 +23,5 @@ interface CicloAvaliativoRepositoryInterface
 
     public function show(string $uuid): CicloAvaliativo;
 
-    public function avaliados(string $uuid): Collection;
+    public function avaliados(string $uuid): \Illuminate\Database\Eloquent\Builder;
 }
