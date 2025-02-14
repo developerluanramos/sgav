@@ -10,7 +10,7 @@ class IncidenciaCreateController extends Controller
 {
     public function create(string $cicloAvaliativoUuid, IncidenciaCreateRequest $request, IncidenciaCreateAction $incidenciaCreateAction)
     {
-        $formData = $incidenciaCreateAction->exec();
+        $formData = $incidenciaCreateAction->exec($cicloAvaliativoUuid);
         $formData["ciclosAvaliativosUuid"] = $cicloAvaliativoUuid;
         
         return view('app.ciclo-avaliativo.incidencia.create', [

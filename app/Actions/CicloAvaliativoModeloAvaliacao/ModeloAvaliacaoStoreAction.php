@@ -15,15 +15,11 @@ class ModeloAvaliacaoStoreAction
         protected CicloAvaliativoModeloRepositoryInterface $cicloAvaliativoModeloRepository
     ) { }
 
-    public function exec(ModeloAvaliacaoStoreDTO $dto): void
+    public function exec(string $ciclosAvaliativosUuid, ModeloAvaliacaoStoreDTO $dto): void
     {
         DB::beginTransaction();
 
-        $this->cicloAvaliativoRepository->update($dto->ciclosAvaliativosUuid, [
-            'step' => CicloAvaliativoStepsEnum::CONCLUSAO
-        ]);
-
-        $this->cicloAvaliativoModeloRepository->newVarious($dto->ciclosAvaliativosUuid, $dto->modelosAvaliacaoUuid);
+        $this->cicloAvaliativoModeloRepository->newVarious($ciclosAvaliativosUuid, $dto->modelosAvaliacaoUuid);
 
         DB::commit();
     }

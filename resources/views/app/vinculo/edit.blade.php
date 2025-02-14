@@ -6,7 +6,7 @@
 
 @section('title', 'Edição Vinculo')
 
-<x-layouts.headers.edit-header :title="$vinculo->uuid.' - '.$vinculo->servidor['nome']"/>
+<x-layouts.headers.edit-header :title="$vinculo->uuid.' - '.$vinculo->nome"/>
 
 @section('content')
 

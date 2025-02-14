@@ -8,12 +8,12 @@ use App\Http\Requests\App\CicloAvaliativoModeloAvaliacao\ModeloAvaliacaoCreateRe
 
 class ModeloAvaliacaoCreateController extends Controller
 {
-    public function create(ModeloAvaliacaoCreateRequest $request, ModeloAvaliacaoCreateAction $ModeloAvaliacaoCreateAction)
+    public function create(string $cicloAvaliativoUuid, ModeloAvaliacaoCreateRequest $request, ModeloAvaliacaoCreateAction $modeloAvaliacaoCreateAction)
     {
-        $formData = $ModeloAvaliacaoCreateAction->exec();
-        $formData["ciclosAvaliativosUuid"] = $request->get('ciclosAvaliativosUuid');
-
-        return view('app.ciclo-avaliativo.template.create', [
+        $formData = $modeloAvaliacaoCreateAction->exec($cicloAvaliativoUuid);
+        $formData["ciclosAvaliativosUuid"] = $cicloAvaliativoUuid;
+        
+        return view('app.ciclo-avaliativo.modelo.create', [
             'formData' => $formData
         ]);
     }

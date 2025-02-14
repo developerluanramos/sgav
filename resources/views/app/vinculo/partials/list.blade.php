@@ -5,7 +5,7 @@
         'Local Trabalho',
         'Órgão',
         'Função',
-        'Data de Admissão',
+        // 'Data de Admissão',
         'Matrícula',
         'Ações'
     ]"
@@ -21,7 +21,7 @@
             <td>{{ $vinculo->codigo_local_trabalho }} - {{ $vinculo->nome_local_trabalho }} </td>
             <td>{{ $vinculo->codigo_orgao }} - {{ $vinculo->nome_orgao }} </td>
             <td>{{ $vinculo->codigo_funcao }} - {{ $vinculo->nome_funcao }} </td>
-            <td>{{ $vinculo->formatted_data_admissao }}</td>
+            {{-- <td>{{ $vinculo->formatted_data_admissao }}</td> --}}
             <td>{{ $vinculo->matricula }}</td>
             <td class="text-right">
                 {{-- <x-layouts.buttons.action-button

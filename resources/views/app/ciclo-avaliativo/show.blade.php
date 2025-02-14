@@ -12,6 +12,8 @@
 
 <div class="mt-2">
     <button 
+        data-modal-target="modal-incidencia" 
+        data-modal-toggle="modal-incidencia"
         type="button" 
         class="inline-flex mr-2 items-center 
         px-5 py-2.5 text-sm font-medium 
@@ -29,7 +31,9 @@
             {{ count($cicloAvaliativo['incidencias']) }}
         </span>
     </button>
-    <button 
+    <button
+        data-modal-target="modal-modelo" 
+        data-modal-toggle="modal-modelo"
         type="button" 
         class="inline-flex mr-2 items-center 
         px-5 py-2.5 text-sm font-medium 
@@ -48,5 +52,68 @@
         </span>
     </button>
 </div>
+
+<x-layouts.modals.simple-modal
+    :titulo="'Incidências'"
+    :tamanho="6"
+    :sessao="'modal-content-incidencia'"
+    :identificador="'modal-incidencia'"
+    >
+    @section('modal-content-incidencia')
+        <h2>
+            <x-layouts.buttons.action-button
+                text="Criar"
+                action="criar"
+                color="success"
+                :route="route('ciclo-avaliativo.incidencia.create', ['uuid' => $cicloAvaliativo['uuid']])"
+            ></x-layouts.buttons.action-button>
+        </h2>
+        @forelse ($cicloAvaliativo['incidencias'] as $incidencia)
+            <b>{{$incidencia->uuid}}</b><br>
+        @empty
+            <div class="flex items-center p-4 mb-4 text-sm text-red-800 border border-red-300 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 dark:border-red-800" role="alert">
+                <svg class="shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+                </svg>
+                {{-- <span class="sr-only">Info</span> --}}
+                <div>
+                <span class="font-medium">Nenhuma incidência adicionada até o momento</b>
+                </div>
+            </div>
+        @endforelse
+    @endsection
+</x-layouts.modals.simple-modal>
+
+<x-layouts.modals.simple-modal
+    :titulo="'Modelos'"
+    :tamanho="6"
+    :sessao="'modal-content-modelo'"
+    :identificador="'modal-modelo'"
+    >
+    @section('modal-content-modelo')
+        <h2>
+            <x-layouts.buttons.action-button
+                text="Criar"
+                action="criar"
+                color="success"
+                :route="route('ciclo-avaliativo.modelo.create', ['uuid' => $cicloAvaliativo['uuid']])"
+            ></x-layouts.buttons.action-button>
+        </h2>  
+
+        @forelse ($cicloAvaliativo['modelos'] as $modelo)
+            <b>{{$modelo->nome}}</b><br>
+        @empty
+            <div class="flex items-center p-4 mb-4 text-sm text-red-800 border border-red-300 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 dark:border-red-800" role="alert">
+                <svg class="shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+                </svg>
+                {{-- <span class="sr-only">Info</span> --}}
+                <div>
+                <span class="font-medium">Nenhum modelo adicionado até o momento</b>
+                </div>
+            </div>
+        @endforelse
+    @endsection
+</x-layouts.modals.simple-modal>
 
 @endsection

@@ -1,65 +1,84 @@
 <div class="flex flex-wrap -mx-3 mb-2">
-    <x-layouts.inputs.input-normal-select-name
-        label="Servidor"
-        name="servidor_uuid"
-        origin="servidor_uuid"
-        lenght="12/12"
-        :data="$formData['servidores']"
-        :value="$vinculo->servidor_uuid ?? old('servidor_uuid')"
-    />
-</div>
-
-<div>
-    @livewire('components.select-boxes.estrutura-organizacional', [
-        'components' => ['departamentos', 'setores', 'postos_trabalho'],
-            'departamentoUuid' => $vinculo->departamentos_uuid ?? old('departamentoUuid'),
-            'setorUuid' => $vinculo->setores_uuid ?? old('setorUuid'),
-            'postoTrabalhoUuid' => $vinculo->postos_trabalho_uuid ?? old('postoTrabalhoUuid'),
-    ])
-</div>
-
-<div class="flex flex-wrap -mx-3 mb-2">
-    <x-layouts.inputs.input-normal-select
-        label="Equipe"
-        name="equipe_uuid"
-        origin="equipe_uuid"
+    <x-layouts.inputs.input-normal-text
+        label="Nome"
+        name="nome"
         lenght="4/12"
-        :data="$formData['equipes']"
-        :value="$vinculo->equipe_uuid ?? old('equipe_uuid')"
+        :value="$vinculo->nome ?? old('nome')"
     />
-
-    <x-layouts.inputs.input-normal-select
-        label="Cargo"
-        name="cargo_uuid"
-        origin="cargo_uuid"
-        lenght="4/12"
-        :data="$formData['cargos']"
-        :value="$vinculo->cargo_uuid ?? old('equipe_uuid')"
-    />
-
     <x-layouts.inputs.input-normal-text
         label="Email"
         name="email"
         lenght="4/12"
         :value="$vinculo->email ?? old('email')"
     />
-</div>
-
-<div class="flex flex-wrap -mx-3 mb-2">
-    <x-layouts.inputs.input-date
-        label="Data de Admissão"
-        name="data_admissao"
-        lenght="4/12"
-        :value="$vinculo->data_admissao ?? old('data_admissao')"
-    />
-
     <x-layouts.inputs.input-normal-text
         label="Matrícula"
         name="matricula"
-        lenght="4/12"
+        lenght="2/12"
         :value="$vinculo->matricula ?? old('matricula')"
     />
+    <x-layouts.inputs.input-date
+        label="Data de Admissão"
+        name="data_admissao"
+        lenght="2/12"
+        :value="$vinculo->data_admissao ?? old('data_admissao')"
+    />
+</div>
+
+<div class="flex flex-wrap -mx-3 mb-2">
+
     
+</div>
+
+<div class="flex flex-wrap -mx-3 mb-2">
+    <x-layouts.inputs.input-normal-text
+        label="Código Órgão"
+        :disabled="true"
+        name="codigo_orgao"
+        lenght="2/12"
+        :value="$vinculo->codigo_orgao ?? old('codigo_orgao')"
+    />
+    <x-layouts.inputs.input-normal-text
+        label="Nome Órgão"
+        name="nome_orgao"
+        lenght="10/12"
+        :disabled="true"
+        :value="$vinculo->nome_orgao ?? old('nome_orgao')"
+    />
+</div>
+
+<div class="flex flex-wrap -mx-3 mb-2">
+    <x-layouts.inputs.input-normal-text
+        label="Código Função"
+        name="codigo_funcao"
+        lenght="2/12"
+        :disabled="true"
+        :value="$vinculo->codigo_funcao ?? old('codigo_funcao')"
+    />
+    <x-layouts.inputs.input-normal-text
+        label="Nome Função"
+        name="nome_funcao"
+        lenght="10/12"
+        :disabled="true"
+        :value="$vinculo->nome_funcao ?? old('nome_funcao')"
+    />
+</div>
+
+<div class="flex flex-wrap -mx-3 mb-2">
+    <x-layouts.inputs.input-normal-text
+        label="Código L. Trabalho"
+        name="codigo_local_trabalho"
+        lenght="2/12"
+        :disabled="true"
+        :value="$vinculo->codigo_local_trabalho ?? old('codigo_local_trabalho')"
+    />
+    <x-layouts.inputs.input-normal-text
+        label="Nome L. Trabalho"
+        name="nome_local_trabalho"
+        lenght="10/12"
+        :disabled="true"
+        :value="$vinculo->nome_local_trabalho ?? old('nome_local_trabalho')"
+    />
 </div>
 
 <div class="flex flex-wrap -mx-3 mb-2  mt-2 p-2">
@@ -69,4 +88,5 @@
         <span class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300">Avaliador</span>
     </label>
 </div>
+
 <x-layouts.buttons.submit-button text="Salvar"/>

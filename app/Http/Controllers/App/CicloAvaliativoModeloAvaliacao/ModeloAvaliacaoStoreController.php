@@ -9,12 +9,12 @@ use App\Http\Requests\App\CicloAvaliativoModeloAvaliacao\ModeloAvaliacaoStoreReq
 
 class ModeloAvaliacaoStoreController extends Controller
 {
-    public function store(ModeloAvaliacaoStoreRequest $storeRequest, ModeloAvaliacaoStoreAction $ModeloAvaliacaoStoreAction)
+    public function store(string $cicloAvaliativoUuid, ModeloAvaliacaoStoreRequest $storeRequest, ModeloAvaliacaoStoreAction $ModeloAvaliacaoStoreAction)
     {
         $modeloDto = ModeloAvaliacaoStoreDTO::makeFromRequest($storeRequest);
 
-        $ModeloAvaliacaoStoreAction->exec($modeloDto);
+        $ModeloAvaliacaoStoreAction->exec($cicloAvaliativoUuid, $modeloDto);
 
-        return redirect()->route('ciclo-avaliativo.conclusao.create', ['ciclosAvaliativosUuid' => $modeloDto->ciclosAvaliativosUuid]);
+        return redirect()->route('ciclo-avaliativo.index');
     }
 }

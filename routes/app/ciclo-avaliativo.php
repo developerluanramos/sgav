@@ -16,7 +16,7 @@ Route::prefix('ciclo-avaliativo')->group(function () {
         Route::get('show', [\App\Http\Controllers\App\CicloAvaliativo\CicloAvaliativoShowController::class, 'show'])->name('ciclo-avaliativo.show');
         Route::get('incidencia/create', [IncidenciaCreateController::class, 'create'])->name('ciclo-avaliativo.incidencia.create');
         Route::post('incidencia/store',[IncidenciaStoreController::class, 'store'])->name('ciclo-avaliativo.incidencia.store');
-        Route::get('template/create', [ModeloAvaliacaoCreateController::class, 'create'])->name('ciclo-avaliativo.template.create');
-        Route::post('template/store', [ModeloAvaliacaoStoreController::class, 'store'])->name('ciclo-avaliativo.template.store');
+        Route::get('modelo/create', [ModeloAvaliacaoCreateController::class, 'create'])->name('ciclo-avaliativo.modelo.create');
+        Route::post('modelo/store', [ModeloAvaliacaoStoreController::class, 'store'])->name('ciclo-avaliativo.modelo.store');
     });
 });

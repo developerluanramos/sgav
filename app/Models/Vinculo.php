@@ -29,7 +29,7 @@ class Vinculo extends Model
         'codigo_local_trabalho'
     ];
 
-    protected $appends = ['formatted_data_admissao'];
+    // protected $appends = ['formatted_data_admissao'];
 
     public function getFormattedDataAdmissaoAttribute()
     {

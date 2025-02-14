@@ -6,26 +6,27 @@
 
 @section('title', 'Novo Ciclo Avaliativo')
 
-<x-layouts.headers.create-header :title="'Incidência'"/>
-
 @section('content')
-    {{-- @include('app.ciclo-avaliativo.partials.stepper', ['step' => \App\Enums\CicloAvaliativoStepsEnum::INCIDENCIA]) --}}
+@include('app.ciclo-avaliativo.partials.small-view', ['cicloAvaliativo' => $formData['cicloAvaliativo']])
 
     <div class="mt-6">
         @include('components.alerts.form-errors')
     </div>
     <form method="POST" action="{{route('ciclo-avaliativo.incidencia.store', ['uuid' => $formData['ciclosAvaliativosUuid']])}}">
         @csrf
-        <div>
-            @livewire('components.select-boxes.estrutura-organizacional', [
-                'components' => ['departamentos', 'setores', 'postos_trabalho'],
-                    'departamentoUuid' => $vinculo->departamentos_uuid ?? old('departamentoUuid'),
-                    'setorUuid' => $vinculo->setores_uuid ?? old('setorUuid'),
-                    'postoTrabalhoUuid' => $vinculo->postos_trabalho_uuid ?? old('postoTrabalhoUuid'),
-            ])
-        </div>
-        <div class="flex flex-wrap -mx-3 mb-2">
-            <x-layouts.inputs.input-normal-select
+        <div class="flex flex-wrap -mx-3 mb-2 p-3">
+            <div class="md:w-4/12 p-2">
+                @livewire('components.select-boxes.orgao')
+            </div>
+            
+            <div class="md:w-4/12 p-2">
+                @livewire('components.select-boxes.local-trabalho')
+            </div>
+           
+            <div class="md:w-4/12 p-2">
+                @livewire('components.select-boxes.funcao')
+            </div>
+            {{-- <x-layouts.inputs.input-normal-select
                 label="Equipe"
                 name="equipe_uuid"
                 origin="equipe_uuid"
@@ -41,7 +42,7 @@
                 lenght="4/12"
                 :data="$formData['cargos']"
                 :value="$vinculo->cargo_uuid ?? old('equipe_uuid')"
-            />
+            /> --}}
         </div>
         <x-layouts.buttons.submit-button text="Salvar"/>
     </form>

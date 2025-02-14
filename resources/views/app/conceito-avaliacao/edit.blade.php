@@ -24,31 +24,30 @@
             <span>
                 {{ $item->uuid }} - {{ $item->nome }} - {{ $item->pontuacao }}
             </span>
-
             <div class="flex ml-auto items-center">
-                    <x-layouts.modals.simple-modal
-                        :titulo="'EDIÇÃO DE ITEM'"
-                        :sessao="'modal-content-item-conceito-avaliacao'.$item->uuid"
-                        :identificador="'modalItemConceitoAvaliacao'.$item->uuid"
-                        >
-                        @section('modal-content-item-conceito-avaliacao'.$item->uuid)
-                            @include('app.conceito-avaliacao.item-conceito-avaliacao.partials.form', ["itemConceitoAvaliacao" => $item])
-                        @endsection
-                    </x-layouts.modals.simple-modal>
-                    <x-layouts.buttons.edit-action-button
-                        :identificador="'modalItemConceitoAvaliacao'.$item->uuid"
-                        color="primary"
-                    />
-            <div class="m-1"></div>
-            <x-layouts.buttons.action-button
-                text="Excluir"
-                action="excluir"
-                color="danger"
-                :identificador="'drawer-delete-confirmacao'.$item->uuid"
-                :route="route('item-conceito-avaliacao.delete', [
-                    'uuid' => $item->uuid
-                ])"
-            />
+                <x-layouts.modals.simple-modal
+                    :titulo="'EDIÇÃO DE ITEM'"
+                    :sessao="'modal-content-item-conceito-avaliacao'.$item->uuid"
+                    :identificador="'modalItemConceitoAvaliacao'.$item->uuid"
+                    >
+                    @section('modal-content-item-conceito-avaliacao'.$item->uuid)
+                        @include('app.conceito-avaliacao.item-conceito-avaliacao.partials.form', ["itemConceitoAvaliacao" => $item])
+                    @endsection
+                </x-layouts.modals.simple-modal>
+                <x-layouts.buttons.edit-action-button
+                    :identificador="'modalItemConceitoAvaliacao'.$item->uuid"
+                    color="primary"
+                />
+                <div class="m-1"></div>
+                <x-layouts.buttons.action-button
+                    text="Excluir"
+                    action="excluir"
+                    color="danger"
+                    :identificador="'drawer-delete-confirmacao'.$item->uuid"
+                    :route="route('item-conceito-avaliacao.delete', [
+                        'uuid' => $item->uuid
+                    ])"
+                />
             </div>
         </li>
     @endforeach
