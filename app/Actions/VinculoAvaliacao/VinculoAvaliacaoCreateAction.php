@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Actions\Avaliacao;
+namespace App\Actions\VinculoAvaliacao;
 
 use App\Repositories\CicloAvaliativo\CicloAvaliativoRepositoryInterface;
 use App\Repositories\Vinculo\VinculoRepositoryInterface;
 use Carbon\Carbon;
 
-class AvaliacaoCreateAction
+class VinculoAvaliacaoCreateAction
 {
     public function __construct(
         protected CicloAvaliativoRepositoryInterface $cicloAvaliativoRepository,
@@ -16,14 +16,13 @@ class AvaliacaoCreateAction
     public function exec(string $cicloAvaliativoUuid, string $vinculoUuid): array
     { 
         $cicloAvaliativo = $this->cicloAvaliativoRepository->show($cicloAvaliativoUuid);
+        $cicloAvaliativoDetails = $this->cicloAvaliativoRepository->details($cicloAvaliativoUuid);
         $vinculo = $this->vinculoRepository->find($vinculoUuid);
-        
-        // $cicloAtual = $this->cicloAvaliativoRepository->findByDate(Carbon::now()->toDateString());
-        // dd($cicloAtual); 
-        // dd($cicloAvaliativo->modelos);
+
         return [
             "cicloAvaliativo" => $cicloAvaliativo,
-            "vinculo" => $vinculo
+            "vinculo" => $vinculo,
+            "cicloAvaliativoDetails" => $cicloAvaliativoDetails,
         ];
     }
 }

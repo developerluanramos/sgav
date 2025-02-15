@@ -12,18 +12,9 @@
 
 @include('components.alerts.form-errors')
 
-<div class="grid grid-cols-1 gap-4">
-    
-    {{-- <div>
-        @include('app.vinculo.partials.small-view', [
-            'vinculo' => $formData['vinculo']
-        ])
-    </div> --}}
-</div>
-
 <div class="grid grid-cols-12 gap-4 mt-2">
     <div class="col-span-3">
-        @include('app.avaliacao.partials.sidebar-view', [
+        @include('app.vinculo-avaliacao.partials.sidebar-view', [
             'cicloAvaliativo' => $formData['cicloAvaliativo']
         ])
     </div>
@@ -78,7 +69,4 @@
         </div>
     </div>
 </div>
-
-
-
 @endsection

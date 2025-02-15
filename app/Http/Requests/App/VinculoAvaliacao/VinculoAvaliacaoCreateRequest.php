@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\App\Avaliacao;
+namespace App\Http\Requests\App\VinculoAvaliacao;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class AvaliacaoCreateRequest extends FormRequest
+class VinculoAvaliacaoCreateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

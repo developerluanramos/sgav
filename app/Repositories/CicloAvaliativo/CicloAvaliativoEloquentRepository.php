@@ -7,15 +7,18 @@ use App\Models\CicloAvaliativo;
 use App\Models\Vinculo;
 use App\Repositories\Interfaces\PaginationInterface;
 use App\Repositories\Presenters\PaginationPresenter;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 
 class CicloAvaliativoEloquentRepository implements CicloAvaliativoRepositoryInterface
 {
     protected $model;
+    protected $today; // Carbon
 
     public function __construct(CicloAvaliativo $model)
     {
         $this->model = $model;
+        $this->today = Carbon::now();
     }
 
     public function all()
@@ -83,6 +86,83 @@ class CicloAvaliativoEloquentRepository implements CicloAvaliativoRepositoryInte
                 'modelos.fatores.indicadores.conceito.itens'
             ])
             ->where('uuid', $uuid)->first();
+    }
+
+    /**
+     * Informações detalhadas sobre o ciclo avaliativo baseando-se na data atual
+     * como principal parâmetro.
+     * (melhorar essa descrição)
+     * 
+     * @param string $uuid
+     * @return array{cicloAtual: string, ciclosFuturos: string, ciclosPassados: string}
+     */
+    public function details(string $uuid): array
+    {
+        $cicloAvaliativo = $this->show($uuid);
+        $cicloAtual = "";
+        $ciclosPassados = [];
+        $ciclosFuturos = [];
+
+        $periodoAtual = "";
+        $periodosPassados = [];
+        $periodosFuturos = [];
+
+        $avaliacaoAtual = "";
+        $avaliacoesPassadas = [];
+        $avaliacoesFuturas = [];
+
+        foreach($cicloAvaliativo->ciclos as $ciclo) {
+            if($ciclo->iniciado_em <= $this->today->toDateString() && $ciclo->finalizado_em >= $this->today->toDateString()) {
+                $cicloAtual = $ciclo;
+            } else if($ciclo->iniciado_em < $this->today->toDateString() && $ciclo->finalizado_em < $this->today->toDateString()) {
+                $ciclosPassados[] = $ciclo;
+            } else if($ciclo->iniciado_em > $this->today->toDateString() && $ciclo->finalizado_em > $this->today->toDateString()) {
+                $ciclosFuturos[] = $ciclo;
+            }
+
+            foreach ($ciclo->periodos as $periodo) {
+                if($periodo->iniciado_em <= $this->today->toDateString() && $periodo->finalizado_em >= $this->today->toDateString()) {
+                    $periodoAtual = $periodo;
+                } else if($periodo->iniciado_em < $this->today->toDateString() && $periodo->finalizado_em < $this->today->toDateString()) {
+                    $periodosPassados[] = $periodo;
+                } else if($periodo->iniciado_em > $this->today->toDateString() && $periodo->finalizado_em > $this->today->toDateString()) {
+                    $periodosFuturos[] = $periodo;
+                }
+
+                foreach ($periodo->avaliacoes as $avaliacao) {
+                    if($avaliacao->iniciado_em <= $this->today->toDateString() && $avaliacao->finalizado_em >= $this->today->toDateString()) {
+                        $avaliacaoAtual = $avaliacao;
+                    } else if($avaliacao->iniciado_em < $this->today->toDateString() && $avaliacao->finalizado_em < $this->today->toDateString()) {
+                        $avaliacoesPassadas[] = $avaliacao;
+                    } else if($avaliacao->iniciado_em > $this->today->toDateString() && $avaliacao->finalizado_em > $this->today->toDateString()) {
+                        $avaliacoesFuturas[] = $avaliacao;
+                    }
+                }
+            }
+        }
+        
+        return [
+            "cicloAtual" => $cicloAtual,
+            "ciclosPassados" => $ciclosPassados,
+            "ciclosFuturos" => $ciclosFuturos,
+            "periodoAtual" => $periodoAtual,
+            "periodosPassados" => $periodosPassados,
+            "periodosFuturos" => $periodosFuturos,
+            "avaliacaoAtual" => $avaliacaoAtual,
+            "avaliacoesPassadas" => $avaliacoesPassadas,
+            "avaliacoesFuturas" => $avaliacoesFuturas,
+            "uuids" => [
+                "cicloAtual" => $cicloAtual->uuid ?? null,
+                "ciclosPassados" => (new Collection($ciclosPassados))->pluck("uuid")->toArray(),
+                "ciclosFuturos" => (new Collection($ciclosFuturos))->pluck("uuid")->toArray(),
+                "periodoAtual" => $periodoAtual->uuid ?? null,
+                "periodosPassados" => (new Collection($periodosPassados))->pluck("uuid")->toArray(),
+                "periodosFuturos" => (new Collection($periodosFuturos))->pluck("uuid")->toArray(),
+                "avaliacaoAtual" => $avaliacaoAtual->uuid ?? null,
+                "avaliacoesPassadas" => (new Collection($avaliacoesPassadas))->pluck("uuid")->toArray(),
+                "avaliacoesFuturas" => (new Collection($avaliacoesFuturas))->pluck("uuid")->toArray(),
+            ]
+        ];
     }
 
     public function avaliados(string $uuid): \Illuminate\Database\Eloquent\Builder
