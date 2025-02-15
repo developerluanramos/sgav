@@ -27,7 +27,7 @@ class ModeloAvaliacao extends Model
         'situacao' => 'integer',
     ];
 
-    function fatoresAvaliacao() {
+    function fatores() {
         return $this->hasMany(FatorAvaliacao::class, 'modelo_avaliacao_uuid', 'uuid');
     }
 }

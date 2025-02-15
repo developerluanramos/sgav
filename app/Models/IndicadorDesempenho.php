@@ -19,17 +19,17 @@ class IndicadorDesempenho extends Model
         'fator_avaliacao_uuid'
     ];
 
-    function conceitoAvaliacao()
+    function conceito()
     {
         return $this->belongsTo(ConceitoAvaliacao::class, 'conceito_avaliacao_uuid', 'uuid');
     }
 
-    function modeloAvaliacao()
+    function modelo()
     {
         return $this->belongsTo(ModeloAvaliacao::class, 'modelo_avaliacao_uuid', 'uuid');
     }
 
-    function fatorAvaliacao()
+    function fator()
     {
         return $this->belongsTo(FatorAvaliacao::class, 'fator_avaliacao_uuid', 'uuid');
     }

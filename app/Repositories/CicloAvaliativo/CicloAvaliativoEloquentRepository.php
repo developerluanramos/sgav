@@ -50,6 +50,16 @@ class CicloAvaliativoEloquentRepository implements CicloAvaliativoRepositoryInte
             ->where('uuid', $uuid)->first();
     }
 
+    public function findByDate(string $date): CicloAvaliativo
+    {
+        dd($date);
+        return $this->model
+            ->with('incidencias')
+            ->where('iniciado_em', '>=', $date)
+            ->orWhere('finalizado_em', '<=', $date)
+            ->first();
+    }
+
     public function new(CicloAvaliativoStoreDTO $dto): CicloAvaliativo
     {
         return $this->model->create((array)$dto);
@@ -70,7 +80,7 @@ class CicloAvaliativoEloquentRepository implements CicloAvaliativoRepositoryInte
                 'ciclos', 
                 'periodos', 
                 'avaliacoes', 
-                'modelos.fatoresAvaliacao.indicadoresDesempenho.conceitoAvaliacao.itensConceitosAvaliacao'
+                'modelos.fatores.indicadores.conceito.itens'
             ])
             ->where('uuid', $uuid)->first();
     }

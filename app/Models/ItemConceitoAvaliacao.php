@@ -24,7 +24,7 @@ class ItemConceitoAvaliacao extends Model
      * @var array<string, string>
      */
 
-     public function conceitosAvaliacao()
+     public function conceitos()
      {
          return $this->belongsTo(ConceitoAvaliacao::class, 'uuid', 'conceito_avaliacao_uuid');
      }

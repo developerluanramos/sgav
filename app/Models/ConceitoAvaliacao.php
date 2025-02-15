@@ -26,7 +26,7 @@ class ConceitoAvaliacao extends Model
     protected $appends = ['created_at_for_humans', 'updated_at_for_humans'];
 
 
-    public function itensConceitosAvaliacao() 
+    public function itens() 
     {
         return $this->hasMany(ItemConceitoAvaliacao::class, 'conceito_avaliacao_uuid', 'uuid');
     }
@@ -41,7 +41,7 @@ class ConceitoAvaliacao extends Model
         return Carbon::createFromTimeStamp(strtotime($this->attributes['updated_at']) )->diffForHumans();
     }
         
-    public function fatoresAvaliacao() 
+    public function fatores() 
     {
         return $this->hasMany(FatorAvaliacao::class, 'conceito_avaliacao_uuid', 'uuid');
     }

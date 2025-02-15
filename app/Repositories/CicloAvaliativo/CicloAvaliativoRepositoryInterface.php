@@ -17,6 +17,8 @@ interface CicloAvaliativoRepositoryInterface
 
     public function find(string $uuid): CicloAvaliativo;
 
+    public function findByDate(string $date): CicloAvaliativo;
+
     public function new(CicloAvaliativoStoreDTO $data): CicloAvaliativo;
 
     public function update(string $uuid, array $data): CicloAvaliativo;
