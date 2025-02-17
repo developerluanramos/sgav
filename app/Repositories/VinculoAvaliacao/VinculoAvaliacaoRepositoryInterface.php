@@ -2,12 +2,12 @@
 
 namespace App\Repositories\VinculoAvaliacao;
 
-use App\DTO\Vinculo\VinculoStoreDTO;
-use App\DTO\Vinculo\VinculoUpdateDTO;
-use App\Models\Vinculo;
-use App\Repositories\Interfaces\PaginationInterface;
+use App\DTO\VinculoAvaliacao\VinculoAvaliacaoStoreDTO;
+use App\Models\VinculoAvaliacao;
 
 interface VinculoAvaliacaoRepositoryInterface
 {
     public function detailsByVinculoUuidECiclosAvaliativosUuid(string $cicloAvaliativoUuid, string $vinculoUuid) : array;
+
+    public function new(VinculoAvaliacaoStoreDTO $dto) : VinculoAvaliacao;
 }

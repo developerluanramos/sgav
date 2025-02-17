@@ -2,6 +2,7 @@
 
 namespace App\Repositories\VinculoAvaliacao;
 
+use App\DTO\VinculoAvaliacao\VinculoAvaliacaoStoreDTO;
 use App\Models\VinculoAvaliacao;
 
 class VinculoAvaliacaoEloquentRepository implements VinculoAvaliacaoRepositoryInterface
@@ -30,5 +31,10 @@ class VinculoAvaliacaoEloquentRepository implements VinculoAvaliacaoRepositoryIn
         ];
 
         return $details;
+    }
+
+    public function new(VinculoAvaliacaoStoreDTO $dto) : VinculoAvaliacao 
+    {
+        return $this->model->create((array)$dto);
     }
 }

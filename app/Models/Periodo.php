@@ -28,4 +28,9 @@ class Periodo extends Model
     {
         return $this->hasMany(Avaliacao::class, 'periodos_uuid', 'uuid');
     }
+
+    public function getQuantidadeAvaliacoesAttribute()
+    {
+        return $this->avaliacoes()->count();
+    }
 }

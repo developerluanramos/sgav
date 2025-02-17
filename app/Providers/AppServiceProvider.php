@@ -25,6 +25,7 @@ use App\Models\Setor;
 use App\Models\Vinculo;
 use App\Observers\CargoObserver;
 use App\Models\User;
+use App\Models\VinculoAvaliacao;
 use App\Observers\AvaliacaoObserver;
 use App\Observers\CicloAvaliativoModeloObserver;
 use App\Observers\CicloAvaliativoObserver;
@@ -44,6 +45,7 @@ use App\Observers\PostoTrabalhoObserver;
 use App\Observers\ServidorObserver;
 use App\Observers\SetorObserver;
 use App\Observers\UsuarioObserver;
+use App\Observers\VinculoAvaliacaoObserver;
 use App\Observers\VinculoObserver;
 use App\Repositories\Avaliacao\AvaliacaoEloquentRepository;
 use App\Repositories\Avaliacao\AvaliacaoRepositoryInterface;
@@ -193,6 +195,7 @@ class AppServiceProvider extends ServiceProvider
         Avaliacao::observe(AvaliacaoObserver::class);
         Ciclo::observe(CicloObserver::class);
         Periodo::observe(PeriodoObserver::class);
+        VinculoAvaliacao::observe(VinculoAvaliacaoObserver::class);
 
         Validator::extend('validarIdadeAdmissao', function ($attribute, $value, $parameters, $validator) {
             $dataNascimento = $validator->getData()['data_nascimento'];

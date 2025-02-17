@@ -22,4 +22,19 @@ class Ciclo extends Model
     {
         return $this->hasMany(Periodo::class, 'ciclos_uuid', 'uuid');
     }
+
+    public function avaliacoes()
+    {
+        return $this->hasMany(Avaliacao::class, 'ciclos_uuid', 'uuid');
+    }
+
+    public function getQuantidadePeriodosAttribute()
+    {
+        return $this->periodos()->count();
+    }
+
+    public function getQuantidadeAvaliacoesAttribute()
+    {
+        return $this->avaliacoes()->count();
+    }
 }

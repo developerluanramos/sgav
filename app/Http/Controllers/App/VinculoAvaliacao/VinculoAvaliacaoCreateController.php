@@ -15,7 +15,7 @@ class VinculoAvaliacaoCreateController extends Controller
     public function create(string $cicloAvaliativoUuid, string $vinculoUuid, VinculoAvaliacaoCreateRequest $createRequest)
     {
         $formData = $this->createAction->exec($cicloAvaliativoUuid, $vinculoUuid);
-
+       
         return view('app.vinculo-avaliacao.create', compact('formData'));
     }
 }

@@ -10,7 +10,7 @@ class VinculoAvaliacaoObserver
     /**
      * Handle the VinculoAvaliacao "created" event.
      */
-    public function created(VinculoAvaliacao $vinculoAvaliacao): void
+    public function creating(VinculoAvaliacao $vinculoAvaliacao): void
     {
         $vinculoAvaliacao->uuid = Str::uuid();
     }

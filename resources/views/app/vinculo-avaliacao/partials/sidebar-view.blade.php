@@ -28,9 +28,11 @@
                         $cor = "gray";
                         if ($formData['cicloAvaliativoDetails']['periodoAtual']->uuid == $periodo->uuid) {
                             $cor = "blue";
-                        } else if(in_array($periodo->uuid, $formData['cicloAvaliativoDetails']['uuids']['periodosPassados'])) {
+                        }
+                        if(in_array($periodo->uuid, $formData['cicloAvaliativoDetails']['uuids']['periodosPassados'])) {
                             $cor = "yellow";
-                        } else if(in_array($periodo->uuid, $formData['vinculoAvaliacaoDetails']['uuids']['periodosConcluidos'])) {
+                        }
+                        if(in_array($periodo->uuid, $formData['vinculoAvaliacaoDetails']['uuids']['periodosConcluidos'])) {
                             $cor = "green";
                         }
                     @endphp
@@ -50,29 +52,44 @@
                             @foreach ($periodo->avaliacoes as $avaliacaoIndex => $avaliacao)
                             @php 
                                 $cor = "gray";
-                                $icon = '';
+                                $icon = '<svg class="w-4 h-4 mr-2 text-'.$cor.'-600 dark:text-'.$cor.'-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
+                                         </svg>';
+                                $route = '';
+
                                 if ($formData['cicloAvaliativoDetails']['avaliacaoAtual']->uuid  == $avaliacao->uuid) {
                                     $cor = "blue";
                                     $icon = '';
+                                    $route = '';
                                 }
                                 if(in_array($avaliacao->uuid, $formData['cicloAvaliativoDetails']['uuids']['avaliacoesPassadas'])) {
                                     $cor = "yellow";
                                     $icon = '<svg class="w-4 h-4 mr-2 text-'.$cor.'-600 dark:text-'.$cor.'-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7.757 12h8.486M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
                                             </svg>';
+                                    $route = route('avaliacao.create', [
+                                        'cicloAvaliativoUuid' => $formData['cicloAvaliativo']->uuid,
+                                        'vinculoUuid' => $formData['vinculo']->uuid,
+                                        'cicloAtual' => $ciclo->uuid,
+                                        'periodoAtual' => $periodo->uuid,
+                                        'avaliacaoAtual' => $avaliacao->uuid,
+                                    ]);
                                 }
                                 if(in_array($avaliacao->uuid, $formData['vinculoAvaliacaoDetails']['uuids']['avaliacoesConcluidas'])) {
                                     $cor = "green";
                                     $icon = '<svg class="w-4 h-4 mr-2 text-'.$cor.'-600 dark:text-'.$cor.'-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
                                         </svg>';
+                                    $route = '';
                                 }
                             @endphp
                                 <li class="bg-{{$cor}}-50 dark:bg-{{$cor}}-900 p-2 rounded-md border-l-4 border-{{$cor}}-500">
-                                    <span class="flex items-center text-{{$cor}}-700 dark:text-{{$cor}}-300 text-xs">
-                                        {!! $icon !!}
-                                        {{ date('d/m/Y', strtotime($avaliacao->iniciado_em)) }} - {{ date('d/m/Y', strtotime($avaliacao->finalizado_em)) }}
-                                    </span>
+                                    <a href="{{$route}}">
+                                        <span class="flex items-center text-{{$cor}}-700 dark:text-{{$cor}}-300 text-xs">
+                                            {!! $icon !!}
+                                            {{ date('d/m/Y', strtotime($avaliacao->iniciado_em)) }} - {{ date('d/m/Y', strtotime($avaliacao->finalizado_em)) }}
+                                        </span>
+                                    </a>
                                 </li>
                             @endforeach
                         </ul>
