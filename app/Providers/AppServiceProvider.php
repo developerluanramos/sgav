@@ -85,6 +85,8 @@ use App\Repositories\Usuario\UsuarioEloquentRepository;
 use App\Repositories\Usuario\UsuarioRepositoryInterface;
 use App\Repositories\Vinculo\VinculoEloquentRepository;
 use App\Repositories\Vinculo\VinculoRepositoryInterface;
+use App\Repositories\VinculoAvaliacao\VinculoAvaliacaoEloquentRepository;
+use App\Repositories\VinculoAvaliacao\VinculoAvaliacaoRepositoryInterface;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
 
@@ -159,6 +161,9 @@ class AppServiceProvider extends ServiceProvider
         );
         $this->app->bind(
             AvaliacaoRepositoryInterface::class, AvaliacaoEloquentRepository::class
+        );
+        $this->app->bind(
+            VinculoAvaliacaoRepositoryInterface::class, VinculoAvaliacaoEloquentRepository::class
         );
     }
 

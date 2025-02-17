@@ -1,0 +1,34 @@
+<?php
+
+namespace App\Repositories\VinculoAvaliacao;
+
+use App\Models\VinculoAvaliacao;
+
+class VinculoAvaliacaoEloquentRepository implements VinculoAvaliacaoRepositoryInterface
+{
+    public function __construct(
+        protected VinculoAvaliacao $model
+    ){}
+
+    public function detailsByVinculoUuidECiclosAvaliativosUuid(string $cicloAvaliativoUuid, string $vinculoUuid) : array 
+    {
+        $avaliacoes = VinculoAvaliacao::query()
+            ->where('ciclos_avaliativos_uuid', $cicloAvaliativoUuid)
+            ->where('vinculos_uuid', $vinculoUuid)->get();
+        
+        $avaliacoesConcluidas = $avaliacoes;
+        
+        $details = [
+            "ciclosConcluidos" => [],
+            "avaliacoesConcluidas" => $avaliacoesConcluidas,
+            "periodosConcluidos" => [],
+            "uuids" => [
+                "ciclosConcluidos" => [],
+                "avaliacoesConcluidas" => $avaliacoesConcluidas->pluck('avaliacoes_uuid')->toArray(),
+                "periodosConcluidos" => [],
+            ]
+        ];
+
+        return $details;
+    }
+}

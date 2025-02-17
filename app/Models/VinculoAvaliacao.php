@@ -16,6 +16,7 @@ class VinculoAvaliacao extends Model
         'ciclos_avaliativos_uuid',
         'ciclos_uuid',
         'periodos_uuid',
-        'avaliacoes_uuid'
+        'avaliacoes_uuid',
+        'vinculos_uuid'
     ];
 }

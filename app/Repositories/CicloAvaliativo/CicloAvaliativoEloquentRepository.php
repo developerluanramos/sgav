@@ -18,7 +18,7 @@ class CicloAvaliativoEloquentRepository implements CicloAvaliativoRepositoryInte
     public function __construct(CicloAvaliativo $model)
     {
         $this->model = $model;
-        $this->today = Carbon::now();
+        $this->today = Carbon::now()->addMonths(8);
     }
 
     public function all()

@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\VinculoAvaliacao;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -12,6 +13,6 @@ class VinculoAvaliacaoSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        VinculoAvaliacao::factory()->create();
     }
 }

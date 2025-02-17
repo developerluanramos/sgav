@@ -23,11 +23,14 @@
             <ul class="mt-2 space-y-2">
                 @foreach ($ciclo->periodos as $periodoIndex => $periodo)
                     @php 
+                    // dd($formData['vinculoAvaliacaoDetails']['uuids']['periodosConcluidos']);
                         $cor = "gray";
                         if ($formData['cicloAvaliativoDetails']['periodoAtual']->uuid == $periodo->uuid) {
                             $cor = "blue";
                         } else if(in_array($periodo->uuid, $formData['cicloAvaliativoDetails']['uuids']['periodosPassados'])) {
                             $cor = "yellow";
+                        } else if(in_array($periodo->uuid, $formData['vinculoAvaliacaoDetails']['uuids']['periodosConcluidos'])) {
+                            $cor = "green";
                         }
                     @endphp
 
@@ -46,10 +49,15 @@
                             @foreach ($periodo->avaliacoes as $avaliacaoIndex => $avaliacao)
                             @php 
                                 $cor = "gray";
+                                
                                 if ($formData['cicloAvaliativoDetails']['avaliacaoAtual']->uuid  == $avaliacao->uuid) {
                                     $cor = "blue";
-                                } else if(in_array($avaliacao->uuid, $formData['cicloAvaliativoDetails']['uuids']['avaliacoesPassadas'])) {
+                                }
+                                if(in_array($avaliacao->uuid, $formData['cicloAvaliativoDetails']['uuids']['avaliacoesPassadas'])) {
                                     $cor = "yellow";
+                                }
+                                if(in_array($avaliacao->uuid, $formData['vinculoAvaliacaoDetails']['uuids']['avaliacoesConcluidas'])) {
+                                    $cor = "green";
                                 }
                             @endphp
                                 <li class="bg-{{$cor}}-50 dark:bg-{{$cor}}-900 p-2 rounded-md border-l-4 border-{{$cor}}-500">

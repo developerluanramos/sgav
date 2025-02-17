@@ -24,7 +24,6 @@ class CicloAvaliativoShowController extends Controller
         
         $avaliadosPaginated = new PaginationPresenter($showActionData['avaliados']->paginate());
 
-        // dd($avaliadosPaginated);
         return view('app.ciclo-avaliativo.show', [
             "cicloAvaliativo" => $showActionData['cicloAvaliativo'],
             "avaliados" => $avaliadosPaginated
