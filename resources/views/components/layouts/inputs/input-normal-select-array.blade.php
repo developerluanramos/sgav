@@ -7,12 +7,12 @@
             <option value=""></option>
             @foreach($data as $item)
                 @if (isset($value) && !is_null($value))
-                 @php
-                 $selected= '';
-                     if ($item['uuid'] == $value) {
+                @php
+                    $selected= '';
+                    if ($item['uuid'] == $value) {
                         $selected = "selected";
-                     }
-                 @endphp
+                    }
+                @endphp
                     <option {{$selected}} value="{{ $item['uuid'] }}">{{ $item['descricao'] }}</option>
                 @else
                     <option value="{{ $item['uuid'] }}">{{ $item['descricao'] }}</option>
