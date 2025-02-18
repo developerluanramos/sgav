@@ -1,6 +1,6 @@
-@if($indicadoresDesempenho->count())
+@if($indicadores->count())
     <ul class="w-full px-4 py-2 space-y-1 text-gray-700 list-inside dark:text-gray-400">
-        @foreach($indicadoresDesempenho as $indicadorDesempenho)
+        @foreach($indicadores as $indicadorDesempenho)
             <li class="flex items-center justify-between">
                 <span>{{ $indicadorDesempenho->descricao }}</span>
                 <div class="flex items-center justify-end space-x-1">

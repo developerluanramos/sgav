@@ -8,7 +8,7 @@
             ])
         </form>
         <div>
-            @include('app.modelo-avaliacao.indicadores-desempenho.partials.list-modal', ["indicadoresDesempenho" => $indicadoresDesempenho])
+            @include('app.modelo-avaliacao.indicadores-desempenho.partials.list-modal', ["indicadores" => $indicadores])
         </div>
     @endsection
 </x-layouts.modals.simple-modal>

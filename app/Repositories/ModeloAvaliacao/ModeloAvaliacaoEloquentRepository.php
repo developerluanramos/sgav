@@ -24,8 +24,8 @@ class ModeloAvaliacaoEloquentRepository implements ModeloAvaliacaoRepositoryInte
     {
         return $this->model
             ->with([
-                'fatoresAvaliacao.conceitoAvaliacao.itensConceitosAvaliacao',
-                'fatoresAvaliacao.indicadoresDesempenho.conceitoAvaliacao.itensConceitosAvaliacao'
+                'fatores.conceito.itens',
+                'fatores.indicadores.conceito.itens'
             ])->where('situacao', SituacaoModeloAvaliacaoEnum::ATIVO)->get()->toArray();
     }
 
@@ -37,9 +37,10 @@ class ModeloAvaliacaoEloquentRepository implements ModeloAvaliacaoRepositoryInte
     public function find($uuid): ModeloAvaliacao
     {
         return $this->model
-            ->with('fatoresAvaliacao.conceitoAvaliacao')
-            ->with('fatoresAvaliacao.indicadoresDesempenho')
-            ->where('uuid', $uuid)->first();
+            ->with([
+                'fatores.conceito.itens',
+                'fatores.indicadores.conceito.itens'
+            ])->where('uuid', $uuid)->first();
     }
 
     public function paginate(int $page = 1, int $totalPerPage = 10, string $filter = null): PaginationInterface

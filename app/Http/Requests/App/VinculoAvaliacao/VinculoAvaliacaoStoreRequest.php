@@ -21,8 +21,23 @@ class VinculoAvaliacaoStoreRequest extends FormRequest
      */
     public function rules(): array
     {
+        // dd(request()->vinculoUuid);
         return [
-            //
+            "avaliacoes_uuid" => [
+                'required', 
+                \Illuminate\Validation\Rule::unique('vinculo_avaliacoes', 'avaliacoes_uuid')
+                ->where('avaliacoes_uuid', $this->avaliacoes_uuid)
+                ->where('vinculos_uuid', request()->vinculoUuid),
+            ],
+            "ciclos_uuid" => ['required'],
+            "periodos_uuid" => ['required']
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            "avaliacoes_uuid.unique" => "Avaliação já foi realizada anteriormente"
         ];
     }
 }

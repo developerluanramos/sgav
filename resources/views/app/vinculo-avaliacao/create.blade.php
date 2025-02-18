@@ -10,8 +10,6 @@
 
 @section('content')
 
-@include('components.alerts.form-errors')
-
 <div class="grid grid-cols-12 gap-4 mt-2">
     <div class="col-span-3">
         @include('app.vinculo-avaliacao.partials.sidebar-view', [
@@ -27,8 +25,9 @@
                 'vinculo' => $formData['vinculo']
             ])
         </div>
-        <div class="mt-2">    
+        <div class="mt-2">
             <form method="POST" action="{{route('avaliacao.store', ['cicloAvaliativoUuid' => $formData['cicloAvaliativo']->uuid, 'vinculoUuid' => $formData['vinculo']->uuid])}}">
+                @include('components.alerts.form-errors')
                 @csrf
                 @include('app.vinculo-avaliacao.partials.form', ['formData' => $formData])
             </form>

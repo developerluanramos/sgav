@@ -45,10 +45,10 @@
                                 <div class="grid grid-cols-12 gap-2 content-center">
                                     <div class="col-span-8 content-center">
                                         <div class="flex items-center gap-2 mt-4"> 
-                                            <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                                            {{-- <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
                                                 <path fill-rule="evenodd" d="M6 2a1 1 0 011-1h6a1 1 0 011 1v1h2a1 1 0 011 1v12a1 1 0 01-1 1H3a1 1 0 01-1-1V4a1 1 0 011-1h2V2zm8 1V2H6v1h8zM4 5v10h12V5H4z" clip-rule="evenodd"></path>
-                                            </svg>
-                                            <span class="font-semibold">Questão {{$indicadorIndex+1}}:</span>
+                                            </svg> --}}
+                                            <span class="font-semibold">{{$indicadorIndex+1}}:</span>
                                             <span wire:loading.class="opacity-50" class="text-gray-500">{{ $indicador->descricao }}</span>
                                         </div>
                                     </div>
