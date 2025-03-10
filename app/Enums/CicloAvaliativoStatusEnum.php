@@ -5,9 +5,9 @@ namespace App\Enums;
 use BenSampo\Enum\Enum;
 
 /**
- * @method static static OptionOne()
- * @method static static OptionTwo()
- * @method static static OptionThree()
+ * @method static static INICIADO()
+ * @method static static ENCERRADO()
+ * @method static static RASCUNHO()
  */
 final class CicloAvaliativoStatusEnum extends Enum
 {
