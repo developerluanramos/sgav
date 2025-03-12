@@ -2,22 +2,23 @@
 
 namespace App\Http\Controllers\App\Calculo;
 
-use App\Actions\Calculo\CalculoCreateAction;
+use App\Actions\Calculo\CalculoStoreAction;
+use App\DTO\Calculo\CalculoStoreDTO;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\App\Calculo\CalculoCreateRequest;
 use App\Http\Requests\App\Calculo\CalculoStoreRequest;
 
 class CalculoStoreController extends Controller
 {
     public function __construct(
-        // protected CalculoCreateAction $createAction
+        protected CalculoStoreAction $storeAction
     ) { }
 
     public function store(string $cicloAvaliativoUuid, CalculoStoreRequest $request)
     {
-        dd($request->all());
-        // $formData = $this->createAction->exec($cicloAvaliativoUuid);
+        $request->merge(['ciclos_avaliativos_uuid' => $cicloAvaliativoUuid]);
 
-        // return view('app.ciclo-avaliativo.calculo.create', compact('formData'));
+        $this->storeAction->exec(CalculoStoreDTO::makeFromRequest($request));
+
+        return redirect()->to(route('ciclo-avaliativo.index'));
     }
 }

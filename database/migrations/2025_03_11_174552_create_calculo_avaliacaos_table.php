@@ -20,6 +20,7 @@ return new class extends Migration
         Schema::create('calculo_avaliacaos', function (Blueprint $table) {
             $table->id();
             $table->uuid()->unique();
+            $table->foreignUuid('ciclos_avaliativos_uuid')->references('uuid')->on('ciclos_avaliativos');
             $table->integer('de');
             $table->integer('ate');
             $table->enum('status_vinculo_ciclo', StatusVinculoCicloEnum::asArray());

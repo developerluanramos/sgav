@@ -7,22 +7,22 @@ use Livewire\Component;
 class RegrasPontuacao extends Component
 {
     public $regrasPontuacao = [];
-    public $regrasOcorrencias = [];
 
     public function mount()
     {
         $this->regrasPontuacao = [
-            ['de' => '', 'ate' => '', 'statusVinculo' => '', 'statusCiclo' => '']
-        ];
-
-        $this->regrasOcorrencias = [
-            ['min' => '', 'max' => '', 'tipo' => '', 'ocorrencia' => '', 'statusVinculo' => '', 'statusCiclo' => '', 'pontos' => '']
+            [
+                'de' => '', 
+                'ate' => '', 
+                'status_vinculo_ciclo' => '', 
+                'status_ciclo' => ''
+            ]
         ];
     }
 
     public function addRegraPontuacao()
     {
-        $this->regrasPontuacao[] = ['de' => '', 'ate' => '', 'statusVinculo' => '', 'statusCiclo' => ''];
+        $this->regrasPontuacao[] = ['de' => '', 'ate' => '', 'status_vinculo_ciclo' => '', 'status_ciclo' => ''];
     }
 
     public function removeRegraPontuacao($index)
@@ -31,17 +31,6 @@ class RegrasPontuacao extends Component
         $this->regrasPontuacao = array_values($this->regrasPontuacao);
     }
 
-    public function addRegraOcorrencia()
-    {
-        $this->regrasOcorrencias[] = ['min' => '', 'max' => '', 'tipo' => '', 'ocorrencia' => '', 'statusVinculo' => '', 'statusCiclo' => '', 'pontos' => ''];
-    }
-
-    public function removeRegraOcorrencia($index)
-    {
-        unset($this->regrasOcorrencias[$index]);
-        $this->regrasOcorrencias = array_values($this->regrasOcorrencias);
-    }
-    
     public function render()
     {
         return view('livewire.app.ciclo.regras-pontuacao');

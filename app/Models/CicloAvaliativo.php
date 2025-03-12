@@ -67,6 +67,11 @@ class CicloAvaliativo extends Model
         return $this->hasMany(Dependencia::class, 'ciclos_avaliativos_uuid', 'uuid');
     }
 
+    public function calculosPontuacaoCiclo() 
+    {
+        return $this->hasMany(CalculoPontuacaoCiclo::class, 'ciclos_avaliativos_uuid', 'uuid');
+    }
+
     public function getQuantidadeCiclosAttribute()
     {
         return $this->ciclos()->count();

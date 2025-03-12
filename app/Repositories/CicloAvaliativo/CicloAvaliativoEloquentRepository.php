@@ -83,7 +83,8 @@ class CicloAvaliativoEloquentRepository implements CicloAvaliativoRepositoryInte
                 'ciclos', 
                 'periodos', 
                 'avaliacoes', 
-                'modelos.fatores.indicadores.conceito.itens'
+                'modelos.fatores.indicadores.conceito.itens',
+                'calculosPontuacaoCiclo'
             ])
             ->where('uuid', $uuid)->first();
     }

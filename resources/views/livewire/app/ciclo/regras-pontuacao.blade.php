@@ -4,7 +4,7 @@
         <div class="flex items-center gap-2 mb-3">
             <x-layouts.inputs.input-normal-text-livewire 
                 :label="'De'"
-                :name="'regrasPontuacaoDe[]'"
+                :name="'regrasPontuacao.'.$index.'.de'"
                 :lenght="'1/12'"
                 :model="'regrasPontuacao.'.$index.'.de'"
                 :value="''"
@@ -18,17 +18,17 @@
             />
             <x-layouts.inputs.input-normal-select-enum-livewire 
                 :label="'Status Vinculo Ciclo'"
-                :name="'regrasPontuacao.'.$index.'.statusVinculoCiclo'"
+                :name="'regrasPontuacao.'.$index.'.status_vinculo_ciclo'"
                 :lenght="'2/12'"
-                :model="'regrasPontuacao.'.$index.'.statusVinculoCiclo'"
+                :model="'regrasPontuacao.'.$index.'.status_vinculo_ciclo'"
                 :data="App\Enums\StatusVinculoCicloEnum::getKeys()"
                 :value="''"
             />
             <x-layouts.inputs.input-normal-select-enum-livewire 
                 :label="'Status Ciclo'"
-                :name="'regrasPontuacao.'.$index.'.statusCiclo'"
+                :name="'regrasPontuacao.'.$index.'.status_ciclo'"
                 :lenght="'2/12'"
-                :model="'regrasPontuacao.'.$index.'.statusCiclo'"
+                :model="'regrasPontuacao.'.$index.'.status_ciclo'"
                 :data="App\Enums\StatusCicloEnum::getKeys()"
                 :value="''"
             />
@@ -42,5 +42,5 @@
         class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg ml-3">
         Adicionar
     </button>
-    <input type="text" name="regrasPontuacaoCiclo" value="{{json_encode($regrasPontuacao)}}">
+    <input type="text" name="regras_pontuacao_ciclo" value="{{json_encode($regrasPontuacao)}}">
 </div>

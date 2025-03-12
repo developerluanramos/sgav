@@ -16,9 +16,9 @@ class CalculoStoreRequest extends FormRequest
 
     public function prepareForValidation()
     {
-        if (is_string($this->regrasPontuacaoCiclo)) {
+        if (is_string($this->regras_pontuacao_ciclo)) {
             $this->merge([
-                'regrasPontuacaoCiclo' => json_decode($this->regrasPontuacaoCiclo, true)
+                'regras_pontuacao_ciclo' => json_decode($this->regras_pontuacao_ciclo, true)
             ]);
         }
     }
@@ -32,16 +32,16 @@ class CalculoStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "regrasPontuacaoCiclo.*.de" => [
+            "regras_pontuacao_ciclo.*.de" => [
                 "required", "numeric"
             ],
-            "regrasPontuacaoCiclo.*.ate" => [
+            "regras_pontuacao_ciclo.*.ate" => [
                 "required", "numeric"
             ],
-            "regrasPontuacaoCiclo.*.status_vinculo_ciclo" => [
+            "regras_pontuacao_ciclo.*.status_vinculo_ciclo" => [
                 "required"
             ],
-            "regrasPontuacaoCiclo.*.status_ciclo" => [
+            "regras_pontuacao_ciclo.*.status_ciclo" => [
                 "required"
             ]
         ];
@@ -50,15 +50,15 @@ class CalculoStoreRequest extends FormRequest
     public function messages(): array
     {
         return [
-            "regrasPontuacaoCiclo.*.de.required" => "O campo 'De' é obrigatório.",
-            "regrasPontuacaoCiclo.*.de.numeric" => "O campo 'De' deve ser um número.",
+            "regras_pontuacao_ciclo.*.de.required" => "O campo 'De' é obrigatório.",
+            "regras_pontuacao_ciclo.*.de.numeric" => "O campo 'De' deve ser um número.",
 
-            "regrasPontuacaoCiclo.*.ate.required" => "O campo 'Até' é obrigatório.",
-            "regrasPontuacaoCiclo.*.ate.numeric" => "O campo 'Até' deve ser um número.",
+            "regras_pontuacao_ciclo.*.ate.required" => "O campo 'Até' é obrigatório.",
+            "regras_pontuacao_ciclo.*.ate.numeric" => "O campo 'Até' deve ser um número.",
 
-            "regrasPontuacaoCiclo.*.status_vinculo_ciclo.required" => "O campo 'Status do Vínculo' é obrigatório.",
+            "regras_pontuacao_ciclo.*.status_vinculo_ciclo.required" => "O campo 'Status do Vínculo' é obrigatório.",
 
-            "regrasPontuacaoCiclo.*.status_ciclo.required" => "O campo 'Status do Ciclo' é obrigatório."
+            "regras_pontuacao_ciclo.*.status_ciclo.required" => "O campo 'Status do Ciclo' é obrigatório."
         ];
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Avaliacao;
+use App\Models\CalculoPontuacaoCiclo;
 use App\Models\Cargo;
 use App\Models\Ciclo;
 use App\Models\CicloAvaliativo;
@@ -27,6 +28,7 @@ use App\Observers\CargoObserver;
 use App\Models\User;
 use App\Models\VinculoAvaliacao;
 use App\Observers\AvaliacaoObserver;
+use App\Observers\CalculoPontuacaoCicloObserver;
 use App\Observers\CicloAvaliativoModeloObserver;
 use App\Observers\CicloAvaliativoObserver;
 use App\Observers\CicloObserver;
@@ -51,6 +53,8 @@ use App\Repositories\Avaliacao\AvaliacaoEloquentRepository;
 use App\Repositories\Avaliacao\AvaliacaoRepositoryInterface;
 use App\Repositories\Avaliador\AvaliadorEloquentRepository;
 use App\Repositories\Avaliador\AvaliadorRepositoryInterface;
+use App\Repositories\CalculoPontuacaoCiclo\CalculoPontuacaoCicloEloquentRepository;
+use App\Repositories\CalculoPontuacaoCiclo\CalculoPontuacaoCicloRepositoryInterface;
 use App\Repositories\Cargo\CargoEloquentRepository;
 use App\Repositories\Cargo\CargoRepositoryInterface;
 use App\Repositories\CicloAvaliativo\CicloAvaliativoEloquentRepository;
@@ -167,6 +171,9 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(
             VinculoAvaliacaoRepositoryInterface::class, VinculoAvaliacaoEloquentRepository::class
         );
+        $this->app->bind(
+            CalculoPontuacaoCicloRepositoryInterface::class, CalculoPontuacaoCicloEloquentRepository::class
+        );
     }
 
 
@@ -196,6 +203,7 @@ class AppServiceProvider extends ServiceProvider
         Ciclo::observe(CicloObserver::class);
         Periodo::observe(PeriodoObserver::class);
         VinculoAvaliacao::observe(VinculoAvaliacaoObserver::class);
+        CalculoPontuacaoCiclo::observe(CalculoPontuacaoCicloObserver::class);
 
         Validator::extend('validarIdadeAdmissao', function ($attribute, $value, $parameters, $validator) {
             $dataNascimento = $validator->getData()['data_nascimento'];
