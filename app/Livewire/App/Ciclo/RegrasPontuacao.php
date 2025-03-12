@@ -4,7 +4,7 @@ namespace App\Livewire\App\Ciclo;
 
 use Livewire\Component;
 
-class RegrasPontuacaoOcorrencia extends Component
+class RegrasPontuacao extends Component
 {
     public $regrasPontuacao = [];
     public $regrasOcorrencias = [];
@@ -44,6 +44,6 @@ class RegrasPontuacaoOcorrencia extends Component
     
     public function render()
     {
-        return view('livewire.app.ciclo.regras-pontuacao-ocorrencia');
+        return view('livewire.app.ciclo.regras-pontuacao');
     }
 }

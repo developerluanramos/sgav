@@ -15,7 +15,8 @@ class CalculoCreateController extends Controller
     public function create(string $cicloAvaliativoUuid, CalculoCreateRequest $createRequest)
     {
         $formData = $this->createAction->exec($cicloAvaliativoUuid);
-
+        $formData["ciclosAvaliativosUuid"] = $cicloAvaliativoUuid;
+        
         return view('app.ciclo-avaliativo.calculo.create', compact('formData'));
     }
 }
