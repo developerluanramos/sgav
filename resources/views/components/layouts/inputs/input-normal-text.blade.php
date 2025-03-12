@@ -2,7 +2,7 @@
     <label class="block uppercase tracking-wide text-xs font-bold mb-2" for="grid-city">
         {{$label}}
     </label>
-    <input wire:model="{{$model}}" wire:change="{{$change ?? null}}"
+    <input
         {{isset($disabled) && $disabled === true ? 'disabled="disabled"' : null}} value="{{$value}}" name="{{$name}}" id="{{$name}}" 
         class="{{isset($disabled) && $disabled === true ? 'cursor-not-allowed readyonly"' : null}}
         w-full bg-gray-200 text-gray-700 

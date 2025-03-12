@@ -3,7 +3,7 @@
 namespace App\Livewire\Integracao\Map;
 
 use App\DTO\Vinculo\VinculoStoreDTO;
-use App\Models\Vinculo as ModelsVinculo;
+use App\Models\Vinculo as ModelVinculo;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use Livewire\Attributes\On;
@@ -24,7 +24,7 @@ class Vinculo extends Component
 
     public function mount()
     {
-        // $this->qtdVinculosAtual = ModelsVinculo::all()->count();
+        // $this->qtdVinculosAtual = ModelVinculo::all()->count();
         // $this->getVinculos();
         $this->statusIntegracao = Http::get('http://192.168.1.68:6818/rest/health')->status();
     }
@@ -56,7 +56,7 @@ class Vinculo extends Component
         foreach($this->vinculos as $index => $servidor) {
             foreach($servidor->vinculos as $vinculo) {
                 $vinculo->nome = $servidor->nome;
-                $modelVinculo = ModelsVinculo::firstOrNew(
+                $modelVinculo = ModelVinculo::firstOrNew(
                     (VinculoStoreDTO::makeFromImportacao($vinculo))
                 );
                 
