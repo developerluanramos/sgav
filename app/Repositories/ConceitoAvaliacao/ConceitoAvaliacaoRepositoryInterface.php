@@ -18,4 +18,6 @@ interface ConceitoAvaliacaoRepositoryInterface
     public function update(ConceitoAvaliacaoUpdateDTO $dto): ConceitoAvaliacao;
 
     public function all(): array;
+
+    public function totalPontosPorItensUuid(array $itensUuid) : float;
 }

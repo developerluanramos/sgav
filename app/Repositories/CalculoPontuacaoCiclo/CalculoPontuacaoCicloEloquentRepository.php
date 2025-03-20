@@ -35,4 +35,11 @@ class CalculoPontuacaoCicloEloquentRepository implements CalculoPontuacaoCicloRe
         
         return true;
     }
+
+    public function porCicloAvaliativoETotalPontos(string $cicloAvaliativoUuid, float $totalPontos)
+    {
+        return $this->model->where('ciclos_avaliativos_uuid', $cicloAvaliativoUuid)
+            ->where('de', '<=', $totalPontos)
+            ->where('ate', '>=', $totalPontos)->first();
+    }
 }

@@ -18,7 +18,7 @@ class CicloAvaliativoEloquentRepository implements CicloAvaliativoRepositoryInte
     public function __construct(CicloAvaliativo $model)
     {
         $this->model = $model;
-        $this->today = Carbon::now()->addMonths(8);
+        $this->today = Carbon::now();
     }
 
     public function all()
@@ -94,7 +94,7 @@ class CicloAvaliativoEloquentRepository implements CicloAvaliativoRepositoryInte
      * como principal parâmetro.
      * (melhorar essa descrição)
      * 
-     * @param string $uuid
+     * @param string $uuid // ID DO CICLO AVALIATIVO
      * @return array{cicloAtual: string, ciclosFuturos: string, ciclosPassados: string}
      */
     public function details(string $uuid): array

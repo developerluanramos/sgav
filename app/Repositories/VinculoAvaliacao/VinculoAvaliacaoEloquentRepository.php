@@ -13,11 +13,9 @@ class VinculoAvaliacaoEloquentRepository implements VinculoAvaliacaoRepositoryIn
 
     public function detailsByVinculoUuidECiclosAvaliativosUuid(string $cicloAvaliativoUuid, string $vinculoUuid) : array 
     {
-        $avaliacoes = VinculoAvaliacao::query()
+        $avaliacoesConcluidas = VinculoAvaliacao::query()
             ->where('ciclos_avaliativos_uuid', $cicloAvaliativoUuid)
             ->where('vinculos_uuid', $vinculoUuid)->get();
-        
-        $avaliacoesConcluidas = $avaliacoes;
         
         $details = [
             "ciclosConcluidos" => [],

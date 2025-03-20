@@ -13,4 +13,6 @@ interface CalculoPontuacaoCicloRepositoryInterface
 
     public function new(CalculoStoreDTO $calculoStoreDTO): bool;
 
+    public function porCicloAvaliativoETotalPontos(string $cicloAvaliativoUuid, float $totalPontos);
+
 }

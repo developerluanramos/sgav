@@ -21,7 +21,7 @@ class VinculoAvaliacaoStoreController extends Controller
             'ciclos_avaliativos_uuid' => $cicloAvaliativoUuid,
             "vinculos_uuid" => $vinculoUuid
         ]);
-
+        
         $this->action->exec(VinculoAvaliacaoStoreDTO::makeFromRequest($request));
 
         return redirect()->to(route('avaliacao.create', [

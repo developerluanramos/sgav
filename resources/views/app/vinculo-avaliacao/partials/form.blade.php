@@ -55,7 +55,7 @@
                                     <div class="col-span-4">
                                         <x-layouts.inputs.input-normal-select
                                             :label="null"
-                                            name="conceitos_uuid[]"
+                                            name="conceitos_uuid[{{$fator->uuid}}][]"
                                             origin="Conceito"
                                             lenght="12/12"
                                             :data="$indicador->conceito->itens"

@@ -5,6 +5,7 @@ namespace App\Repositories\ConceitoAvaliacao;
 use App\DTO\ConceitoAvaliacao\ConceitoAvaliacaoStoreDTO;
 use App\DTO\ConceitoAvaliacao\ConceitoAvaliacaoUpdateDTO;
 use App\Models\ConceitoAvaliacao;
+use App\Models\ItemConceitoAvaliacao;
 use App\Repositories\Interfaces\PaginationInterface;
 use App\Repositories\Presenters\PaginationPresenter;
 
@@ -54,5 +55,14 @@ class ConceitoAvaliacaoEloquentRepository implements ConceitoAvaliacaoRepository
     public function all(): array
     {
         return $this->model->all()->toArray();
+    }
+
+    public function totalPontosPorItensUuid(array $itensUuid) : float
+    {
+        $itens = collect($itensUuid)->map(function ($uuid) {
+            return ItemConceitoAvaliacao::where('uuid', $uuid)->value('pontuacao');
+        })->toArray();
+        
+        return array_sum($itens);
     }
 }
