@@ -34,8 +34,8 @@ class VinculoAvaliacaoStoreAction
                             );
         
         // dd($regraCalculoPontuacao);
-        $dto->status_avaliacao = (int)$regraCalculoPontuacao->status_ciclo;
-        $dto->status_vinculo_avaliacao = (int)$regraCalculoPontuacao->status_vinculo_ciclo;
+        $dto->status_avaliacao = $regraCalculoPontuacao->status_ciclo;
+        $dto->status_vinculo_avaliacao = $regraCalculoPontuacao->status_vinculo_ciclo;
         // dd($dto);                    
         return $this->vinculoAvaliacaoRepository->new($dto);
     }

@@ -13,8 +13,8 @@ class VinculoAvaliacaoStoreDTO {
         public string $avaliacoes_uuid,
         public string $vinculos_uuid,
         public array $conceitos_uuid, // respostas avaliação
-        public int|null $status_vinculo_avaliacao,
-        public int|null $status_avaliacao
+        public string|null $status_vinculo_avaliacao,
+        public string|null $status_avaliacao
     ) {}
 
     public static function makeFromRequest(VinculoAvaliacaoStoreRequest $request): self
