@@ -15,14 +15,15 @@ class RegrasPontuacao extends Component
                 'de' => '', 
                 'ate' => '', 
                 'status_vinculo_ciclo' => '', 
-                'status_ciclo' => ''
+                'status_ciclo' => '',
+                'aplicar_todos' => false
             ]
         ];
     }
 
     public function addRegraPontuacao()
     {
-        $this->regrasPontuacao[] = ['de' => '', 'ate' => '', 'status_vinculo_ciclo' => '', 'status_ciclo' => ''];
+        $this->regrasPontuacao[] = ['de' => '', 'ate' => '', 'status_vinculo_ciclo' => '', 'status_ciclo' => '', 'aplicar_todos' => false];
     }
 
     public function removeRegraPontuacao($index)

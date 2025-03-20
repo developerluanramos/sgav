@@ -66,9 +66,9 @@
         <svg class="w-5 h-5 mr-1 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
             <path fill-rule="evenodd" d="M9 2a1 1 0 0 0-1 1H6a2 2 0 0 0-2 2v15a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-2a1 1 0 0 0-1-1H9Zm1 2h4v2h1a1 1 0 1 1 0 2H9a1 1 0 0 1 0-2h1V4Zm5.707 8.707a1 1 0 0 0-1.414-1.414L11 14.586l-1.293-1.293a1 1 0 0 0-1.414 1.414l2 2a1 1 0 0 0 1.414 0l4-4Z" clip-rule="evenodd"/>
         </svg>
-        Cálculos
+        Cálculos 
         <span class="inline-flex ms-6 items-center justify-center w-4 h-4 text-xs font-semibold text-blue-800 bg-blue-200 rounded-full">
-            {{ count($cicloAvaliativo['calculos'] ?? []) }}
+            {{ count($cicloAvaliativo['calculosPontuacaoCiclo'] ?? []) }}
         </span>
     </button>
 </div>
@@ -154,6 +154,7 @@
                     {{$calculoPontuacaoCiclo['de']}} - {{$calculoPontuacaoCiclo['ate']}} - 
                     vinculo: {{ App\Enums\StatusVinculoCicloEnum::getKey((Int)$calculoPontuacaoCiclo['status_vinculo_ciclo']) }} - 
                     ciclo: {{ App\Enums\StatusCicloEnum::getKey((Int)$calculoPontuacaoCiclo['status_ciclo']) }}
+                    aplicar em todos: {{$calculoPontuacaoCiclo['aplicar_todos'] ? 'Sim' : 'Não'}}
                     <button type="button" class="inline-flex items-center p-1 ms-2 text-sm text-blue-400 bg-transparent rounded-xs hover:bg-blue-200 hover:text-blue-900 dark:hover:bg-blue-800 dark:hover:text-blue-300" data-dismiss-target="#badge-{{$calculoPontuacaoCiclo['uuid']}}" aria-label="Remove">
                         <svg class="w-2 h-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>

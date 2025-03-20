@@ -14,6 +14,7 @@ class CalculoPontuacaoCiclo extends Model
         "de", 
         "ate",
         "status_vinculo_ciclo",
-        "status_ciclo"
+        "status_ciclo",
+        "aplicar_todos"
     ];
 }
