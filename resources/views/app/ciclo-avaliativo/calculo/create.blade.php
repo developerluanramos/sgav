@@ -23,6 +23,10 @@
         @endif
 
         <livewire:app.ciclo.regras-pontuacao />
+        
+        <livewire:app.periodo.regras-pontuacao />
+
+        <livewire:app.avaliacao.regras-pontuacao />
 
         <x-layouts.buttons.submit-button text="Salvar"/>
     </form>
