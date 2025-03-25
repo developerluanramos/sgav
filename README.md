@@ -15,6 +15,32 @@ This application is designed to assess the performance of public sector professi
 
 This app aims to promote accountability and continuous development within the public sector by providing an efficient, transparent, and standardized method for performance evaluation.
 
----
+## 🎯 Install
 
-Feel free to contribute, suggest improvements, or reach out for collaborations!
+````bash
+    cp .env.example .env
+````
+altere as variáveis de Banco de Dados de acordo com suas configurações locais
+
+````bash
+    DB_CONNECTION=pgsql
+    DB_HOST=db_sgp
+    DB_PORT=5432
+    DB_DATABASE=sgp_db
+    DB_USERNAME=user
+    DB_PASSWORD=password
+````
+execução do ambiente
+
+````bash
+    docker compose up -d --build
+````
+acesse o container da aplicação e execute os comandos dentro
+
+````bash
+    composer install
+    npm install
+    php artisan migrate --seed
+````
+
+acesse o sistema em localhost:8020
