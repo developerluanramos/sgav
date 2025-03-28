@@ -7,6 +7,7 @@ use Livewire\Component;
 
 class Avaliador extends Component
 {
+    public $baseUrl = "";
     public $vinculos = [];
     public $statusIntegracao;
 
@@ -19,14 +20,13 @@ class Avaliador extends Component
 
     public function mount()
     {
-        // $this->qtdVinculosAtual = ModelsVinculo::all()->count();
-        // $this->getVinculos();
-        $this->statusIntegracao = Http::get('http://192.168.1.68:6818/rest/health')->status();
+        $this->baseUrl = env('URL_INTEGRACAO');
+        $this->statusIntegracao = Http::get($this->baseUrl.'/health')->status();
     }
 
     public function getVinculos()
     {
-        $vinculos = Http::get('http://192.168.1.68:6818/rest/madp/servidor_vinculo/')->body();
+        $vinculos = Http::get($this->baseUrl.'/madp/servidor_vinculo/')->body();
         $this->vinculos = json_decode($vinculos)->data;
     }
 

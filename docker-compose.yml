@@ -80,9 +80,19 @@ services:
             - sgp_network
 
     redis_sgp:
-        image: redis:latest
-        networks:
-            - sgp_network
+        image: redis:alpine
+        ports:
+            - "6379:6379"
+
+    laravel_worker_sgp:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        depends_on:
+            - redis_sgp
+        command: php artisan queue:work --tries=3
+        volumes:
+            - ./:/var/www
 
 networks:
     sgp_network:

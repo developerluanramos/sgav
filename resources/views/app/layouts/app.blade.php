@@ -153,6 +153,7 @@
                   </li>
                 </ul> --}}
             </div>
+            <livewire:notification-bell />
         </div>
     </nav>
 </header>
