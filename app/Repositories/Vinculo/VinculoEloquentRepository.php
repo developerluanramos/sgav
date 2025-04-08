@@ -30,7 +30,6 @@ class VinculoEloquentRepository implements VinculoRepositoryInterface
     {
         $query = $this->model->query();
 
-
         if (!is_null($filter)) {
             $query->where(function ($subquery) use ($filter) {
                 $subquery->where("nome", "like", "%{$filter}%")

@@ -11,16 +11,18 @@ use App\Notifications\SincronizacaoIniciadaNotification;
 class IntegracaoSincController extends Controller
 {
     public function __construct(
-        
+
     ) { }
 
     public function sinc(string $integracaoUuid, IntegracaoIndexRequest $integracaoIndexRequest)
-    {   
+    {
         $user = auth()->user();
-        
+
+        $integracao = Integracao::where('uuid', $integracaoUuid)->first();
+
         $user->notify(new SincronizacaoIniciadaNotification());
 
-        SincronizarVinculosJob::dispatch($user)->onQueue('default');
+        SincronizarVinculosJob::dispatch($user, $integracao)->onQueue('default');
 
         return redirect()->to(route('integracao.index'));
     }

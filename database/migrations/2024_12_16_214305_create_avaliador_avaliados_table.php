@@ -12,9 +12,21 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('avaliadores_avaliados', function (Blueprint $table) {
-            $table->foreignUuid('avaliador_uuid')->references('uuid')->on( 'avaliadores');
-            $table->foreignUuid('avaliado_uuid')->references('uuid')->on( 'vinculos');
+            $table->string('avaliador_matricula');
+            $table->string('avaliado_matricula');
             $table->timestamps();
+
+            $table->primary(['avaliador_matricula', 'avaliado_matricula']);
+
+            $table->foreign('avaliador_matricula')
+                ->references('matricula')
+                ->on('vinculos')
+                ->onDelete('cascade');
+
+            $table->foreign('avaliado_matricula')
+                ->references('matricula')
+                ->on('vinculos')
+                ->onDelete('cascade');
         });
     }
 
