@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Repositories\CalculoPontuacaoCiclo;
+namespace App\Repositories\RegraPontuacaoCiclo;
 
-use App\DTO\Calculo\CalculoStoreDTO;
+use App\DTO\RegraPontuacao\RegraPontuacaoStoreDTO;
 use Illuminate\Database\Eloquent\Collection;
 
-interface CalculoPontuacaoCicloRepositoryInterface
+interface RegraPontuacaoCicloRepositoryInterface
 {
     public function all();
 
     public function byCicloAvaliativoUuid(string $cicloAvaliativoUuid): Collection;
 
-    public function new(CalculoStoreDTO $calculoStoreDTO): bool;
+    public function new(RegraPontuacaoStoreDTO $calculoStoreDTO): bool;
 
     public function porCicloAvaliativoETotalPontos(string $cicloAvaliativoUuid, float $totalPontos);
 

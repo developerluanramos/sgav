@@ -18,7 +18,7 @@ class CicloAvaliativoEloquentRepository implements CicloAvaliativoRepositoryInte
     public function __construct(CicloAvaliativo $model)
     {
         $this->model = $model;
-        $this->today = Carbon::now();
+        $this->today = Carbon::now()->addMonths(3);
     }
 
     public function all()
@@ -79,10 +79,10 @@ class CicloAvaliativoEloquentRepository implements CicloAvaliativoRepositoryInte
     {
         return $this->model
             ->with([
-                'incidencias', 
-                'ciclos', 
-                'periodos', 
-                'avaliacoes', 
+                'incidencias',
+                'ciclos',
+                'periodos',
+                'avaliacoes',
                 'modelos.fatores.indicadores.conceito.itens',
                 'calculosPontuacaoCiclo'
             ])
@@ -93,7 +93,7 @@ class CicloAvaliativoEloquentRepository implements CicloAvaliativoRepositoryInte
      * Informações detalhadas sobre o ciclo avaliativo baseando-se na data atual
      * como principal parâmetro.
      * (melhorar essa descrição)
-     * 
+     *
      * @param string $uuid // ID DO CICLO AVALIATIVO
      * @return array{cicloAtual: string, ciclosFuturos: string, ciclosPassados: string}
      */
@@ -141,7 +141,7 @@ class CicloAvaliativoEloquentRepository implements CicloAvaliativoRepositoryInte
                 }
             }
         }
-        
+
         return [
             "cicloAtual" => $cicloAtual,
             "ciclosPassados" => $ciclosPassados,
@@ -190,8 +190,8 @@ class CicloAvaliativoEloquentRepository implements CicloAvaliativoRepositoryInte
                 array_push($codigosFuncoes, $funcao->codigo_funcao);
             }
         }
-       
-        
+
+
         $vinculos = Vinculo::where('avaliador', false)
             // ->when(!empty($codigosOrgaos), function($query) use ($codigosOrgaos) {
                 ->whereIn('codigo_orgao', $codigosOrgaos)

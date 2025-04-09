@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Repositories\CalculoPontuacaoCiclo;
+namespace App\Repositories\RegraPontuacaoCiclo;
 
-use App\DTO\Calculo\CalculoStoreDTO;
-use App\Models\CalculoPontuacaoCiclo;
+use App\DTO\RegraPontuacao\RegraPontuacaoStoreDTO;
+use App\Models\RegraPontuacaoCiclo;
 use Illuminate\Database\Eloquent\Collection;
 
-class CalculoPontuacaoCicloEloquentRepository implements CalculoPontuacaoCicloRepositoryInterface
+class RegraPontuacaoCicloEloquentRepository implements RegraPontuacaoCicloRepositoryInterface
 {
     protected $model;
 
-    public function __construct(CalculoPontuacaoCiclo $model)
+    public function __construct(RegraPontuacaoCiclo $model)
     {
         $this->model = $model;
     }
@@ -20,19 +20,19 @@ class CalculoPontuacaoCicloEloquentRepository implements CalculoPontuacaoCicloRe
         return $this->model->all();
     }
 
-    public function byCicloAvaliativoUuid(string $cicloAvaliativoUuid): Collection 
+    public function byCicloAvaliativoUuid(string $cicloAvaliativoUuid): Collection
     {
         return new Collection;
     }
 
-    public function new(CalculoStoreDTO $calculoStoreDTO): bool
+    public function new(RegraPontuacaoStoreDTO $calculoStoreDTO): bool
     {
         foreach($calculoStoreDTO->regras_pontuacao_ciclo as $regraPontuacaoCiclo)
         {
             $regraPontuacaoCiclo['ciclos_avaliativos_uuid'] = $calculoStoreDTO->ciclos_avaliativos_uuid;
             $this->model->create($regraPontuacaoCiclo);
         }
-        
+
         return true;
     }
 

@@ -15,7 +15,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('calculo_periodos', function (Blueprint $table) {
+        Schema::create('regra_pontuacao_periodos', function (Blueprint $table) {
             $table->id();
             $table->uuid()->unique();
             $table->foreignUuid('ciclos_avaliativos_uuid')->references('uuid')->on('ciclos_avaliativos');
@@ -25,6 +25,7 @@ return new class extends Migration
             $table->enum('status_ciclo', StatusCicloEnum::asArray());
             $table->enum('status_vinculo_periodo', StatusVinculoPeriodoEnum::asArray());
             $table->enum('status_periodo', StatusPeriodoEnum::asArray());
+            $table->boolean('aplicar_todos')->default(false);
             $table->timestamps();
         });
     }
@@ -34,6 +35,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('calculo_periodos');
+        Schema::dropIfExists('regra_pontuacao_periodos');
     }
 };

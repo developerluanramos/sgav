@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('calculo_pontuacao_ciclos', function (Blueprint $table) {
+        Schema::create('regra_pontuacao_ciclos', function (Blueprint $table) {
             $table->id();
             $table->uuid()->unique();
             $table->foreignUuid('ciclos_avaliativos_uuid')->references('uuid')->on('ciclos_avaliativos');
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('calculo_pontuacao_ciclos');
+        Schema::dropIfExists('regra_pontuacao_ciclos');
     }
 };

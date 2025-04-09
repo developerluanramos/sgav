@@ -5,7 +5,7 @@ namespace App\Actions\Calculo;
 use App\Models\Calculo;
 use App\Repositories\CicloAvaliativo\CicloAvaliativoRepositoryInterface;
 
-class CalculoCreateAction
+class RegraPontuacaoCreateAction
 {
     public function __construct(
         protected CicloAvaliativoRepositoryInterface $repository

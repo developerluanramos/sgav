@@ -19,7 +19,7 @@
 </form>
 
 <ul class="w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
-    @foreach($conceitoAvaliacao->itensConceitosAvaliacao as $item)
+    @foreach($conceitoAvaliacao->itens as $item)
         <li class="w-full flex px-4 py-2 border-b border-gray-200 rounded-t-lg dark:border-gray-600">
             <span>
                 {{ $item->uuid }} - {{ $item->nome }} - {{ $item->pontuacao }}

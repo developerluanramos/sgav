@@ -1,7 +1,7 @@
 <div class="relative" x-data="{ open: false }">
     <!-- Sininho (Dark Mode Compatível) -->
-    <button 
-        @click="open = !open" 
+    <button
+        @click="open = !open"
         class="p-1 text-gray-600 hover:text-gray-800 dark:text-gray-300 dark:hover:text-gray-100 focus:outline-none transition-colors"
     >
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -15,8 +15,8 @@
     </button>
 
     <!-- Dropdown (Dark Mode) -->
-    <div 
-        x-show="open" 
+    <div
+        x-show="open"
         @click.away="open = false"
         class="absolute right-0 mt-2 w-64 bg-white dark:bg-gray-800 rounded-md shadow-lg z-50 border dark:border-gray-700"
     >
@@ -27,7 +27,7 @@
 
         <!-- Lista de Notificações -->
         @forelse($notifications as $notification)
-            <div 
+            <div
                 wire:click="markAsRead('{{ $notification->id }}')"
                 class="p-3 border-b dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 cursor-pointer transition-colors"
             >
@@ -46,8 +46,8 @@
 
         <!-- Rodapé -->
         {{-- <div class="p-2 text-center border-t dark:border-gray-700">
-            <a 
-                href="{{ route('notifications.index') }}" 
+            <a
+                href="{{ route('notifications.index') }}"
                 class="text-sm text-blue-500 dark:text-blue-400 hover:underline"
             >
                 Ver todas
@@ -59,7 +59,7 @@
 <script>
     document.addEventListener('DOMContentLoaded', function() {
     const notificationCounter = document.getElementById('notification-counter');
-    
+
     function checkNotifications() {
         fetch('/api/notifications/count') // Você precisará criar esta rota
             .then(response => response.json())
@@ -67,7 +67,7 @@
                 if (data.count > 0) {
                     notificationCounter.textContent = data.count;
                     notificationCounter.classList.remove('hidden');
-                    
+
                     // Adiciona animação de pulse
                     notificationCounter.classList.add('animate-pulse');
                     setTimeout(() => {
@@ -80,8 +80,8 @@
     }
 
     // Verifica a cada 1 minuto (60000ms)
-    setInterval(checkNotifications, 1000);
-    
+    setInterval(checkNotifications, 50000);
+
     // Verifica imediatamente ao carregar
     checkNotifications();
 });

@@ -17,7 +17,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('calculo_avaliacaos', function (Blueprint $table) {
+        Schema::create('regra_pontuacao_avaliacoes', function (Blueprint $table) {
             $table->id();
             $table->uuid()->unique();
             $table->foreignUuid('ciclos_avaliativos_uuid')->references('uuid')->on('ciclos_avaliativos');
@@ -29,6 +29,7 @@ return new class extends Migration
             $table->enum('status_periodo', StatusPeriodoEnum::asArray());
             $table->enum('status_vinculo_avaliacao', StatusVinculoAvaliacaoEnum::asArray());
             $table->enum('status_avaliacao', StatusAvaliacaoEnum::asArray());
+            $table->boolean('aplicar_todos')->default(false);
             $table->timestamps();
         });
     }
@@ -38,6 +39,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('calculo_avaliacaos');
+        Schema::dropIfExists('regra_pontuacao_avaliacoes');
     }
 };

@@ -13,7 +13,7 @@
         @foreach($conceitoAvaliacao->items() as $index => $conceitoAvaliacao)
             <tr>
                 <td>{{ $conceitoAvaliacao->descricao }}</td>
-                <td>{{ sizeof($conceitoAvaliacao->itens_conceitos_avaliacao) }}</td>
+                <td>{{ sizeof($conceitoAvaliacao->itens) }}</td>
                 <td>{{$conceitoAvaliacao->created_at_for_humans}}</td>
                 <td>{{$conceitoAvaliacao->updated_at_for_humans}}</td>
                 <td class="text-right">

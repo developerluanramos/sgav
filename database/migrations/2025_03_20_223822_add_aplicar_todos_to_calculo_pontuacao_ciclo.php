@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('calculo_pontuacao_ciclos', function (Blueprint $table) {
+        Schema::table('regra_pontuacao_ciclos', function (Blueprint $table) {
             $table->boolean('aplicar_todos')->default(false)->after('status_ciclo');
         });
     }
@@ -21,7 +21,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('calculo_pontuacao_ciclos', function (Blueprint $table) {
+        Schema::table('regra_pontuacao_ciclos', function (Blueprint $table) {
             $table->dropColumn(columns: 'aplicar_todos');
         });
     }

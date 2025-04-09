@@ -16,20 +16,20 @@ class ConceitoAvaliacaoEloquentRepository implements ConceitoAvaliacaoRepository
     ){ }
 
     public function new(ConceitoAvaliacaoStoreDTO $conceitoAvaliacaoStoreDTO): ConceitoAvaliacao
-    {   
+    {
         return $this->model->create((array)$conceitoAvaliacaoStoreDTO);
     }
 
     public function find(string $uuid): ConceitoAvaliacao
     {
         return $this->model
-            ->with('itensConceitosAvaliacao')
+            ->with('itens')
             ->where('uuid', $uuid)->first();
     }
 
     public function paginate(int $page = 1, int $totalPerPage = 10, string $filter = null): PaginationInterface
     {
-        $query = $this->model->query()->with('itensConceitosAvaliacao');
+        $query = $this->model->query()->with('itens');
 
         if(!is_null($filter)) {
             $query->where("descricao", "like", "%".$filter."%");
@@ -48,10 +48,10 @@ class ConceitoAvaliacaoEloquentRepository implements ConceitoAvaliacaoRepository
             'uuid' => $dto->uuid,
             'descricao' => $dto->descricao
         ]);
-        
+
         return $this->find($dto->uuid);
     }
-    
+
     public function all(): array
     {
         return $this->model->all()->toArray();
@@ -62,7 +62,7 @@ class ConceitoAvaliacaoEloquentRepository implements ConceitoAvaliacaoRepository
         $itens = collect($itensUuid)->map(function ($uuid) {
             return ItemConceitoAvaliacao::where('uuid', $uuid)->value('pontuacao');
         })->toArray();
-        
+
         return array_sum($itens);
     }
 }

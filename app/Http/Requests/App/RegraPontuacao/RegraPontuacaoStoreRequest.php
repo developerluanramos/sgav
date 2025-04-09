@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\App\Calculo;
+namespace App\Http\Requests\App\RegraPontuacao;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CalculoStoreRequest extends FormRequest
+class RegraPontuacaoStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -18,7 +18,7 @@ class CalculoStoreRequest extends FormRequest
     {
         if (is_string($this->regras_pontuacao_ciclo)) {
             $this->merge([
-                'regras_pontuacao_ciclo' => json_decode($this->regras_pontuacao_ciclo, true)
+//                'regras_pontuacao_ciclo' => json_decode($this->regras_pontuacao_ciclo, true)
             ]);
         }
     }
@@ -32,18 +32,18 @@ class CalculoStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "regras_pontuacao_ciclo.*.de" => [
-                "required", "numeric"
-            ],
-            "regras_pontuacao_ciclo.*.ate" => [
-                "required", "numeric"
-            ],
-            "regras_pontuacao_ciclo.*.status_vinculo_ciclo" => [
-                "required"
-            ],
-            "regras_pontuacao_ciclo.*.status_ciclo" => [
-                "required"
-            ]
+//            "regras_pontuacao_ciclo.*.de" => [
+//                "required", "numeric"
+//            ],
+//            "regras_pontuacao_ciclo.*.ate" => [
+//                "required", "numeric"
+//            ],
+//            "regras_pontuacao_ciclo.*.status_vinculo_ciclo" => [
+//                "required"
+//            ],
+//            "regras_pontuacao_ciclo.*.status_ciclo" => [
+//                "required"
+//            ]
         ];
     }
 
