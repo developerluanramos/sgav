@@ -4,7 +4,6 @@ namespace App\DTO\VinculoAvaliacao;
 
 use App\Http\Requests\App\VinculoAvaliacao\VinculoAvaliacaoStoreRequest;
 
-
 class VinculoAvaliacaoStoreDTO {
     public function __construct(
         public string $ciclos_avaliativos_uuid,
