@@ -11,17 +11,17 @@
 @include('app.ciclo-avaliativo.partials.small-view', ['cicloAvaliativo' => $cicloAvaliativo])
 
 <div class="mt-2 mb-2">
-    <button 
-        data-modal-target="modal-incidencia" 
+    <button
+        data-modal-target="modal-incidencia"
         data-modal-toggle="modal-incidencia"
-        type="button" 
-        class="inline-flex mr-2 items-center 
-        px-5 py-2.5 text-sm font-medium 
-        text-center text-white bg-blue-700 
-        rounded-lg hover:bg-blue-800 
-        focus:ring-4 focus:outline-none 
-        focus:ring-blue-300 dark:bg-blue-600 
-        dark:hover:bg-blue-700 
+        type="button"
+        class="inline-flex mr-2 items-center
+        px-5 py-2.5 text-sm font-medium
+        text-center text-white bg-blue-700
+        rounded-lg hover:bg-blue-800
+        focus:ring-4 focus:outline-none
+        focus:ring-blue-300 dark:bg-blue-600
+        dark:hover:bg-blue-700
         dark:focus:ring-blue-800">
         <svg class="w-5 h-5 text-gray-800 dark:text-white mr-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 12v4m0 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4ZM8 8a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm0 0v2a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2V8m0 0a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z"/>
@@ -32,43 +32,43 @@
         </span>
     </button>
     <button
-        data-modal-target="modal-modelo" 
+        data-modal-target="modal-modelo"
         data-modal-toggle="modal-modelo"
-        type="button" 
-        class="inline-flex mr-2 items-center 
-        px-5 py-2.5 text-sm font-medium 
-        text-center text-white bg-blue-700 
-        rounded-lg hover:bg-blue-800 
-        focus:ring-4 focus:outline-none 
-        focus:ring-blue-300 dark:bg-blue-600 
-        dark:hover:bg-blue-700 
+        type="button"
+        class="inline-flex mr-2 items-center
+        px-5 py-2.5 text-sm font-medium
+        text-center text-white bg-blue-700
+        rounded-lg hover:bg-blue-800
+        focus:ring-4 focus:outline-none
+        focus:ring-blue-300 dark:bg-blue-600
+        dark:hover:bg-blue-700
         dark:focus:ring-blue-800">
         <svg class="w-5 h-5 text-gray-800 dark:text-white mr-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 3v4a1 1 0 0 1-1 1H5m4 8h6m-6-4h6m4-8v16a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V7.914a1 1 0 0 1 .293-.707l3.914-3.914A1 1 0 0 1 9.914 3H18a1 1 0 0 1 1 1Z"/>
-        </svg>  
+        </svg>
         Modelos
         <span class="inline-flex ms-6 items-center justify-center w-4 h-4 text-xs font-semibold text-blue-800 bg-blue-200 rounded-full">
             {{ count($cicloAvaliativo['modelos']) }}
         </span>
     </button>
     <button
-        data-modal-target="modal-calculo" 
+        data-modal-target="modal-calculo"
         data-modal-toggle="modal-calculo"
-        type="button" 
-        class="inline-flex mr-2 items-center 
-        px-5 py-2.5 text-sm font-medium 
-        text-center text-white bg-indigo-700 
-        rounded-lg hover:bg-indigo-800 
-        focus:ring-4 focus:outline-none 
-        focus:ring-indigo-300 dark:bg-indigo-600 
-        dark:hover:bg-indigo-700 
+        type="button"
+        class="inline-flex mr-2 items-center
+        px-5 py-2.5 text-sm font-medium
+        text-center text-white bg-indigo-700
+        rounded-lg hover:bg-indigo-800
+        focus:ring-4 focus:outline-none
+        focus:ring-indigo-300 dark:bg-indigo-600
+        dark:hover:bg-indigo-700
         dark:focus:ring-indigo-800">
         <svg class="w-5 h-5 mr-1 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
             <path fill-rule="evenodd" d="M9 2a1 1 0 0 0-1 1H6a2 2 0 0 0-2 2v15a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-2a1 1 0 0 0-1-1H9Zm1 2h4v2h1a1 1 0 1 1 0 2H9a1 1 0 0 1 0-2h1V4Zm5.707 8.707a1 1 0 0 0-1.414-1.414L11 14.586l-1.293-1.293a1 1 0 0 0-1.414 1.414l2 2a1 1 0 0 0 1.414 0l4-4Z" clip-rule="evenodd"/>
         </svg>
-        Cálculos 
+        Cálculos
         <span class="inline-flex ms-6 items-center justify-center w-4 h-4 text-xs font-semibold text-blue-800 bg-blue-200 rounded-full">
-            {{ count($cicloAvaliativo['calculosPontuacaoCiclo'] ?? []) }}
+            {{ count($cicloAvaliativo['regrasPontuacaoCiclo'] ?? []) }}
         </span>
     </button>
 </div>
@@ -101,13 +101,13 @@
                                     {{$vinculo->email}}
                                 </p>
                                 <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-                                    {{ $vinculo->codigo_orgao }} - {{ $vinculo->nome_orgao }} 
+                                    {{ $vinculo->codigo_orgao }} - {{ $vinculo->nome_orgao }}
                                 </p>
                                 <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-                                    {{ $vinculo->codigo_local_trabalho }} - {{ $vinculo->nome_local_trabalho }} 
+                                    {{ $vinculo->codigo_local_trabalho }} - {{ $vinculo->nome_local_trabalho }}
                                 </p>
                                 <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-                                    {{ $vinculo->codigo_funcao }} - {{ $vinculo->nome_funcao }} 
+                                    {{ $vinculo->codigo_funcao }} - {{ $vinculo->nome_funcao }}
                                 </p>
                             @endif
                         </div>
@@ -149,10 +149,10 @@
 
         <div class="md:w-12/12 p-2">
             <h3>Pontuação Ciclos</h3>
-            @forelse ($cicloAvaliativo['calculosPontuacaoCiclo'] as $calculoPontuacaoCiclo)
+            @forelse ($cicloAvaliativo['regrasPontuacaoCiclo'] as $calculoPontuacaoCiclo)
                 <span id="badge-{{$calculoPontuacaoCiclo['uuid']}}" class="inline-flex items-center px-2 py-1 me-2 text-sm font-medium text-blue-800 bg-blue-100 rounded-sm dark:bg-blue-900 dark:text-blue-300">
-                    {{$calculoPontuacaoCiclo['de']}} - {{$calculoPontuacaoCiclo['ate']}} - 
-                    vinculo: {{ App\Enums\StatusVinculoCicloEnum::getKey((Int)$calculoPontuacaoCiclo['status_vinculo_ciclo']) }} - 
+                    {{$calculoPontuacaoCiclo['de']}} - {{$calculoPontuacaoCiclo['ate']}} -
+                    vinculo: {{ App\Enums\StatusVinculoCicloEnum::getKey((Int)$calculoPontuacaoCiclo['status_vinculo_ciclo']) }} -
                     ciclo: {{ App\Enums\StatusCicloEnum::getKey((Int)$calculoPontuacaoCiclo['status_ciclo']) }}
                     aplicar em todos: {{$calculoPontuacaoCiclo['aplicar_todos'] ? 'Sim' : 'Não'}}
                     <button type="button" class="inline-flex items-center p-1 ms-2 text-sm text-blue-400 bg-transparent rounded-xs hover:bg-blue-200 hover:text-blue-900 dark:hover:bg-blue-800 dark:hover:text-blue-300" data-dismiss-target="#badge-{{$calculoPontuacaoCiclo['uuid']}}" aria-label="Remove">
@@ -265,7 +265,7 @@
                     </div>
                 @endforelse
             </div>
-           
+
             <div class="md:w-4/12 p-2">
                 <h3>Funções</h3>
                 @forelse ($cicloAvaliativo['incidencias'] as $incidencia)
@@ -321,7 +321,7 @@
                 color="success"
                 :route="route('ciclo-avaliativo.modelo.create', ['uuid' => $cicloAvaliativo['uuid']])"
             ></x-layouts.buttons.action-button>
-        </h2>  
+        </h2>
         <div class="grid grid-cols-4 gap-4">
             @forelse ($cicloAvaliativo['modelos'] as $modelo)
                 <div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">

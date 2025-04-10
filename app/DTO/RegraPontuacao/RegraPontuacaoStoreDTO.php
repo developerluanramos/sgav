@@ -2,7 +2,7 @@
 
 namespace App\DTO\RegraPontuacao;
 
-use App\Http\Requests\App\RegraPontuacao\CalculoStoreRequest;
+use App\Http\Requests\App\RegraPontuacao\RegraPontuacaoStoreRequest;
 
 class RegraPontuacaoStoreDTO {
     public function __construct(
@@ -12,7 +12,7 @@ class RegraPontuacaoStoreDTO {
         public array $regras_pontuacao_avaliacao
     ) {}
 
-    public static function makeFromRequest(CalculoStoreRequest $request): self
+    public static function makeFromRequest(RegraPontuacaoStoreRequest $request): self
     {
         return new self(
             $request->ciclos_avaliativos_uuid,

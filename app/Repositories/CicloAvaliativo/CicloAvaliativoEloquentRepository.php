@@ -55,7 +55,6 @@ class CicloAvaliativoEloquentRepository implements CicloAvaliativoRepositoryInte
 
     public function findByDate(string $date): CicloAvaliativo
     {
-        dd($date);
         return $this->model
             ->with('incidencias')
             ->where('iniciado_em', '>=', $date)
@@ -84,7 +83,7 @@ class CicloAvaliativoEloquentRepository implements CicloAvaliativoRepositoryInte
                 'periodos',
                 'avaliacoes',
                 'modelos.fatores.indicadores.conceito.itens',
-                'calculosPontuacaoCiclo'
+                'regrasPontuacaoCiclo'
             ])
             ->where('uuid', $uuid)->first();
     }
@@ -191,18 +190,15 @@ class CicloAvaliativoEloquentRepository implements CicloAvaliativoRepositoryInte
             }
         }
 
-
-        $vinculos = Vinculo::where('avaliador', false)
-            // ->when(!empty($codigosOrgaos), function($query) use ($codigosOrgaos) {
-                ->whereIn('codigo_orgao', $codigosOrgaos)
-            // })
-            // ->when(!empty($codigosFuncoes), function($query) use ($codigosFuncoes) {
-                ->whereIn('codigo_funcao', $codigosFuncoes)
-            // })
-            // ->when(!empty($codigosLocaisTrabalho), function($query) use ($codigosLocaisTrabalho) {
-                ->whereIn('codigo_local_trabalho', $codigosLocaisTrabalho);
-            // });
-
-        return $vinculos;
+        return Vinculo::where('avaliador', false)
+            ->when(!empty($codigosOrgaos), function($query) use ($codigosOrgaos) {
+                $query->orWhereIn('codigo_orgao', $codigosOrgaos);
+            })
+            ->when(!empty($codigosFuncoes), function($query) use ($codigosFuncoes) {
+                $query->orWhereIn('codigo_funcao', $codigosFuncoes);
+            })
+            ->when(!empty($codigosLocaisTrabalho), function($query) use ($codigosLocaisTrabalho) {
+                $query->orWhereIn('codigo_local_trabalho', $codigosLocaisTrabalho);
+            });
     }
 }

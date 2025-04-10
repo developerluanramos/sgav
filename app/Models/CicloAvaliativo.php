@@ -30,12 +30,12 @@ class CicloAvaliativo extends Model
         return $this->hasMany(Ciclo::class, 'ciclos_avaliativos_uuid', 'uuid');
     }
 
-    public function periodos() 
+    public function periodos()
     {
         return $this->hasMany(Periodo::class, 'ciclos_avaliativos_uuid', 'uuid');
     }
 
-    public function avaliacoes() 
+    public function avaliacoes()
     {
         return $this->hasMany(Avaliacao::class, 'ciclos_avaliativos_uuid', 'uuid');
     }
@@ -54,8 +54,8 @@ class CicloAvaliativo extends Model
     {
         return $this->belongsToMany(
             ModeloAvaliacao::class,
-            'ciclos_avaliativos_modelos', 
-            'ciclos_avaliativos_uuid', 
+            'ciclos_avaliativos_modelos',
+            'ciclos_avaliativos_uuid',
             'modelos_avaliacao_uuid',
             'uuid',
             'uuid'
@@ -67,9 +67,9 @@ class CicloAvaliativo extends Model
         return $this->hasMany(Dependencia::class, 'ciclos_avaliativos_uuid', 'uuid');
     }
 
-    public function calculosPontuacaoCiclo() 
+    public function regrasPontuacaoCiclo()
     {
-        return $this->hasMany(CalculoPontuacaoCiclo::class, 'ciclos_avaliativos_uuid', 'uuid');
+        return $this->hasMany(RegraPontuacaoCiclo::class, 'ciclos_avaliativos_uuid', 'uuid');
     }
 
     public function getQuantidadeCiclosAttribute()
