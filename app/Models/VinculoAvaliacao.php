@@ -19,7 +19,11 @@ class VinculoAvaliacao extends Model
         'avaliacoes_uuid',
         'vinculos_uuid',
         'pontuacao_total',
-        'status_vinculo_avaliacao', // este atributo possui a palavra avaliação até que seja discutido com o evandro sobre as regas de calculo, pois ele é pra ser apenas status_vinculo
-        'status_avaliacao'
+        'status_vinculo_avaliacao',
+        'status_avaliacao',
+        'status_vinculo_ciclo',
+        'status_ciclo',
+        'status_vinculo_periodo',
+        'status_periodo',
     ];
 }

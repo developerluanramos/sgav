@@ -12,7 +12,7 @@ class CicloAvaliativoStoreDTO {
         public string $status,
         public string $descricao,
         public array $ciclos,
-        
+
     ) {}
 
     public static function makeFromRequest(CicloAvaliativoStoreRequest $request): self
@@ -23,7 +23,6 @@ class CicloAvaliativoStoreDTO {
             CicloAvaliativoStatusEnum::RASCUNHO,
             $request->descricao,
             json_decode($request->ciclos, true),
-            
         );
     }
 }

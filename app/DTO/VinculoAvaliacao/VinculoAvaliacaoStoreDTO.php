@@ -14,7 +14,11 @@ class VinculoAvaliacaoStoreDTO {
         public array $conceitos_uuid, // respostas avaliação
         public float|null $pontuacao_total,
         public string|null $status_vinculo_avaliacao,
-        public string|null $status_avaliacao
+        public string|null $status_avaliacao,
+        public string|null $status_vinculo_ciclo,
+        public string|null $status_ciclo,
+        public string|null $status_vinculo_periodo,
+        public string|null $status_periodo
     ) {}
 
     public static function makeFromRequest(VinculoAvaliacaoStoreRequest $request): self
@@ -25,10 +29,14 @@ class VinculoAvaliacaoStoreDTO {
             $request->periodos_uuid,
             $request->avaliacoes_uuid,
             $request->vinculos_uuid,
-            $request->conceitos_uuid, // respostas avaliação
+            $request->conceitos_uuid,
             $request->pontuacao_total,
             $request->status_vinculo_avaliacao,
-            $request->status_avaliacao
+            $request->status_avaliacao,
+            $request->status_vinculo_ciclo,
+            $request->status_ciclo,
+            $request->status_vinculo_periodo,
+            $request->status_periodo
         );
     }
 }
