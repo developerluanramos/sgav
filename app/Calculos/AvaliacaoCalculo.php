@@ -8,25 +8,24 @@ use App\Repositories\RegraPontuacaoAvaliacao\RegraPontuacaoAvaliacaoRepositoryIn
 
 class AvaliacaoCalculo
 {
-    protected $totalPontuacao = 0;
-
     public function __construct(
         protected RegraPontuacaoAvaliacaoRepositoryInterface $regraPontuacaoAvaliacaoRepository,
         protected ConceitoAvaliacaoRepositoryInterface $conceitoAvaliacaoRepository,
     ){}
 
-    public function exec(VinculoAvaliacaoStoreDTO $vinculoAvaliacaoStoreDTO)
+    public function exec(VinculoAvaliacaoStoreDTO $vinculoAvaliacaoStoreDTO) : VinculoAvaliacaoStoreDTO
     {
-        $this->totalPontuacao = $this->conceitoAvaliacaoRepository->totalPontosPorItensUuid(
+        $vinculoAvaliacaoStoreDTO->pontuacao_total = $this->conceitoAvaliacaoRepository->totalPontosPorItensUuid(
             array_merge(...array_values($vinculoAvaliacaoStoreDTO->conceitos_uuid))
         );
 
         $regraPontuacaoAvaliacao = $this->regraPontuacaoAvaliacaoRepository->porCicloAvaliativoETotalPontos(
-            $vinculoAvaliacaoStoreDTO->ciclos_avaliativos_uuid, $this->totalPontuacao
+            $vinculoAvaliacaoStoreDTO->ciclos_avaliativos_uuid, $vinculoAvaliacaoStoreDTO->pontuacao_total
         );
 
-        dd($this->totalPontuacao, $regraPontuacaoAvaliacao);
+        $vinculoAvaliacaoStoreDTO->status_vinculo_avaliacao = $regraPontuacaoAvaliacao->status_vinculo_avaliacao;
+        $vinculoAvaliacaoStoreDTO->status_avaliacao = $regraPontuacaoAvaliacao->status_avaliacao;
 
-        return $this->totalPontuacao;
+        return $vinculoAvaliacaoStoreDTO;
     }
 }

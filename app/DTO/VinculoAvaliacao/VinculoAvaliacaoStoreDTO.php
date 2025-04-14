@@ -12,6 +12,7 @@ class VinculoAvaliacaoStoreDTO {
         public string $avaliacoes_uuid,
         public string $vinculos_uuid,
         public array $conceitos_uuid, // respostas avaliação
+        public float|null $pontuacao_total,
         public string|null $status_vinculo_avaliacao,
         public string|null $status_avaliacao
     ) {}
@@ -25,6 +26,7 @@ class VinculoAvaliacaoStoreDTO {
             $request->avaliacoes_uuid,
             $request->vinculos_uuid,
             $request->conceitos_uuid, // respostas avaliação
+            $request->pontuacao_total,
             $request->status_vinculo_avaliacao,
             $request->status_avaliacao
         );

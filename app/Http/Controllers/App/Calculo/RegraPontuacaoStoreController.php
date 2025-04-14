@@ -16,7 +16,7 @@ class RegraPontuacaoStoreController extends Controller
     public function store(string $cicloAvaliativoUuid, RegraPontuacaoStoreRequest $request)
     {
         $request->merge(['ciclos_avaliativos_uuid' => $cicloAvaliativoUuid]);
-        dd($request->all());
+//        dd($request->all());
         $this->storeAction->exec(RegraPontuacaoStoreDTO::makeFromRequest($request));
 
         return redirect()->to(route('ciclo-avaliativo.index'));

@@ -31,13 +31,13 @@ class RegraPontuacaoAvaliacao extends Model
         'aplicar_todos'
     ];
 
-    protected $casts = [
-        'status_vinculo_ciclo' => StatusVinculoCicloEnum::class,
-        'status_ciclo' => StatusCicloEnum::class,
-        'status_vinculo_periodo' => StatusVinculoPeriodoEnum::class,
-        'status_periodo' => StatusPeriodoEnum::class,
-        'status_vinculo_avaliacao' => StatusVinculoAvaliacaoEnum::class,
-        'status_avaliacao' => StatusAvaliacaoEnum::class,
-        'aplicar_todos' => 'boolean',
-    ];
+//    protected $casts = [
+//        'status_vinculo_ciclo' => StatusVinculoCicloEnum::class,
+//        'status_ciclo' => StatusCicloEnum::class,
+//        'status_vinculo_periodo' => StatusVinculoPeriodoEnum::class,
+//        'status_periodo' => StatusPeriodoEnum::class,
+//        'status_vinculo_avaliacao' => StatusVinculoAvaliacaoEnum::class,
+//        'status_avaliacao' => StatusAvaliacaoEnum::class,
+//        'aplicar_todos' => 'boolean',
+//    ];
 }

@@ -5,7 +5,6 @@ namespace App\Repositories\CicloAvaliativo;
 use App\DTO\CicloAvaliativo\CicloAvaliativoStoreDTO;
 use App\Models\CicloAvaliativo;
 use App\Repositories\Interfaces\PaginationInterface;
-use Illuminate\Database\Eloquent\Collection;
 
 interface CicloAvaliativoRepositoryInterface
 {

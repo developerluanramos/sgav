@@ -201,4 +201,5 @@ class CicloAvaliativoEloquentRepository implements CicloAvaliativoRepositoryInte
                 $query->orWhereIn('codigo_local_trabalho', $codigosLocaisTrabalho);
             });
     }
+
 }

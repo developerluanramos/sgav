@@ -20,12 +20,14 @@ class VinculoAvaliacaoStoreAction
 
     public function exec(VinculoAvaliacaoStoreDTO $dto): VinculoAvaliacao
     {
-        $resultadoAvaliacao = $this->avaliacaoCalculo->exec($dto);
+        $dto = $this->avaliacaoCalculo->exec($dto);
 
-        $resultadoPeriodo = $this->periodoCalculo->exec($dto);
+        $vinculoAvaliacao = $this->vinculoAvaliacaoRepository->new($dto);
 
-        $resultadoCiclo = $this->cicloCalculo->exec($dto);
+        $this->periodoCalculo->exec($dto);
 
-        return $this->vinculoAvaliacaoRepository->new($dto);
+//        $this->cicloCalculo->exec($dto);
+
+        return $vinculoAvaliacao;
     }
 }

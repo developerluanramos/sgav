@@ -11,12 +11,12 @@ class VinculoAvaliacaoEloquentRepository implements VinculoAvaliacaoRepositoryIn
         protected VinculoAvaliacao $model
     ){}
 
-    public function detailsByVinculoUuidECiclosAvaliativosUuid(string $cicloAvaliativoUuid, string $vinculoUuid) : array 
+    public function detailsByVinculoUuidECiclosAvaliativosUuid(string $cicloAvaliativoUuid, string $vinculoUuid) : array
     {
         $avaliacoesConcluidas = VinculoAvaliacao::query()
             ->where('ciclos_avaliativos_uuid', $cicloAvaliativoUuid)
             ->where('vinculos_uuid', $vinculoUuid)->get();
-        
+
         $details = [
             "ciclosConcluidos" => [],
             "avaliacoesConcluidas" => $avaliacoesConcluidas,
@@ -31,8 +31,15 @@ class VinculoAvaliacaoEloquentRepository implements VinculoAvaliacaoRepositoryIn
         return $details;
     }
 
-    public function new(VinculoAvaliacaoStoreDTO $dto) : VinculoAvaliacao 
+    public function new(VinculoAvaliacaoStoreDTO $dto) : VinculoAvaliacao
     {
         return $this->model->create((array)$dto);
+    }
+
+    public function totalPontosPorPeridoEVinculoUuid(string $periodoUuid, string $vinculosUuid) : float
+    {
+        return $this->model->where(
+            "periodos_uuid", $periodoUuid)->where("vinculos_uuid", $vinculosUuid)
+            ->sum('pontuacao_total');
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Avaliacao;
+use App\Models\RegraPontuacaoAvaliacao;
 use App\Models\RegraPontuacaoCiclo;
 use App\Models\Cargo;
 use App\Models\Ciclo;
@@ -21,6 +22,7 @@ use App\Models\ModeloAvaliacao;
 use App\Models\Periodicidade;
 use App\Models\Periodo;
 use App\Models\PostoTrabalho;
+use App\Models\RegraPontuacaoPeriodo;
 use App\Models\Servidor;
 use App\Models\Setor;
 use App\Models\Vinculo;
@@ -28,6 +30,7 @@ use App\Observers\CargoObserver;
 use App\Models\User;
 use App\Models\VinculoAvaliacao;
 use App\Observers\AvaliacaoObserver;
+use App\Observers\RegraPontuacaoAvaliacaoObserver;
 use App\Observers\RegraPontuacaoCicloObserver;
 use App\Observers\CicloAvaliativoModeloObserver;
 use App\Observers\CicloAvaliativoObserver;
@@ -44,6 +47,7 @@ use App\Observers\ModeloAvaliacaoObserver;
 use App\Observers\PeriodicidadeObserver;
 use App\Observers\PeriodoObserver;
 use App\Observers\PostoTrabalhoObserver;
+use App\Observers\RegraPontuacaoPeriodoObserver;
 use App\Observers\ServidorObserver;
 use App\Observers\SetorObserver;
 use App\Observers\UsuarioObserver;
@@ -53,6 +57,8 @@ use App\Repositories\Avaliacao\AvaliacaoEloquentRepository;
 use App\Repositories\Avaliacao\AvaliacaoRepositoryInterface;
 use App\Repositories\Avaliador\AvaliadorEloquentRepository;
 use App\Repositories\Avaliador\AvaliadorRepositoryInterface;
+use App\Repositories\RegraPontuacaoAvaliacao\RegraPontuacaoAvaliacaoEloquentRepository;
+use App\Repositories\RegraPontuacaoAvaliacao\RegraPontuacaoAvaliacaoRepositoryInterface;
 use App\Repositories\RegraPontuacaoCiclo\RegraPontuacaoCicloEloquentRepository;
 use App\Repositories\RegraPontuacaoCiclo\RegraPontuacaoCicloRepositoryInterface;
 use App\Repositories\Cargo\CargoEloquentRepository;
@@ -83,6 +89,8 @@ use App\Repositories\ModeloAvaliacao\ModeloAvaliacaoEloquentRepository;
 use App\Repositories\ModeloAvaliacao\ModeloAvaliacaoRepositoryInterface;
 use App\Repositories\PostoTrabalho\PostoTrabalhoEloquentRepository;
 use App\Repositories\PostoTrabalho\PostoTrabalhoRepositoryInterface;
+use App\Repositories\RegraPontuacaoPeriodo\RegraPontuacaoPeriodoEloquentRepository;
+use App\Repositories\RegraPontuacaoPeriodo\RegraPontuacaoPeriodoRepositoryInterface;
 use App\Repositories\Servidor\ServidorEloquentRepository;
 use App\Repositories\Servidor\ServidorRepositoryInterface;
 use App\Repositories\Setor\SetorEloquentRepository;
@@ -174,6 +182,12 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(
             RegraPontuacaoCicloRepositoryInterface::class, RegraPontuacaoCicloEloquentRepository::class
         );
+        $this->app->bind(
+            RegraPontuacaoPeriodoRepositoryInterface::class, RegraPontuacaoPeriodoEloquentRepository::class
+        );
+        $this->app->bind(
+            RegraPontuacaoAvaliacaoRepositoryInterface::class, RegraPontuacaoAvaliacaoEloquentRepository::class
+        );
     }
 
 
@@ -204,6 +218,8 @@ class AppServiceProvider extends ServiceProvider
         Periodo::observe(PeriodoObserver::class);
         VinculoAvaliacao::observe(VinculoAvaliacaoObserver::class);
         RegraPontuacaoCiclo::observe(RegraPontuacaoCicloObserver::class);
+        RegraPontuacaoPeriodo::observe(RegraPontuacaoPeriodoObserver::class);
+        RegraPontuacaoAvaliacao::observe(RegraPontuacaoAvaliacaoObserver::class);
 
         Validator::extend('validarIdadeAdmissao', function ($attribute, $value, $parameters, $validator) {
             $dataNascimento = $validator->getData()['data_nascimento'];

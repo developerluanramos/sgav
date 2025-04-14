@@ -10,4 +10,6 @@ interface VinculoAvaliacaoRepositoryInterface
     public function detailsByVinculoUuidECiclosAvaliativosUuid(string $cicloAvaliativoUuid, string $vinculoUuid) : array;
 
     public function new(VinculoAvaliacaoStoreDTO $dto) : VinculoAvaliacao;
+
+    public function totalPontosPorPeridoEVinculoUuid(string $periodoUuid, string $vinculosUuid) : float;
 }

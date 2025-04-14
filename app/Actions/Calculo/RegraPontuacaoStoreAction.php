@@ -6,6 +6,7 @@ use App\DTO\RegraPontuacao\RegraPontuacaoStoreDTO;
 use App\Repositories\RegraPontuacaoAvaliacao\RegraPontuacaoAvaliacaoRepositoryInterface;
 use App\Repositories\RegraPontuacaoCiclo\RegraPontuacaoCicloRepositoryInterface;
 use App\Repositories\RegraPontuacaoPeriodo\RegraPontuacaoPeriodoRepositoryInterface;
+use Illuminate\Support\Facades\DB;
 
 class RegraPontuacaoStoreAction
 {
@@ -17,11 +18,16 @@ class RegraPontuacaoStoreAction
 
     public function exec(RegraPontuacaoStoreDTO $regraPontuacaoStoreDTO): bool
     {
+//        dd($regraPontuacaoStoreDTO);
+        DB::beginTransaction();
+
         $this->regraPontuacaoCicloRepository->new($regraPontuacaoStoreDTO);
 
         $this->regraPontuacaoPeriodoRepository->new($regraPontuacaoStoreDTO);
 
         $this->regraPontuacaoAvaliacaoRepository->new($regraPontuacaoStoreDTO);
+
+        DB::commit();
 
         return true;
     }
