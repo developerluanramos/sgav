@@ -12,4 +12,6 @@ interface VinculoAvaliacaoRepositoryInterface
     public function new(VinculoAvaliacaoStoreDTO $dto) : VinculoAvaliacao;
 
     public function totalPontosPorPeridoEVinculoUuid(string $periodoUuid, string $vinculosUuid) : float;
+
+    public function update(VinculoAvaliacaoStoreDTO $dto) : bool;
 }

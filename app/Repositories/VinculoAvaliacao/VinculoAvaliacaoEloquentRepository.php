@@ -17,7 +17,7 @@ class VinculoAvaliacaoEloquentRepository implements VinculoAvaliacaoRepositoryIn
             ->where('ciclos_avaliativos_uuid', $cicloAvaliativoUuid)
             ->where('vinculos_uuid', $vinculoUuid)->get();
 
-        $details = [
+        return [
             "ciclosConcluidos" => [],
             "avaliacoesConcluidas" => $avaliacoesConcluidas,
             "periodosConcluidos" => [],
@@ -27,8 +27,6 @@ class VinculoAvaliacaoEloquentRepository implements VinculoAvaliacaoRepositoryIn
                 "periodosConcluidos" => [],
             ]
         ];
-
-        return $details;
     }
 
     public function new(VinculoAvaliacaoStoreDTO $dto) : VinculoAvaliacao
@@ -41,5 +39,10 @@ class VinculoAvaliacaoEloquentRepository implements VinculoAvaliacaoRepositoryIn
         return $this->model->where(
             "periodos_uuid", $periodoUuid)->where("vinculos_uuid", $vinculosUuid)
             ->sum('pontuacao_total');
+    }
+
+    public function update(VinculoAvaliacaoStoreDTO $dto) : bool
+    {
+        return $this->model->where("uuid", $dto->uuid)->update((array) $dto);
     }
 }

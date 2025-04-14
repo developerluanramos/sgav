@@ -113,13 +113,21 @@
                         </div>
                         <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
                             <x-layouts.buttons.action-button
-                            text="Editar"
-                            action="editar"
-                            color="primary"
-                            :route="route('avaliacao.create', [
-                                'cicloAvaliativoUuid' => $cicloAvaliativo['uuid'],
-                                'vinculoUuid' => $vinculo->uuid
-                            ])"/>
+                                text="Editar"
+                                action="editar"
+                                color="primary"
+                                :route="route('avaliacao.create', [
+                                    'cicloAvaliativoUuid' => $cicloAvaliativo['uuid'],
+                                    'vinculoUuid' => $vinculo->uuid
+                                ])"/>
+{{--                            <x-layouts.buttons.action-button--}}
+{{--                                text="Ver"--}}
+{{--                                action="ver"--}}
+{{--                                color="primary"--}}
+{{--                                :route="route('avaliacao.show', [--}}
+{{--                                    'cicloAvaliativoUuid' => $cicloAvaliativo['uuid'],--}}
+{{--                                    'vinculoUuid' => $vinculo->uuid--}}
+{{--                                ])"/>--}}
                         </div>
                     </div>
                 </li>

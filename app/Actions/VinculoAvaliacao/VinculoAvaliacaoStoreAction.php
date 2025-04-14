@@ -6,7 +6,6 @@ use App\Calculos\AvaliacaoCalculo;
 use App\Calculos\CicloCalculo;
 use App\Calculos\PeriodoCalculo;
 use App\DTO\VinculoAvaliacao\VinculoAvaliacaoStoreDTO;
-use App\Models\VinculoAvaliacao;
 use App\Repositories\VinculoAvaliacao\VinculoAvaliacaoRepositoryInterface;
 
 class VinculoAvaliacaoStoreAction
@@ -18,16 +17,12 @@ class VinculoAvaliacaoStoreAction
         protected VinculoAvaliacaoRepositoryInterface $vinculoAvaliacaoRepository,
     ) { }
 
-    public function exec(VinculoAvaliacaoStoreDTO $dto): VinculoAvaliacao
+    public function exec(VinculoAvaliacaoStoreDTO $vinculoAvaliacaoStoreDTO): void
     {
-        $dto = $this->avaliacaoCalculo->exec($dto);
+        $vinculoAvaliacaoStoreDTO = $this->avaliacaoCalculo->exec($vinculoAvaliacaoStoreDTO);
 
-        $vinculoAvaliacao = $this->vinculoAvaliacaoRepository->new($dto);
+        $this->periodoCalculo->exec($vinculoAvaliacaoStoreDTO);
 
-        $this->periodoCalculo->exec($dto);
-
-//        $this->cicloCalculo->exec($dto);
-
-        return $vinculoAvaliacao;
+        $this->cicloCalculo->exec($vinculoAvaliacaoStoreDTO);
     }
 }

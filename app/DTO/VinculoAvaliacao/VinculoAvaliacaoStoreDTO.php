@@ -6,6 +6,7 @@ use App\Http\Requests\App\VinculoAvaliacao\VinculoAvaliacaoStoreRequest;
 
 class VinculoAvaliacaoStoreDTO {
     public function __construct(
+        public string|null $uuid,
         public string $ciclos_avaliativos_uuid,
         public string $ciclos_uuid,
         public string $periodos_uuid,
@@ -24,6 +25,7 @@ class VinculoAvaliacaoStoreDTO {
     public static function makeFromRequest(VinculoAvaliacaoStoreRequest $request): self
     {
         return new self(
+            $request->uuid,
             $request->ciclos_avaliativos_uuid,
             $request->ciclos_uuid,
             $request->periodos_uuid,
