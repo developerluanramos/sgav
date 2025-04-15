@@ -21,7 +21,7 @@ class CicloAvaliativoStoreAction
 
         foreach($dto->ciclos as $ciclo) {
             $createdCiclo = $cicloAvaliativo->ciclos()->create($ciclo);
-            // dd($ciclo);
+
             foreach($ciclo['periodos'] as $periodo) {
                 $periodo['ciclos_avaliativos_uuid'] = $cicloAvaliativo->uuid;
                 $createdPeriodo = $createdCiclo->periodos()->create($periodo);
@@ -29,8 +29,7 @@ class CicloAvaliativoStoreAction
                 foreach($periodo['avaliacoes'] as $avaliacao) {
                     $avaliacao['ciclos_avaliativos_uuid'] = $cicloAvaliativo->uuid;
                     $avaliacao['ciclos_uuid'] = $createdCiclo->uuid;
-                    
-                    $avaliacao = $createdPeriodo->avaliacoes()->create($avaliacao);
+                    $createdPeriodo->avaliacoes()->create($avaliacao);
                 }
             }
         }

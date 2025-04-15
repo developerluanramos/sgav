@@ -5,13 +5,15 @@ namespace App\Enums;
 use BenSampo\Enum\Enum;
 
 /**
+ * @method static static SEM_REGISTRO()
  * @method static static FINALIZADO()
  * @method static static EM_ANDAMENTO()
  * @method static static NAO_INICIADO()
  */
 final class StatusCicloEnum extends Enum
 {
-    const FINALIZADO = 0;
-    const EM_ANDAMENTO = 1;
-    const NAO_INICIADO = 2;
+    const SR = 0; // Sem Registro
+    const FINALIZADO = 1;
+    const EM_ANDAMENTO = 2;
+    const NAO_INICIADO = 3;
 }

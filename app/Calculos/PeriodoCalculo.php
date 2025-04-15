@@ -19,7 +19,7 @@ class PeriodoCalculo
     public function exec(VinculoAvaliacaoStoreDTO $vinculoAvaliacaoStoreDTO) : void
     {
         // -- é a ultima avaliação do periodo? TODO
-        if (true === true)
+        if (false === true)
         {
             $totalPontosPeriodo = $this->vinculoAvaliacaoRepository->totalPontosPorPeridoEVinculoUuid(
                 $vinculoAvaliacaoStoreDTO->periodos_uuid,

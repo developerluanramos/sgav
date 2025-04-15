@@ -120,14 +120,14 @@
                                     'cicloAvaliativoUuid' => $cicloAvaliativo['uuid'],
                                     'vinculoUuid' => $vinculo->uuid
                                 ])"/>
-{{--                            <x-layouts.buttons.action-button--}}
-{{--                                text="Ver"--}}
-{{--                                action="ver"--}}
-{{--                                color="primary"--}}
-{{--                                :route="route('avaliacao.show', [--}}
-{{--                                    'cicloAvaliativoUuid' => $cicloAvaliativo['uuid'],--}}
-{{--                                    'vinculoUuid' => $vinculo->uuid--}}
-{{--                                ])"/>--}}
+                            <x-layouts.buttons.action-button
+                                text="Ver"
+                                action="ver"
+                                color="primary"
+                                :route="route('avaliacao.show', [
+                                    'cicloAvaliativoUuid' => $cicloAvaliativo['uuid'],
+                                    'vinculoUuid' => $vinculo->uuid
+                                ])"/>
                         </div>
                     </div>
                 </li>

@@ -27,6 +27,10 @@ class AvaliacaoCalculo
 
         $vinculoAvaliacaoStoreDTO->status_vinculo_avaliacao = $regraPontuacaoAvaliacao->status_vinculo_avaliacao;
         $vinculoAvaliacaoStoreDTO->status_avaliacao = $regraPontuacaoAvaliacao->status_avaliacao;
+        $vinculoAvaliacaoStoreDTO->status_vinculo_periodo = $regraPontuacaoAvaliacao->status_vinculo_periodo;
+        $vinculoAvaliacaoStoreDTO->status_periodo = $regraPontuacaoAvaliacao->status_periodo;
+        $vinculoAvaliacaoStoreDTO->status_vinculo_ciclo = $regraPontuacaoAvaliacao->status_vinculo_ciclo;
+        $vinculoAvaliacaoStoreDTO->status_ciclo = $regraPontuacaoAvaliacao->status_ciclo;
 
         $vinculoAvaliacao = $this->vinculoAvaliacaoRepository->new($vinculoAvaliacaoStoreDTO);
         $vinculoAvaliacaoStoreDTO->uuid = $vinculoAvaliacao->uuid;

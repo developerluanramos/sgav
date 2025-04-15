@@ -13,9 +13,9 @@ class VinculoAvaliacaoCreateAction
         protected VinculoRepositoryInterface $vinculoRepository,
         protected VinculoAvaliacaoRepositoryInterface $vinculoAvaliacaoRepository
     ) { }
-    
+
     public function exec(string $cicloAvaliativoUuid, string $vinculoUuid): array
-    { 
+    {
         $cicloAvaliativo = $this->cicloAvaliativoRepository->show($cicloAvaliativoUuid);
         $cicloAvaliativoDetails = $this->cicloAvaliativoRepository->details($cicloAvaliativoUuid);
         $vinculo = $this->vinculoRepository->find($vinculoUuid);
@@ -31,5 +31,3 @@ class VinculoAvaliacaoCreateAction
         ];
     }
 }
-
-

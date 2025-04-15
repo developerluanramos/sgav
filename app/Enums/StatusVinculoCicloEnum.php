@@ -5,13 +5,15 @@ namespace App\Enums;
 use BenSampo\Enum\Enum;
 
 /**
+ * @method static static SEM_REGISTRO()
  * @method static static APROVADO()
  * @method static static REPROVADO()
  * @method static static APROVADO_COM_RESSALVAS()
  */
 final class StatusVinculoCicloEnum extends Enum
 {
-    const APROVADO = 0; // Aprovado
-    const REPROVADO = 1; // Reprovado
-    const APROVADO_COM_RESSALVAS = 2; // Aprovado com ressalvas
+    const SR = 0; // Sem Registro
+    const APROVADO = 1; // Aprovado
+    const REPROVADO = 2; // Reprovado
+    const APROVADO_COM_RESSALVAS = 3; // Aprovado com ressalvas
 }
