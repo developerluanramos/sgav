@@ -43,6 +43,6 @@ class VinculoAvaliacaoEloquentRepository implements VinculoAvaliacaoRepositoryIn
 
     public function update(VinculoAvaliacaoStoreDTO $dto) : bool
     {
-        return $this->model->where("uuid", $dto->uuid)->update((array) $dto);
+        return $this->model->where("uuid", $dto->uuid)->update($dto::makeToUpdate($dto));
     }
 }

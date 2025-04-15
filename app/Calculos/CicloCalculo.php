@@ -35,6 +35,6 @@ class CicloCalculo
             $vinculoAvaliacaoStoreDTO->status_ciclo = $regraPontuacao->status_ciclo;
         }
 
-        $this->vinculoAvaliacaoRepository->update($vinculoAvaliacaoStoreDTO); // TODO
+        $this->vinculoAvaliacaoRepository->update($vinculoAvaliacaoStoreDTO);
     }
 }

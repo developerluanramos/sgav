@@ -41,4 +41,23 @@ class VinculoAvaliacaoStoreDTO {
             $request->status_periodo
         );
     }
+
+    public static function makeToUpdate(VinculoAvaliacaoStoreDTO $request): array
+    {
+        return [
+            "uuid" => $request->uuid,
+            "ciclos_avaliativos_uuid" => $request->ciclos_avaliativos_uuid,
+            "ciclos_uuid" => $request->ciclos_uuid,
+            "periodos_uuid" => $request->periodos_uuid,
+            "avaliacoes_uuid" => $request->avaliacoes_uuid,
+            "vinculos_uuid" => $request->vinculos_uuid,
+            "pontuacao_total" => $request->pontuacao_total,
+            "status_vinculo_avaliacao" => $request->status_vinculo_avaliacao,
+            "status_avaliacao" => $request->status_avaliacao,
+            "status_vinculo_ciclo" => $request->status_vinculo_ciclo,
+            "status_ciclo" => $request->status_ciclo,
+            "status_vinculo_periodo" => $request->status_vinculo_periodo,
+            "status_periodo" => $request->status_periodo
+        ];
+    }
 }
