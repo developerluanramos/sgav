@@ -3,19 +3,22 @@
 namespace App\Repositories\VinculoAvaliacao;
 
 use App\DTO\VinculoAvaliacao\VinculoAvaliacaoStoreDTO;
+use App\Models\CicloAvaliativo;
 use App\Models\VinculoAvaliacao;
 
 class VinculoAvaliacaoEloquentRepository implements VinculoAvaliacaoRepositoryInterface
 {
     public function __construct(
-        protected VinculoAvaliacao $model
+        protected VinculoAvaliacao $model,
+        protected CicloAvaliativo $modelCicloAvaliativo
     ){}
 
     public function detailsByVinculoUuidECiclosAvaliativosUuid(string $cicloAvaliativoUuid, string $vinculoUuid) : array
     {
-        $avaliacoesConcluidas = VinculoAvaliacao::query()
+        $avaliacoesConcluidas = $this->model::query()
+            ->with('ciclo_avaliativo')
             ->where('ciclos_avaliativos_uuid', $cicloAvaliativoUuid)
-            ->where('vinculos_uuid', $vinculoUuid)->get();
+            ->where('vinculos_uuid', $vinculoUuid)->comStatusCalculado()->get();
 
         return [
             "ciclosConcluidos" => [],

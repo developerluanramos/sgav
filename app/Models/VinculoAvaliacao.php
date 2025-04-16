@@ -26,4 +26,27 @@ class VinculoAvaliacao extends Model
         'status_vinculo_periodo',
         'status_periodo',
     ];
+
+    public function ciclo_avaliativo()
+    {
+        return $this->belongsTo(CicloAvaliativo::class, "ciclos_avaliativos_uuid", "uuid");
+    }
+
+    public function scopeComStatusCalculado($query)
+    {
+        $avaliacoes = $query->get();
+        return self::calcularStatusPeriodoParaCollection($avaliacoes);
+    }
+
+    static function calcularStatusPeriodoParaCollection($avaliacoes)
+    {
+        $avaliacoes->groupBy(['periodos_uuid'])->map(function ($grupo) {
+            $pontuacaoTotal = $grupo->sum('pontuacao_total');
+            $grupo->each(function ($avaliacao) use ($pontuacaoTotal) {
+                $avaliacao->status_periodo = $pontuacaoTotal;
+            });
+        });
+        dd($avaliacoes);
+        return $avaliacoes;
+    }
 }

@@ -18,6 +18,11 @@ class Ciclo extends Model
         "finalizado_em"
     ];
 
+    public function ciclo_avaliativo()
+    {
+        return $this->belongsTo(CicloAvaliativo::class, 'ciclos_avaliativos_uuid', 'uuid');
+    }
+
     public function periodos()
     {
         return $this->hasMany(Periodo::class, 'ciclos_uuid', 'uuid');
